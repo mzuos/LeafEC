@@ -1,0 +1,139 @@
+package com.EWB_Tonibung.mcbcalculator;
+
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.PorterDuff;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.Gravity;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.Toast;
+
+public class FindCableforMCB extends AppCompatActivity {
+
+    int MCBSize;
+    public double WireSizeForMCB = 0;
+    int CableType;
+    Spinner dropdown;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_find_cable_for_mcb);
+
+        //get the spinner from the xml.
+        dropdown = findViewById(R.id.CableSpinner);
+        //create an adapter to describe how the items are displayed, adapters are used in several places in android.
+
+        //ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, CableTypes);
+        //ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.multiline_spinner_dropdown_item, CableTypes);
+
+        ArrayAdapter adapter;
+        adapter = ArrayAdapter.createFromResource(this, R.array.CableTypeCatalogue, R.layout.multiline_spinner_dropdown_item);
+
+        // Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(R.layout.multiline_spinner_dropdown_item);
+        //set the spinners adapter to the previously created one.
+        dropdown.setAdapter(adapter);
+
+        //Setting OnItemClickListener to the Spinner
+
+        dropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+/*                String selectedItemText = (String) parent.getItemAtPosition(position);
+                // Notify the selected item text
+                Toast.makeText
+                        (getApplicationContext(), "Selected : " + selectedItemText, Toast.LENGTH_SHORT)
+                        .show();*/
+                CableType=position;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+    }
+
+    public void CableForMCB_DataValidation(View view) {
+        int ToastXOffset = 280;
+
+        EditText editTextMCBSize = (EditText) findViewById(R.id.MCBSize);
+        String MCBSizeSrt = editTextMCBSize.getText().toString();
+        if (MCBSizeSrt.isEmpty()) {
+            MCBSize = -1;//just giving a random value that is not zero for Toasts to work properly
+        } else {
+            MCBSize = Integer.parseInt(MCBSizeSrt);
+        }
+
+        boolean dataOK = true;
+        CharSequence PopUpText = "";
+
+        if (MCBSize == 0 ) {
+            dataOK = false;
+            PopUpText = "MCB size cannot be zero";
+        }
+
+        if (MCBSizeSrt.isEmpty()) {
+            dataOK = false;
+            PopUpText = "MCB size cannot be blank";
+        }
+
+        if (!dataOK) {
+            // dataOK=true;
+            Context context = getApplicationContext();
+            //CharSequence PopUpText = "Review your input data";
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(context, PopUpText, duration);
+            View viewtext = toast.getView();
+            //Gets the actual oval background of the Toast then sets the colour filter
+            viewtext.getBackground().setColorFilter(72 - 61 - 139, PorterDuff.Mode.SRC_IN);
+            toast.setGravity(Gravity.TOP | Gravity.LEFT, ToastXOffset, 400);
+            toast.show();
+        }
+
+        else Calculator_CableforMCB();
+
+    }
+
+    public void Calculator_CableforMCB(){
+
+        // Call the Cable Size method in General Calculations
+
+        WireSizeForMCB = GeneralCalculations.CableSizeCalculator (MCBSize, CableType);
+
+        // Save the MCB and cable size values as Strings
+
+        String Str_MCBSize =Integer.toString(MCBSize);
+        String Str_WireSize = Double.toString(WireSizeForMCB);
+
+        //Create a Bundle object and add key value pairs to the bundle.
+
+        Bundle Bundle_CableForMCB = new Bundle ();
+
+        Bundle_CableForMCB.putString("MCB_SIZE", Str_MCBSize);
+        Bundle_CableForMCB.putString("WIRE_SIZE", Str_WireSize);
+
+        // Create and initialise the Intent
+
+        Intent intentCableForMCB = new Intent(this, CableForMCB.class);
+
+        //attach the bundle to the Intent object
+
+        intentCableForMCB.putExtras(Bundle_CableForMCB);
+
+        //start the activity
+
+        startActivity(intentCableForMCB);
+    }
+
+}
+
+
+
+

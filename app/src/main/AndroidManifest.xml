@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.EWB_Tonibung.mcbcalculator">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <!-- MCB FOR CABLE- RESULT SCREEN -->
+        <activity
+            android:name=".MCBForCable"
+            android:parentActivityName=".FindMCBforCable">
+
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".FindMCBforCable" />
+        </activity>
+        <!-- MCB FOR CABLE- INPUT SCREEN -->
+        <activity
+            android:name=".FindMCBforCable"
+            android:launchMode="singleTop"
+            android:parentActivityName=".MainActivity">
+
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity> <!-- CABLE FOR MCB- RESULT SCREEN -->
+        <activity
+            android:name=".CableForMCB"
+            android:parentActivityName=".FindCableforMCB">
+
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".FindCableforMCB" />
+        </activity> <!-- CABLE FOR MCB- INPUT SCREEN -->
+        <activity
+            android:name=".FindCableforMCB"
+            android:launchMode="singleTop"
+            android:parentActivityName=".MainActivity">
+
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity> <!-- INVERTER CABLE AND MCB REQUIREMENT SCREEN -->
+        <activity
+            android:name=".ProtectionInverter"
+            android:parentActivityName=".InverterCals">
+
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".InverterCals" />
+        </activity> <!-- CHARGE CONTROLLER CABLE AND MCB REQUIREMENT SCREEN -->
+        <activity
+            android:name=".ProtectionSCC"
+            android:parentActivityName=".PVMCBCalcs">
+
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".PVMCBCalcs" />
+        </activity> <!-- INVERTER DATA INPUT SCREEN -->
+        <activity
+            android:name=".InverterCals"
+            android:launchMode="singleTop"
+            android:parentActivityName=".MainActivity">
+
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity> <!-- PV PANELS DATA INPUT SCREEN -->
+        <activity
+            android:name=".PVMCBCalcs"
+            android:launchMode="singleTop"
+            android:parentActivityName=".MainActivity">
+
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity> <!-- APP MAIN SCREEN -->
+        <activity
+            android:name=".MainActivity"
+            android:launchMode="singleTop">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
