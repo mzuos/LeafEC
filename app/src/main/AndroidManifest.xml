@@ -9,7 +9,27 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <!-- MCB FOR CABLE- RESULT SCREEN -->
+        <!-- MCB and CABLE FOR LOAD - RESULT SCREEN -->
+        <activity android:name=".DesignForLoad"
+            android:launchMode="singleTop"
+            android:parentActivityName=".LoadInput">
+
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".LoadInput" />
+        </activity>
+        <!-- MCB and CABLE FOR LOAD - INPUT SCREEN -->
+        <activity
+            android:name=".LoadInput"
+            android:launchMode="singleTop"
+            android:parentActivityName=".MainActivity">
+
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity> <!-- MCB FOR CABLE- RESULT SCREEN -->
         <activity
             android:name=".MCBForCable"
             android:parentActivityName=".FindMCBforCable">
@@ -18,8 +38,7 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".FindMCBforCable" />
-        </activity>
-        <!-- MCB FOR CABLE- INPUT SCREEN -->
+        </activity> <!-- MCB FOR CABLE- INPUT SCREEN -->
         <activity
             android:name=".FindMCBforCable"
             android:launchMode="singleTop"

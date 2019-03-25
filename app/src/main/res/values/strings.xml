@@ -1,7 +1,12 @@
 <resources>
-    <string name="app_name">MCB Calculator</string>
+    <string name="app_name">TONIBUNG Spark</string>
+    <string name="MainMenuTitle1">Solar PV Systems: MCB and cable size calculations</string>
+    <string name="MainMenuTitle2">General MCB and cable size calculations</string>
     <string name="MainMenu_option1">PV to SCC and SCC to Batteries</string>
     <string name="MainMenu_option2">Inverter Input and Output</string>
+    <string name="MainMenu_option3">Select cable for a MCB</string>
+    <string name="MainMenu_option4">Select MCB for a cable</string>
+    <string name="MainMenu_option5">Select cable and MCB for load (Watts)</string>
     <string name="Input_Vpmax">0</string>
     <string name="Input_Ipmax">0</string>
     <string name="Input_Iscc">0</string>
@@ -27,13 +32,10 @@
     <string name="INV_AC_Al">A</string>
     <string name="INV_AC_V">V</string>
     <string name="DC_Num">1</string>
-    <string name="MainMenu_option3">Select cable for a MCB</string>
-    <string name="MainMenu_option4">Select MCB for a cable</string>
-    <string name="MainMenu_option5">Select cable and MCB for load (Watts)</string>
     <string name="CableSelection">Select cable type:</string>
     <string name="CableType1">Copper, PVC, single core or twin flat. Clipped direct</string>
     <string name="CableType2">Aluminium, PVC, single core (Transmission line)</string>
-    <string name="InsertCableSize">Insert cable size in sqmm (mm2):</string>
+    <string name="InsertCableSize">Select cable size:</string>
     <string name="CableSize">0</string>
     <string name="InsertMCBSize">Insert MCB Size in Amps:</string>
     <string name="MCBSize">0</string>
@@ -41,8 +43,13 @@
     <string name="Load">0</string>
     <string name="SinglePhase">Single phase load</string>
     <string name="ThreePhase">3-phase load</string>
-    <string name="MainMenuTitle1">Solar PV Systems: MCB and cable size calculations</string>
-    <string name="MainMenuTitle2">General MCB and cable size calculations</string>
+    <string name="MCB_size_unit">Amps</string>
+    <string name="Cable_size_unit">sqmm</string>
     <string name="CableSelectionforMCB_title">Minimum suggested cable size for MCB:</string>
     <string name="MCBSelectionforCable_title">Maximum suggested MCB size for cable:</string>
+    <string name="LoadScreen_Title">Insert system peak load in Watts [W]:</string>
+    <string name="LoadScreen_LoadType">Specify type of load:</string>
+    <string name="LoadScreen_CableType">Specify type of cable:</string>
+    <string name="LoadDesignScr_Title1">The maximum suggested MCB size is:</string>
+    <string name="LoadDesignScr_Title2">The minimum suggested cable size is:</string>
 </resources>

@@ -29,9 +29,6 @@ public class FindCableforMCB extends AppCompatActivity {
         dropdown = findViewById(R.id.CableSpinner);
         //create an adapter to describe how the items are displayed, adapters are used in several places in android.
 
-        //ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, CableTypes);
-        //ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.multiline_spinner_dropdown_item, CableTypes);
-
         ArrayAdapter adapter;
         adapter = ArrayAdapter.createFromResource(this, R.array.CableTypeCatalogue, R.layout.multiline_spinner_dropdown_item);
 
@@ -45,17 +42,11 @@ public class FindCableforMCB extends AppCompatActivity {
         dropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-/*                String selectedItemText = (String) parent.getItemAtPosition(position);
-                // Notify the selected item text
-                Toast.makeText
-                        (getApplicationContext(), "Selected : " + selectedItemText, Toast.LENGTH_SHORT)
-                        .show();*/
                 CableType=position;
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
+            public void onNothingSelected(AdapterView<?> parent) {}
         });
 
     }

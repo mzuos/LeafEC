@@ -38,6 +38,12 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intentMCBforCable);
     }
 
+    //Launched by selecting Main Menu Option 5
+    public void LaunchDesignForLoad(View view) {
+        Intent intent_Load = new Intent (this, LoadInput.class);
+        startActivity(intent_Load);
+    }
+
 
 }
 

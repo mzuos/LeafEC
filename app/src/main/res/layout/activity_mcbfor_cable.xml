@@ -38,7 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:text="Amp"
+        android:text="@string/MCB_size_unit"
         android:textSize="48sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/TV_MCBSize"
         app:layout_constraintEnd_toEndOf="parent"

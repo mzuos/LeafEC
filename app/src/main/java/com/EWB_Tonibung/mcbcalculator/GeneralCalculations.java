@@ -99,7 +99,6 @@ public class GeneralCalculations {
                 break;
             }
         }
-
         return WireSize;
     }
 

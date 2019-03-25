@@ -2,94 +2,86 @@ package com.EWB_Tonibung.mcbcalculator;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.PorterDuff;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 public class FindMCBforCable extends AppCompatActivity {
 
-    Spinner dropdown;
-    int CableType;
-    double CableSize;
+    Spinner sp_cabletype, sp_cablesize;
+    int CableType=0, dummy=0;
+    double CableSize=0;
+    String SelectedType, SelectedSize;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_mcbfor_cable);
 
+        //initialise array adapters
+        ArrayAdapter adapter_cabletype;
+
         //get the spinner from the xml.
-        dropdown = findViewById(R.id.cableSpinner);
-        ArrayAdapter adapter;
-        adapter = ArrayAdapter.createFromResource(this, R.array.CableTypeCatalogue, R.layout.multiline_spinner_dropdown_item);
+        sp_cabletype = findViewById(R.id.cableSpinner);
+        sp_cablesize = findViewById(R.id.CableSizeSpinner);
+        adapter_cabletype = ArrayAdapter.createFromResource(this, R.array.CableTypeCatalogue, R.layout.multiline_spinner_dropdown_item);
 
         // Specify the layout to use when the list of choices appears
-        adapter.setDropDownViewResource(R.layout.multiline_spinner_dropdown_item);
+        adapter_cabletype.setDropDownViewResource(R.layout.multiline_spinner_dropdown_item);
         //set the spinners adapter to the previously created one.
-        dropdown.setAdapter(adapter);
+        sp_cabletype.setAdapter(adapter_cabletype);
 
-        //Setting OnItemClickListener to the Spinner
-        dropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        //Setting OnItemClickListener to the CABLE TYPE Spinner
+        sp_cabletype.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                //ArrayAdapter adapter_cablesize;
                 CableType=position;
+                SelectedType=(String) parent.getItemAtPosition(position);
+
+
+                if (CableType==0 || CableType==1){ //copper cables
+
+                    sp_cablesize.setAdapter(new ArrayAdapter <String>(getApplicationContext(),android.R.layout.simple_spinner_dropdown_item,
+                            getResources().getStringArray(R.array.Cu_WireSizeList)));
+
+                }
+                else {// for now we do it with an else, if more cable sizes available, make else_if
+                    sp_cablesize.setAdapter(new ArrayAdapter <String>(getApplicationContext(),android.R.layout.simple_spinner_dropdown_item,
+                            getResources().getStringArray(R.array.Al_WireSizeList)));
+                }
+                            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {}
+
+        });
+
+        // Cable Size Spinner implementing onItemSelectedListener
+        sp_cablesize.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+        {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+            {
+                SelectedSize = parent.getItemAtPosition(position).toString();
+
+                // Convert the cable size to a real number
+
+                CableSize=Float.parseFloat(SelectedSize);
+
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
+            public void onNothingSelected(AdapterView<?> parent) {}
+
         });
+
     }
 
-    public void CableForMCB_DataValidation(View view) {
-        int ToastXOffset = 280;
 
-        EditText editTextCableSize = (EditText) findViewById(R.id.Input_CableSize);
-        String CableSizeSrt = editTextCableSize.getText().toString();
-        if (CableSizeSrt.isEmpty()) {
-            CableSize = -1;//just giving a random value that is not zero for Toasts to work properly
-        } else {
-            CableSize = Integer.parseInt(CableSizeSrt);
-        }
-
-        boolean dataOK = true;
-        CharSequence PopUpText = "";
-
-        if (CableSize == 0.0 ) {
-            dataOK = false;
-            PopUpText = "Cable size cannot be zero";
-        }
-
-        if (CableSizeSrt.isEmpty()) {
-            dataOK = false;
-            PopUpText = "Cable size cannot be blank";
-        }
-
-        if (!dataOK) {
-            // dataOK=true;
-            Context context = getApplicationContext();
-            //CharSequence PopUpText = "Review your input data";
-            int duration = Toast.LENGTH_SHORT;
-            Toast toast = Toast.makeText(context, PopUpText, duration);
-            View viewtext = toast.getView();
-            //Gets the actual oval background of the Toast then sets the colour filter
-            viewtext.getBackground().setColorFilter(72 - 61 - 139, PorterDuff.Mode.SRC_IN);
-            toast.setGravity(Gravity.TOP | Gravity.LEFT, ToastXOffset, 400);
-            toast.show();
-        }
-
-        // Toast showing available cable sizes for that cable type and Stop the Code
-
-        else SelectMCBforCable();
-    }
-
-    public void SelectMCBforCable (){
+    public void SelectMCBforCable (View view){
 
         // Call the Cable Size method in General Calculations
         int MCB_Selection=0;
@@ -118,4 +110,5 @@ public class FindMCBforCable extends AppCompatActivity {
         startActivity(intentMCBforCable);
 
     }
+
 }

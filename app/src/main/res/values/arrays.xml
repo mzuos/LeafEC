@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array
+        name="CableTypeCatalogue">
+        <item> Copper, PVC, non-armoured, Single Core or TwinFlat. Clipped Direct </item>
+        <item> Copper, PVC, non-armoured, Single Core or TwinFlat. In Conduit </item>
+        <item> Aluminium, PVC, non-armoured. In Free Air. (Transmission Line cable) </item>
+    </array>
+
+    <array
+        name="Cu_WireSizeList">
+        <item>"1" </item>
+        <item> "1.5" </item>
+        <item> "2.5" </item>
+        <item> "4" </item>
+        <item> "6" </item>
+        <item> "10" </item>
+        <item> "16" </item>
+        <item> "25" </item>
+        <item> "35" </item>
+        <item> "50" </item>
+        <item> "70" </item>
+        <item> "95" </item>
+        <item> "120" </item>
+    </array>
+
+    <array
+        name="Al_WireSizeList">
+        <item> "16" </item>
+        <item> "25" </item>
+        <item> "35" </item>
+        <item> "50" </item>
+        <item> "70" </item>
+        <item> "95" </item>
+    </array>
+
+    <array
+        name="Load_type">
+        <item>AC - Single Phase</item>
+        <item>AC - Three Phase</item>
+    </array>
+
+
+
+</resources>
