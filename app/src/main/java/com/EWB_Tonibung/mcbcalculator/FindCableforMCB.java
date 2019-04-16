@@ -2,6 +2,7 @@ package com.EWB_Tonibung.mcbcalculator;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,12 +12,13 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class FindCableforMCB extends AppCompatActivity {
 
     int MCBSize;
-    public double WireSizeForMCB = 0;
+    public double WireSizeForMCB = 0, WireRating=0;
     int CableType;
     Spinner dropdown;
 
@@ -82,10 +84,15 @@ public class FindCableforMCB extends AppCompatActivity {
             int duration = Toast.LENGTH_SHORT;
             Toast toast = Toast.makeText(context, PopUpText, duration);
             View viewtext = toast.getView();
+
             //Gets the actual oval background of the Toast then sets the colour filter
-            viewtext.getBackground().setColorFilter(72 - 61 - 139, PorterDuff.Mode.SRC_IN);
-            toast.setGravity(Gravity.TOP | Gravity.LEFT, ToastXOffset, 400);
+            viewtext.getBackground().setColorFilter(getResources().getColor(android.R.color.holo_blue_dark), PorterDuff.Mode.SRC_IN);
+            toast.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL, 0, -200);
+            TextView toastMessage = (TextView) toast.getView().findViewById(android.R.id.message);
+            toastMessage.setTextColor(Color.WHITE);
             toast.show();
+
+
         }
 
         else Calculator_CableforMCB();
@@ -97,11 +104,13 @@ public class FindCableforMCB extends AppCompatActivity {
         // Call the Cable Size method in General Calculations
 
         WireSizeForMCB = GeneralCalculations.CableSizeCalculator (MCBSize, CableType);
+        WireRating = GeneralCalculations.CableCurrentRating(CableType,WireSizeForMCB);
 
         // Save the MCB and cable size values as Strings
 
         String Str_MCBSize =Integer.toString(MCBSize);
         String Str_WireSize = Double.toString(WireSizeForMCB);
+        String Str_WireRating = Double.toString(WireRating);
 
         //Create a Bundle object and add key value pairs to the bundle.
 
@@ -109,6 +118,7 @@ public class FindCableforMCB extends AppCompatActivity {
 
         Bundle_CableForMCB.putString("MCB_SIZE", Str_MCBSize);
         Bundle_CableForMCB.putString("WIRE_SIZE", Str_WireSize);
+        Bundle_CableForMCB.putString("WIRE_RATING", Str_WireRating);
 
         // Create and initialise the Intent
 

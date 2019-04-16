@@ -2,18 +2,20 @@ package com.EWB_Tonibung.mcbcalculator;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class InverterCals extends AppCompatActivity {
 
     int InverterV = 0; //to avoid it being zero
-    double InvRating = 0;
+    double InvRating = 0, kWLimit=0;
     //kWLimit = 0;
     int Inv_DC_MCB_Size = 0, Inv_AC_MCB_Size = 0;
     int Num_DC=1, Num_AC=1; //Number or MCBs of each type in case one MCB is not big enough
@@ -27,6 +29,9 @@ public class InverterCals extends AppCompatActivity {
     }
 
     public void InverterDataValidation(View view) {
+
+        boolean dataOK = true;
+        CharSequence PopUpText = "";
 
         EditText editTextInvV = (EditText) findViewById(R.id.Insert_Vinverter);
         String InvVsrt = editTextInvV.getText().toString();
@@ -44,11 +49,21 @@ public class InverterCals extends AppCompatActivity {
             InvRating = Float.parseFloat(InvkWsrt);
         }
 
+
         EditText editTextkwLim = (EditText) findViewById(R.id.Insert_kWLimit);
         String kWLimSrt = editTextkwLim.getText().toString();
+        if (!kWLimSrt.isEmpty()){
+            kWLimit = Float.parseFloat(kWLimSrt);
+            if (kWLimit > InvRating){
+                dataOK = false;
+                PopUpText = "Kampung Load cannot be higher than inverter output";
+            }
+            else if (kWLimit < InvRating/5){
+                dataOK=false;
+                PopUpText = "Kampung load is unusually low";
+            }
+        }
 
-        boolean dataOK = true;
-        CharSequence PopUpText = "";
 
         if (InverterV == 0 || InvRating == 0.0) {
             dataOK = false;
@@ -61,16 +76,19 @@ public class InverterCals extends AppCompatActivity {
         }
 
         if (dataOK == false) {
-            // dataOK=true;
+
             Context context = getApplicationContext();
-            //CharSequence PopUpText = "Review your input data";
             int duration = Toast.LENGTH_SHORT;
             Toast toast = Toast.makeText(context, PopUpText, duration);
             View viewtext = toast.getView();
+
             //Gets the actual oval background of the Toast then sets the colour filter
-            viewtext.getBackground().setColorFilter(72 - 61 - 139, PorterDuff.Mode.SRC_IN);
-            toast.setGravity(Gravity.TOP | Gravity.LEFT, 280, 400);
+            viewtext.getBackground().setColorFilter(getResources().getColor(android.R.color.holo_blue_dark), PorterDuff.Mode.SRC_IN);
+            toast.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL, 0, -200);
+            TextView toastMessage = (TextView) toast.getView().findViewById(android.R.id.message);
+            toastMessage.setTextColor(Color.WHITE);
             toast.show();
+
         } else {
             Calculate_Inverter();
 
@@ -80,10 +98,16 @@ public class InverterCals extends AppCompatActivity {
     void Calculate_Inverter() {
         double Imax_DC = 0, Imax_AC = 0;
 
-        // If reduced overload, trip AC only, to keep inverter running.
+         // Size DC for full inverter capacity, AC for (optional) reduced load. If reduced overload, trip AC only, to keep inverter running.
 
         Imax_DC = InvRating / 0.9 / InverterV * 1.25; // 0.9 as inverter efficiency, 1.25 de-rating factor
-        Imax_AC = InvRating / 230 * 1.25; // For now. Make the voltage User Defined
+
+        if (kWLimit!=0){
+            Imax_AC = kWLimit / 230 * 1.25; // For now. Make the voltage User Defined
+        }
+        else{
+            Imax_AC = InvRating / 230 * 1.25; // For now. Make the voltage User Defined
+        }
 
 
         for (Num_DC=1;Num_DC<=10;Num_DC++){

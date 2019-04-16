@@ -4,9 +4,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/leaf_logo_light"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/leaf_logo_light"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <!-- MCB and CABLE FOR LOAD - RESULT SCREEN -->

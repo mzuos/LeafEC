@@ -2,6 +2,7 @@ package com.EWB_Tonibung.mcbcalculator;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,7 +12,10 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.Locale;
 
 public class LoadInput extends AppCompatActivity {
 
@@ -98,10 +102,14 @@ public class LoadInput extends AppCompatActivity {
             int duration = Toast.LENGTH_SHORT;
             Toast toast = Toast.makeText(context, PopUpText, duration);
             View viewtext = toast.getView();
+
             //Gets the actual oval background of the Toast then sets the colour filter
-            viewtext.getBackground().setColorFilter(72 - 61 - 139, PorterDuff.Mode.SRC_IN);
-            toast.setGravity(Gravity.TOP | Gravity.LEFT, ToastXOffset, 400);
+            viewtext.getBackground().setColorFilter(getResources().getColor(android.R.color.holo_blue_dark), PorterDuff.Mode.SRC_IN);
+            toast.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL, 0, -200);
+            TextView toastMessage = (TextView) toast.getView().findViewById(android.R.id.message);
+            toastMessage.setTextColor(Color.WHITE);
             toast.show();
+
         }
 
        else DesignForLoad();
@@ -113,14 +121,35 @@ public class LoadInput extends AppCompatActivity {
         double Amps=0;
         int MCBforLoad=0;
         double CableForLoad=0;
+        int voltage_1ph, voltage_3ph;
+        double cosphi, Overload;
 
+        EditText editText_V1ph = findViewById(R.id.ed_V1ph);
+        String V1ph_Srt = editText_V1ph.getText().toString();
+        voltage_1ph =Integer.parseInt(V1ph_Srt);
+
+        EditText editText_V3ph = findViewById(R.id.ed_V3ph);
+        String V3ph_Srt = editText_V3ph.getText().toString();
+        voltage_3ph =Integer.parseInt(V3ph_Srt);
+
+        EditText editText_cosphi = findViewById(R.id.ed_cosphi);
+        String CosPhi_Srt = editText_cosphi.getText().toString();
+        cosphi =Float.parseFloat(CosPhi_Srt);
+
+        EditText editText_OL = findViewById(R.id.ed_OL);
+        String OL_Srt = editText_OL.getText().toString();
+        Overload =Float.parseFloat(OL_Srt);
+
+        String Str_LoadType="TBC";
 
         if (LoadType==0){ //AC - Single Phase
-            Amps=Watts/230/0.85; //0.85 power factor  (this can be made dynamic)
+            Str_LoadType = "Single Phase";
+            Amps=Watts/voltage_1ph/cosphi*Overload; //0.85 power factor  (this can be made dynamic)
 
         }
         else if (LoadType==1){ //AC - Three Phase
-            Amps=Watts/1.732/400/0.85;
+            Str_LoadType = "Three Phase";
+            Amps=Watts/1.732/voltage_3ph/cosphi*Overload;
         }
         MCBforLoad=GeneralCalculations.AC_MCB_Calculator(Amps);
         CableForLoad=GeneralCalculations.CableSizeCalculator(MCBforLoad,CableType);
@@ -129,10 +158,10 @@ public class LoadInput extends AppCompatActivity {
 
         String Str_MCBSize =Integer.toString(MCBforLoad);
         String Str_WireSize = Double.toString(CableForLoad);
-        String Str_LoadType = Integer.toString(LoadType);
-        String Str_Amps = Double.toString(Amps);
-        String Str_Watts = Double.toString (Watts);
 
+        String Str_Amps = String.format (Locale.UK, "%.1f", Amps); // Display with one decimal only
+        String Str_Watts = String.format (Locale.UK, "%.0f", Watts);
+        String Str_OvLoad = String.format (Locale.UK, "%.2f", Overload);
 
         //Create a Bundle object and add key value pairs to the bundle.
 
@@ -143,6 +172,7 @@ public class LoadInput extends AppCompatActivity {
         Bundle_Load.putString("LOAD_TYPE", Str_LoadType);
         Bundle_Load.putString ("POWER", Str_Watts);
         Bundle_Load.putString("AMPS", Str_Amps);
+        Bundle_Load.putString("OVERLOAD", Str_OvLoad);
 
 
         // Create and initialise the Intent

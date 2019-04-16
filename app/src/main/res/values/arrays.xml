@@ -40,6 +40,12 @@
         <item>AC - Three Phase</item>
     </array>
 
+    <array
+        name="SCC_type">
+        <item>PWM</item>
+        <item>MPPT</item>
+    </array>
+
 
 
 </resources>

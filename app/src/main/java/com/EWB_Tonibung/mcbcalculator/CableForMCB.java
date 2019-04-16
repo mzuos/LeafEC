@@ -19,12 +19,15 @@ public class CableForMCB extends AppCompatActivity {
         Bundle BundleCableForMCB = intentCableForMCB.getExtras();
 
         //Extracting the stored data from the bundle
-        //String user_name = extras.getString("USER_NAME");
 
         String CableSize = BundleCableForMCB.getString("WIRE_SIZE");
+        String CableRating = BundleCableForMCB.getString("WIRE_RATING");
 
         //Capture the layout of the textviews and set the strings as their text
         TextView TView_CableSize = findViewById (R.id.TV_CableSize);
         TView_CableSize.setText(CableSize);
+
+        TextView TView_CableRating = findViewById (R.id.TV_CableRating);
+        TView_CableRating.setText(CableRating);
     }
 }

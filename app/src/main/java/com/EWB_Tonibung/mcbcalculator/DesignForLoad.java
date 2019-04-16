@@ -25,10 +25,15 @@ public class DesignForLoad extends AppCompatActivity {
         String LoadType = Bundle_Load.getString("LOAD_TYPE");
         String Watts = Bundle_Load.getString("POWER");
         String Amps = Bundle_Load.getString("AMPS");
+        String OvLoad = Bundle_Load.getString("OVERLOAD");
 
-
-
+        String LoadDescription = "Load: " + Watts + " Watt - " + LoadType + ". "+OvLoad+" overload factor";
+        String DesignCurrent =  "Design current: " + Amps + "A";
         //Capture the layout of the textviews and set the strings as their text
+        TextView TView_LoadDescription = findViewById(R.id.TV_LoadDescription);
+        TView_LoadDescription.setText (LoadDescription);
+        TextView TView_DesignI = findViewById(R.id.TV_DesignAmp);
+        TView_DesignI.setText (DesignCurrent);
         TextView TView_MCBSize = findViewById (R.id.TVLoad_MCBSize);
         TView_MCBSize.setText(MCBSize);
         TextView TView_CableSize = findViewById (R.id.TVLoad_CableSize);

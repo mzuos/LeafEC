@@ -1,13 +1,23 @@
 package com.EWB_Tonibung.mcbcalculator;
 
+import android.content.Context;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.view.Gravity;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import static java.lang.Boolean.TRUE;
 
 public class GeneralCalculations {
 
  // MCB and Cable catalogue
 
+    // Preferred values are: The preferred values are 6, 8, 10, 13, 16, 20, 25, 32, 40, 50, 63, 80, 100 and 125 A
+
     public static int[] DC_MCB_Catalogue = new int[]{6, 10, 16, 32, 40, 63, 125};
-    public static int[] AC_MCB_Catalogue = new int[]{6, 10, 16, 32, 40, 63, 125};
+    public static int[] AC_MCB_Catalogue = new int[]{6, 10, 16, 20, 32, 40, 63, 125};
 
     //Data from 17th Edition of BS7671 for Single Core Copper Conductors, Unarmoured, PVC
     // Same values used for copper twin flat cable
@@ -23,7 +33,8 @@ public class GeneralCalculations {
     //Current Rating for cables in free Air
     public static double [] Rating_Al_Air= new double [] {73, 89, 111, 135, 173, 210};
 
-//************************* DC_MCB CALCULATOR **********************************
+
+    //************************* DC_MCB CALCULATOR **********************************
 
     public static int DC_MCB_Calculator (double Imax){
 
@@ -57,6 +68,43 @@ public class GeneralCalculations {
             }
         }
         return AC_MCBSize;
+    }
+
+
+    public static double CableCurrentRating (int CableType,double CableSize){
+        double Rating=0;
+       double [] AmpacityArray = new double []{};
+       double [] WireSizeArray = new double[]{};
+        int CableList = 0;
+
+        // Get the ampacity and cable size arrays for the selected cable type
+
+        if (CableType==0 ||CableType==1){
+            CableList = CopperWireArray.length;
+            WireSizeArray=CopperWireArray;
+
+            if (CableType==0){
+                AmpacityArray=Rating_Cu_Clipped;
+            }
+            else if (CableType==1){
+                AmpacityArray=Rating_Cu_Conduit;
+            }
+        }
+        else if (CableType==2) {
+            CableList = AlumWireArray.length;
+            WireSizeArray=AlumWireArray;
+            AmpacityArray=Rating_Al_Air;
+
+        }
+
+        for (int w=0; w<CableList; w++){
+            if (CableSize==WireSizeArray[w]){
+                   Rating=AmpacityArray[w];
+                   break;
+            }
+        }
+
+        return Rating;
     }
 
 

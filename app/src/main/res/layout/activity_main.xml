@@ -88,4 +88,45 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mainMenu_" />
 
+    <ImageView
+        android:id="@+id/LeafLogo"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="46dp"
+        android:layout_marginLeft="46dp"
+        android:layout_marginBottom="64dp"
+        android:contentDescription="@string/leaf_logo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@mipmap/leaf_logo_light" />
+
+    <ImageView
+        android:id="@+id/EWB_logo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="80dp"
+        android:adjustViewBounds="false"
+        android:minWidth="100dp"
+        android:minHeight="120dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/Tonibung_logo"
+        app:layout_constraintStart_toEndOf="@+id/LeafLogo"
+        app:srcCompat="@mipmap/ewb_logo" />
+
+    <ImageView
+        android:id="@+id/Tonibung_logo"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="46dp"
+        android:layout_marginRight="46dp"
+        android:layout_marginBottom="64dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@mipmap/tonibung_logo" />
+
+
 </android.support.constraint.ConstraintLayout>

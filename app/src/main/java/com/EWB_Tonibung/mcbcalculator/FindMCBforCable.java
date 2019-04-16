@@ -12,7 +12,7 @@ public class FindMCBforCable extends AppCompatActivity {
 
     Spinner sp_cabletype, sp_cablesize;
     int CableType=0, dummy=0;
-    double CableSize=0;
+    double CableSize=0, WireRating=0;
     String SelectedType, SelectedSize;
 
     @Override
@@ -86,16 +86,20 @@ public class FindMCBforCable extends AppCompatActivity {
         // Call the Cable Size method in General Calculations
         int MCB_Selection=0;
         MCB_Selection = GeneralCalculations.Calculator_MCBforCable(CableSize, CableType);
+        WireRating = GeneralCalculations.CableCurrentRating(CableType,CableSize);
+
+
 
         // Save the MCB size values as String
         String Str_MCBSize =Integer.toString(MCB_Selection);
+        String Str_WireRating = Double.toString(WireRating);
 
         //Create a Bundle object and add key value pairs to the bundle.
 
         Bundle Bundle_MCBforCable = new Bundle ();
 
         Bundle_MCBforCable.putString("MCB_SIZE", Str_MCBSize);
-
+        Bundle_MCBforCable.putString("WIRE_RATING", Str_WireRating);
 
         // Create and initialise the Intent
 

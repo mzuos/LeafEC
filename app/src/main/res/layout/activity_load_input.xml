@@ -29,6 +29,7 @@
         android:inputType="numberDecimal"
         android:paddingBottom="10dp"
         android:textSize="16sp"
+        android:imeOptions="actionDone"
         app:layout_constraintBaseline_toBaselineOf="@+id/TV_InsertLoad"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -50,10 +51,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="50dp"
         android:text="@string/CableSelection"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TV_LoadType" />
+        app:layout_constraintTop_toBottomOf="@+id/textView49" />
 
     <Spinner
         android:id="@+id/LoadTypeSpinner"
@@ -94,7 +95,7 @@
         android:id="@+id/cableForMCB_PB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="350dp"
+        android:layout_marginBottom="200dp"
         android:onClick="LoadInput_DataValidation"
         android:text="  CALCULATE  "
         android:textSize="16sp"
@@ -102,4 +103,96 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView44"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginLeft="48dp"
+        android:layout_marginTop="50dp"
+        android:text="@string/Nomina_V_1ph_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TV_LoadType" />
+
+    <TextView
+        android:id="@+id/textView46"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/Nominal_V_3ph_text"
+        app:layout_constraintStart_toStartOf="@+id/textView44"
+        app:layout_constraintTop_toBottomOf="@+id/textView44" />
+
+    <TextView
+        android:id="@+id/textView48"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/Nominal_cosphi_text"
+        app:layout_constraintStart_toStartOf="@+id/textView44"
+        app:layout_constraintTop_toBottomOf="@+id/textView46" />
+
+    <TextView
+        android:id="@+id/textView49"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/Nominal_OL_text"
+        app:layout_constraintStart_toStartOf="@+id/textView44"
+        app:layout_constraintTop_toBottomOf="@+id/textView48" />
+
+    <EditText
+        android:id="@+id/ed_V1ph"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:ems="10"
+        android:gravity="center"
+        android:inputType="number"
+        android:paddingBottom="10dp"
+        android:text="@string/Nominal_V_1ph_value"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textView44"
+        app:layout_constraintStart_toEndOf="@+id/textView44" />
+
+    <EditText
+        android:id="@+id/ed_V3ph"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:gravity="center"
+        android:inputType="number"
+        android:paddingBottom="10dp"
+        android:text="@string/Nominal_V_3ph_value"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textView46"
+        app:layout_constraintStart_toStartOf="@+id/ed_V1ph" />
+
+    <EditText
+        android:id="@+id/ed_cosphi"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:gravity="center"
+        android:inputType="numberDecimal"
+        android:paddingBottom="10dp"
+        android:text="@string/Nominal_cosphi_value"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textView48"
+        app:layout_constraintStart_toStartOf="@+id/ed_V1ph" />
+
+    <EditText
+        android:id="@+id/ed_OL"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:gravity="center"
+        android:inputType="numberDecimal"
+        android:paddingBottom="10dp"
+        android:text="@string/Nominal_OL_value"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textView49"
+        app:layout_constraintStart_toStartOf="@+id/ed_V1ph" />
 </android.support.constraint.ConstraintLayout>
