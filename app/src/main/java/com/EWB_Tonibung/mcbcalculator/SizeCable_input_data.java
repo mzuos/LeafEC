@@ -15,7 +15,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class FindCableforMCB extends AppCompatActivity {
+public class SizeCable_input_data extends AppCompatActivity {
 
     int MCBSize;
     public double WireSizeForMCB = 0, WireRating=0;
@@ -25,7 +25,7 @@ public class FindCableforMCB extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_find_cable_for_mcb);
+        setContentView(R.layout.activity_sizecable_input_data);
 
         //get the spinner from the xml.
         dropdown = findViewById(R.id.CableSpinner);
@@ -38,6 +38,7 @@ public class FindCableforMCB extends AppCompatActivity {
         adapter.setDropDownViewResource(R.layout.multiline_spinner_dropdown_item);
         //set the spinners adapter to the previously created one.
         dropdown.setAdapter(adapter);
+
 
         //Setting OnItemClickListener to the Spinner
 
@@ -86,8 +87,8 @@ public class FindCableforMCB extends AppCompatActivity {
             View viewtext = toast.getView();
 
             //Gets the actual oval background of the Toast then sets the colour filter
-            viewtext.getBackground().setColorFilter(getResources().getColor(android.R.color.holo_blue_dark), PorterDuff.Mode.SRC_IN);
-            toast.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL, 0, -200);
+            viewtext.getBackground().setColorFilter(getResources().getColor(R.color.color_leaf_Toast), PorterDuff.Mode.SRC_IN);
+            toast.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL, 0, -100);
             TextView toastMessage = (TextView) toast.getView().findViewById(android.R.id.message);
             toastMessage.setTextColor(Color.WHITE);
             toast.show();
@@ -122,7 +123,7 @@ public class FindCableforMCB extends AppCompatActivity {
 
         // Create and initialise the Intent
 
-        Intent intentCableForMCB = new Intent(this, CableForMCB.class);
+        Intent intentCableForMCB = new Intent(this, SizeCable_results.class);
 
         //attach the bundle to the Intent object
 

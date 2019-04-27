@@ -7,9 +7,7 @@ import android.graphics.PorterDuff;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -17,12 +15,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Spinner;
 
-import java.lang.reflect.Array;
 import java.util.Locale;
 
 import static java.lang.Boolean.TRUE;
 
-public class PVMCBCalcs extends AppCompatActivity {
+public class PV_input_data extends AppCompatActivity {
 
     double Vpmax = 0, Ipmax = 0, Isc = 0, ImaxSCC = 0;
     int SystemV = 0, NumPV = 0,  n_series = 1, n_parallel;
@@ -36,7 +33,7 @@ public class PVMCBCalcs extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pvmcbcalcs);
+        setContentView(R.layout.activity_pv_input_data);
         //initialise array adapters
         ArrayAdapter adapter_SCCtype;
 
@@ -182,7 +179,7 @@ public class PVMCBCalcs extends AppCompatActivity {
                 designOK = false;
                 SCC_In_MCBSize = 0;
                 int  MaxNumPanels = (int)(ImaxSCC/(SCC_In_C_SF * Isc))*n_series; //(SCC_In_C_SF * Isc) = current in each branch
-                Text = "Current exceeds Charge Controller limit. Max num. of panels allowable: " + MaxNumPanels;
+                Text = "Current exceeds Charge Controller limit. Max num. of panels allowable per controller: " + MaxNumPanels;
                 duration = Toast.LENGTH_LONG;
                 DisplayToast(Text, duration);
             }
@@ -217,7 +214,7 @@ public class PVMCBCalcs extends AppCompatActivity {
             Toast toast = Toast.makeText(context, PopUpText, duration);
             View viewtext = toast.getView();
             //Gets the actual oval background of the Toast then sets the colour filter
-            viewtext.getBackground().setColorFilter(getResources().getColor(android.R.color.holo_blue_dark), PorterDuff.Mode.SRC_IN);
+            viewtext.getBackground().setColorFilter(getResources().getColor(R.color.color_leaf_StatusBar), PorterDuff.Mode.SRC_IN);
             toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 500);
             TextView toastMessage = (TextView) toast.getView().findViewById(android.R.id.message);
             toastMessage.setTextColor(Color.WHITE);
@@ -260,7 +257,7 @@ public class PVMCBCalcs extends AppCompatActivity {
 
         // Create and initialise the Intent
 
-        Intent intentPVprotect = new Intent(this, ProtectionSCC.class);
+        Intent intentPVprotect = new Intent(this, PV_results.class);
 
         //attach the bundle to the Intent object
 

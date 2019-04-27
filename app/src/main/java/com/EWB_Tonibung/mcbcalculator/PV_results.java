@@ -5,14 +5,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import java.util.Locale;
-
-public class ProtectionSCC extends AppCompatActivity {
+public class PV_results extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_protection_scc);
+        setContentView(R.layout.activity_pv_results);
 
         //get the intent in the target activity
         Intent intentPVprotect = getIntent();

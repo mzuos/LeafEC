@@ -5,12 +5,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
-public class CableForMCB extends AppCompatActivity {
+public class SizeCable_results extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cable_for_mcb);
+        setContentView(R.layout.activity_sizecable_results);
 
         //get the intent in the target activity
         Intent intentCableForMCB = getIntent();

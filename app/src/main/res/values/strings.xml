@@ -1,37 +1,78 @@
 <resources>
-    <string name="app_name">LEAF CALC</string>
+    <!--GENERIC STRINGS-->
+    <string name="app_name">Leaf EC</string>
+    <string name="app_name_long">Leaf EC - Electrical Calculator</string>
+    <string name="app_name_subtitle">Electrical Calculator for Green Energy</string>
     <string name="leaf_logo"> EWB logo for main page</string>
     <string name="EWB_logo"> EWB logo for main page</string>
     <string name="Tonibung_logo"> EWB logo for main page</string>
-    <string name="MainMenuTitle1">Solar PV Systems: MCB and cable size calculations</string>
-    <string name="MainMenuTitle2">General MCB and cable size calculations</string>
-    <string name="MainMenu_option1">PV to SCC and SCC to Batteries</string>
-    <string name="MainMenu_option2">Inverter Input and Output</string>
-    <string name="MainMenu_option3">Select cable for a MCB</string>
-    <string name="MainMenu_option4">Select MCB for a cable</string>
-    <string name="MainMenu_option5">Select cable and MCB for load (Watts)</string>
-    <string name="Input_Vpmax">0</string>
-    <string name="Input_Ipmax">0</string>
-    <string name="Input_Iscc">0</string>
-    <string name="Input_ImaxSCC">0</string>
+    <string name="generic_0">0</string>
+    <string name="splash_text">Developed with the support of:</string>
+
+    <!--MAIN SCREEN STRINGS-->
+    <string name="MainMenuTitle1">Solar PV: MCB and cable sizing</string>
+    <string name="MainMenu_option_1a">Charge Controller Input/Output</string>
+    <string name="MainMenu_option_1b">Inverter Input/Output</string>
+    <string name="MainMenuTitle2">General MCB and cable sizing</string>
+    <string name="MainMenu_option_2a">Size cable for a MCB</string>
+    <string name="MainMenu_option_2b">Size MCB for a cable</string>
+    <string name="MainMenu_option_2c">Size cable and MCB for load (Watts)</string>
+    <string name="MainMenuTitle3">Volt-drop calculator</string>
+    <string name="MainMenu_option_3a">Size cable for Max volt-drop</string>
+    <string name="MainMenu_option_3b">Calculate volt-drop</string>
+
+    <!--PV INPUT SCREEN STRINGS-->
+    <string name="PVInputScr_text1">From Inverter or Charge Controller nameplate, insert:</string>
+    <string name="SystemV_text">System Voltage (24V, 48V, 96V etc..) [V]:</string>
+    <string name="SystemV_value">0</string>
+    <string name="PVInputScr_text2">From PV panel nameplate insert:</string>
+    <string name="Vpmax_text">Voltage at Maximum Power - Vpmax [V]:</string>
+    <string name="Vpmax_value">0</string>
+    <string name="Ipmax_text">Current at Maximum Power - Ipmax [A]:</string>
+    <string name="Ipmax_value">0</string>
+    <string name="Isc_text">Short Circuit Current - Isc [A]:</string>
+    <string name="Isc_value">0</string>
+    <string name="PVInputScr_text3">From Solar Charge Controller nameplate insert:</string>
+    <string name="ImaxSCC_text">Maximum current [A]:</string>
+    <string name="ImaxSCC_value">0</string>
+    <string name="SCC_Type_text">Type of controller (default: PWM):</string>
+    <string name="NumPV_text">Number of PV panels per controller:</string>
+    <string name="NumPV_value">0</string>
     <string name="CalculatePB">CALCULATE</string>
-    <string name="Input_SystemV">0</string>
-    <string name="Input_NumPV">0</string>
-    <string name="Input_InverterV">0</string>
-    <string name="Input_InvRating">0</string>
-    <string name="Input_kWLimit">0</string>
+
+    <!--PV RESULTS SCREEN STRINGS-->
     <string name="SCC_Idesign_text">The design current (1.56*Isc) is:</string>
     <string name="SCC_Idesign_value">0</string>
-    <string name="n_series">Number of panels in series per branch:</string>
-    <string name="n_parallel">Number of parallel branches:</string>
-    <string name="SCC_Type">Type of controller (default: PWM):</string>
-    <string name="SCC_In_MCB">SCC_In_MCB</string>
+    <string name="n_series_text">Number of panels in series per branch:</string>
+    <string name="n_parallel_text">Number of parallel branches:</string>
+    <string name="PVResultScr_text1">PV Panels to Solar Charge Controller:</string>
+    <string name="SCC_In_MCB_text">Suggested DC-MCB or DC-Isolator size:</string>
+    <string name="SCC_In_MCB">SCC_In_MCB</string>"
+    <string name="MCB_minV_text">Minimum rated DC Voltage for MCB:</string>
+    <string name="MCB_minV">tbcV</string>
+    <string name="SCC_In_Cu_text">Min. Copper wire size for MCB:</string>
     <string name="SCC_In_Cu">SCC_In_Cu</string>
+    <string name="SCC_In_Al_text">Min. Aluminium wire size for MCB:</string>
     <string name="SCC_In_Al">SCC_In_Al</string>
+    <string name="PVResultScr_text2">Solar Charge Controller to Batteries:</string>
+    <string name="SCC_Out_MCB_text">Suggested DC-MCB size:</string>
     <string name="SCC_Out_MCB">SCC_Out_MCB</string>
+    <string name="SCC_Out_Cu_text">Min. Copper wire size for MCB:</string>
     <string name="SCC_Out_Cu">SCC_Out_Cu</string>
+    <string name="SCC_Out_Al_text">Min. Aluminium wire size for MCB:</string>
     <string name="SCC_Out_Al">SCC_Out_Al</string>
-    <string name="Text_PV_To_SCC">PV Panels to Solar Charge Controller:</string>
+
+    <!--INVERTER INPUT SCREEN STRINGS-->
+    <string name="InverterScr_text1">From inverter nameplate insert:</string>
+    <string name="Inv_NomV_text">Inverter nominal voltage (24V, 48V, etc.) [V]:</string>
+    <string name="Inv_Rating_text">Inverter Power Rating in Watts [W]:</string>
+    <string name="Input_InverterV">0</string>
+    <string name="Input_InvRating">0</string>
+    <string name="InverterScr_text2">Optional: if a reduced output is desired, insert:</string>
+    <string name="Input_kWLimit_text">Maximum Power Output to Kampung [W]:</string>
+    <string name="Input_kWLimit">0</string>
+
+    <!--INVERTER RESULTS SCREEN STRINGS-->
     <string name="INV_DC_MCB">A</string>
     <string name="INV_DC_CU">A</string>
     <string name="INV_DC_Al">A</string>
@@ -41,6 +82,29 @@
     <string name="INV_AC_Al">A</string>
     <string name="INV_AC_V">V</string>
     <string name="DC_Num">1</string>
+
+    <!--LOAD INPUT SCREEN STRINGS-->
+    <string name="LoadInputScr_Title">Insert system peak load in Watts [W]:</string>
+    <string name="LoadInputScr_LoadType">Specify type of load:</string>
+    <string name="LoadInputScr_CableType">Specify type of cable:</string>
+    <string name="DC_Voltage_text">Insert DC voltage [V]:</string>
+    <string name="DC_Voltage_value">0</string>
+    <string name="Nominal_V_1ph_text">Nominal single phase voltage [V]:</string>
+    <string name="Nominal_V_3ph_text">Nominal three phase voltage [V]:</string>
+    <string name="Nominal_cosphi_text">Nominal Power Factor (cosPhi):</string>
+    <string name="Nominal_OL_text">"Nominal overload factor:</string>
+    <string name="Nominal_V_1ph_value">230</string>
+    <string name="Nominal_V_3ph_value">400</string>
+    <string name="Nominal_cosphi_value">0.85</string>
+    <string name="Nominal_OL_value">1.25</string>
+
+    <!--LOAD RESULT SCREEN STRINGS-->
+    <string name="LoadResultScr_LoadDescription">Load description:</string>
+    <string name="LoadResultScr_DesignCurrent">Design current:</string>
+    <string name="LoadResultScr_Title1">The suggested MCB size is:</string>
+    <string name="LoadResultScr_Title2">The minimum suggested cable size for that MCB is:</string>
+
+    <!--MULTIPLE SCREEN STRINGS-->
     <string name="CableSelection">Select cable type:</string>
     <string name="CableType1">Copper, PVC, single core or twin flat. Clipped direct</string>
     <string name="CableType2">Aluminium, PVC, single core (Transmission line)</string>
@@ -54,22 +118,9 @@
     <string name="ThreePhase">3-phase load</string>
     <string name="MCB_size_unit">Amps</string>
     <string name="Cable_size_unit">sqmm</string>
+    <string name="MCBSelectionforCable_title">Maximum suggested MCB size for cable:</string>
     <string name="CableSelectionforMCB_title">Minimum suggested cable size for MCB:</string>
     <string name="CableRating"> Current Rating of the cable for continous use:</string>
-    <string name="MCBSelectionforCable_title">Maximum suggested MCB size for cable:</string>
-    <string name="LoadScreen_Title">Insert system peak load in Watts [W]:</string>
-    <string name="LoadScreen_LoadType">Specify type of load:</string>
-    <string name="LoadScreen_CableType">Specify type of cable:</string>
-    <string name="LoadDesignScr_LoadDescription">Load description:</string>
-    <string name="LoadDesignScr_DesignCurrent">Design current:</string>
-    <string name="LoadDesignScr_Title1">The suggested MCB size is:</string>
-    <string name="LoadDesignScr_Title2">The minimum suggested cable size for that MCB is:</string>
-    <string name="Nomina_V_1ph_text">Nominal single phase voltage [V]:</string>
-    <string name="Nominal_V_3ph_text">Nominal three phase voltage [V]:</string>
-    <string name="Nominal_cosphi_text">Nominal Power Factor (cosPhi):</string>
-    <string name="Nominal_OL_text">"Nominal overload factor:</string>
-    <string name="Nominal_V_1ph_value">230</string>
-    <string name="Nominal_V_3ph_value">400</string>
-    <string name="Nominal_cosphi_value">0.85</string>
-    <string name="Nominal_OL_value">1.25</string>
+
+
 </resources>

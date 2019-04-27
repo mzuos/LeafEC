@@ -16,31 +16,31 @@ public class MainActivity extends AppCompatActivity {
 
     //Launched by selecting Main Menu Option 1
     public void LaunchPVInput(View view) {
-        Intent intentPVInput = new Intent(this, PVMCBCalcs.class);
+        Intent intentPVInput = new Intent(this, PV_input_data.class);
         startActivity(intentPVInput);
     }
 
     //Launched by selecting Main Menu Option 2
     public void LaunchInverterInput(View view) {
-        Intent intentInverterInput = new Intent(this, InverterCals.class);
+        Intent intentInverterInput = new Intent(this, Inverter_input_data.class);
         startActivity(intentInverterInput);
     }
 
     //Launched by selecting Main Menu Option 3
     public void LaunchCableforMCB(View view) {
-        Intent intentCableforMCB = new Intent(this, FindCableforMCB.class);
+        Intent intentCableforMCB = new Intent(this, SizeCable_input_data.class);
         startActivity(intentCableforMCB);
     }
 
     //Launched by selecting Main Menu Option 4
     public void LaunchMCBforCable(View view) {
-        Intent intentMCBforCable = new Intent (this, FindMCBforCable.class);
+        Intent intentMCBforCable = new Intent (this, SizeMCB_input_data.class);
         startActivity(intentMCBforCable);
     }
 
     //Launched by selecting Main Menu Option 5
     public void LaunchDesignForLoad(View view) {
-        Intent intent_Load = new Intent (this, LoadInput.class);
+        Intent intent_Load = new Intent (this, SizeforLoad_input_data.class);
         startActivity(intent_Load);
     }
 

@@ -33,6 +33,14 @@ public class GeneralCalculations {
     //Current Rating for cables in free Air
     public static double [] Rating_Al_Air= new double [] {73, 89, 111, 135, 173, 210};
 
+    //Data from Aerial Bundle Aluminium cables, compliant with IEC 60502 (PVC) and IEC 60502 (XLPE)
+    public static double [] AlumWireSize_IEC = new double [] {10, 16, 25, 35, 50};
+    //Current Rating for cables in free Air
+    public static double [] Rating_Al_Air_IEC_PVC= new double [] {35, 56, 70, 90, 110};
+    public static double [] Rating_Al_Air_IEC_XLPE= new double [] {47, 74, 102, 124, 157};
+    //Resistance [Ohm/km] for volt drop
+    public static double [] Ohm_Al_Air_IEC= new double [] {3.08, 1.91, 1.2, 0.868, 0.641};
+
 
     //************************* DC_MCB CALCULATOR **********************************
 
@@ -47,6 +55,10 @@ public class GeneralCalculations {
                 DC_MCBSize = DC_MCB_Catalogue[i];
                 break;
             }
+        }
+
+        if (DC_MCBSize ==0) {// means it hasn't been able to find a big enough MCB
+            DC_MCBSize = 71; // Random value so that I know we don't have a suitable MCB
         }
 
         return DC_MCBSize;
@@ -66,6 +78,9 @@ public class GeneralCalculations {
                 AC_MCBSize = AC_MCB_Catalogue[i];
                 break;
             }
+        }
+        if (AC_MCBSize ==0) {// means it hasn't been able to find a big enough MCB
+            AC_MCBSize = 71; // Random value so that I know we don't have a suitable MCB
         }
         return AC_MCBSize;
     }

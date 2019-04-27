@@ -5,12 +5,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
-public class ProtectionInverter extends AppCompatActivity {
+public class Inverter_results extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_protection_inverter);
+        setContentView(R.layout.activity_inverter_results);
 
         //get the intent in the target activity
         Intent intentINVprotect = getIntent();

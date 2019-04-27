@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DesignForLoad">
+    tools:context=".SizeforLoad_results">
 
     <TextView
         android:id="@+id/TVLoad_MCBSelection"
@@ -13,7 +13,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="32dp"
-        android:text="@string/LoadDesignScr_Title1"
+        android:text="@string/LoadResultScr_Title1"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TV_DesignAmp" />
@@ -22,28 +22,18 @@
         android:id="@+id/TVLoad_MCBSize"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
         android:layout_marginTop="24dp"
-        android:gravity="end"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:gravity="center"
         android:text="@string/CableSize"
         android:textSize="48sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/TVLoad_Amps"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TVLoad_MCBSelection" />
-
-    <TextView
-        android:id="@+id/TVLoad_Amps"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:text="@string/MCB_size_unit"
-        android:textSize="48sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/TVLoad_MCBSize"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/TVLoad_MCBSize" />
 
     <TextView
         android:id="@+id/TVLoad_CableSelection"
@@ -52,7 +42,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="32dp"
-        android:text="@string/LoadDesignScr_Title2"
+        android:text="@string/LoadResultScr_Title2"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TVLoad_MCBSize" />
@@ -61,28 +51,18 @@
         android:id="@+id/TVLoad_CableSize"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
         android:layout_marginTop="24dp"
-        android:gravity="end"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:gravity="center"
         android:text="@string/CableSize"
         android:textSize="48sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/TVLoad_sqmm"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TVLoad_CableSelection" />
-
-    <TextView
-        android:id="@+id/TVLoad_sqmm"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:text="@string/Cable_size_unit"
-        android:textSize="48sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/TVLoad_CableSize"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/TVLoad_CableSize" />
 
     <TextView
         android:id="@+id/TV_LoadDescription"
@@ -91,7 +71,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
-        android:text="@string/LoadDesignScr_LoadDescription"
+        android:text="@string/LoadResultScr_LoadDescription"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -102,7 +82,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="8dp"
-        android:text="@string/LoadDesignScr_DesignCurrent"
+        android:text="@string/LoadResultScr_DesignCurrent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TV_LoadDescription" />
 

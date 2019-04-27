@@ -12,7 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class InverterCals extends AppCompatActivity {
+public class Inverter_input_data extends AppCompatActivity {
 
     int InverterV = 0; //to avoid it being zero
     double InvRating = 0, kWLimit=0;
@@ -25,7 +25,7 @@ public class InverterCals extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_inverter_cals);
+        setContentView(R.layout.activity_inverter_input_data);
     }
 
     public void InverterDataValidation(View view) {
@@ -83,7 +83,7 @@ public class InverterCals extends AppCompatActivity {
             View viewtext = toast.getView();
 
             //Gets the actual oval background of the Toast then sets the colour filter
-            viewtext.getBackground().setColorFilter(getResources().getColor(android.R.color.holo_blue_dark), PorterDuff.Mode.SRC_IN);
+            viewtext.getBackground().setColorFilter(getResources().getColor(R.color.color_leaf_Toast), PorterDuff.Mode.SRC_IN);
             toast.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL, 0, -200);
             TextView toastMessage = (TextView) toast.getView().findViewById(android.R.id.message);
             toastMessage.setTextColor(Color.WHITE);
@@ -161,7 +161,7 @@ public class InverterCals extends AppCompatActivity {
 
         // Create and initialise the Intent
 
-        Intent intentINVprotect = new Intent(this, ProtectionInverter.class);
+        Intent intentINVprotect = new Intent(this, Inverter_results.class);
 
         //attach the bundle to the Intent object
 

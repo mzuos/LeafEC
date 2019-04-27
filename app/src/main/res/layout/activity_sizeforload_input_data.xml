@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoadInput">
+    tools:context=".SizeforLoad_input_data">
 
     <TextView
         android:id="@+id/TV_InsertLoad"
@@ -13,7 +13,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
-        android:text="@string/LoadScreen_Title"
+        android:text="@string/LoadInputScr_Title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -41,7 +41,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="48dp"
-        android:text="@string/LoadScreen_LoadType"
+        android:text="@string/LoadInputScr_LoadType"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TV_InsertLoad" />
 
@@ -54,7 +54,7 @@
         android:layout_marginTop="50dp"
         android:text="@string/CableSelection"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView49" />
+        app:layout_constraintTop_toBottomOf="@+id/TV_OL" />
 
     <Spinner
         android:id="@+id/LoadTypeSpinner"
@@ -64,10 +64,8 @@
         android:layout_marginLeft="32dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:background="@android:drawable/btn_dropdown"
-        android:singleLine="false"
-        android:spinnerMode="dropdown"
         android:textSize="16sp"
+        android:background="@drawable/custom_spinner"
         app:layout_constraintBottom_toBottomOf="@+id/TV_LoadType"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/TV_LoadType"
@@ -83,10 +81,9 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:background="@android:drawable/btn_dropdown"
-        android:singleLine="false"
-        android:spinnerMode="dialog"
         android:textSize="16sp"
+        android:spinnerMode="dialog"
+        android:background="@drawable/custom_spinner"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/TV_CableType"
         app:layout_constraintTop_toBottomOf="@+id/TV_CableType" />
@@ -105,42 +102,42 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textView44"
+        android:id="@+id/TV_V1ph"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
         android:layout_marginLeft="48dp"
         android:layout_marginTop="50dp"
-        android:text="@string/Nomina_V_1ph_text"
+        android:text="@string/Nominal_V_1ph_text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TV_LoadType" />
 
     <TextView
-        android:id="@+id/textView46"
+        android:id="@+id/TV_V3ph"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/Nominal_V_3ph_text"
-        app:layout_constraintStart_toStartOf="@+id/textView44"
-        app:layout_constraintTop_toBottomOf="@+id/textView44" />
+        app:layout_constraintStart_toStartOf="@+id/TV_V1ph"
+        app:layout_constraintTop_toBottomOf="@+id/TV_V1ph" />
 
     <TextView
-        android:id="@+id/textView48"
+        android:id="@+id/TV_cosphi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/Nominal_cosphi_text"
-        app:layout_constraintStart_toStartOf="@+id/textView44"
-        app:layout_constraintTop_toBottomOf="@+id/textView46" />
+        app:layout_constraintStart_toStartOf="@+id/TV_V1ph"
+        app:layout_constraintTop_toBottomOf="@+id/TV_V3ph" />
 
     <TextView
-        android:id="@+id/textView49"
+        android:id="@+id/TV_OL"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/Nominal_OL_text"
-        app:layout_constraintStart_toStartOf="@+id/textView44"
-        app:layout_constraintTop_toBottomOf="@+id/textView48" />
+        app:layout_constraintStart_toStartOf="@+id/TV_V1ph"
+        app:layout_constraintTop_toBottomOf="@+id/TV_cosphi" />
 
     <EditText
         android:id="@+id/ed_V1ph"
@@ -154,8 +151,8 @@
         android:paddingBottom="10dp"
         android:text="@string/Nominal_V_1ph_value"
         android:textSize="16sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/textView44"
-        app:layout_constraintStart_toEndOf="@+id/textView44" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/TV_V1ph"
+        app:layout_constraintStart_toEndOf="@+id/TV_V1ph" />
 
     <EditText
         android:id="@+id/ed_V3ph"
@@ -167,7 +164,7 @@
         android:paddingBottom="10dp"
         android:text="@string/Nominal_V_3ph_value"
         android:textSize="16sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/textView46"
+        app:layout_constraintBaseline_toBaselineOf="@+id/TV_V3ph"
         app:layout_constraintStart_toStartOf="@+id/ed_V1ph" />
 
     <EditText
@@ -180,7 +177,7 @@
         android:paddingBottom="10dp"
         android:text="@string/Nominal_cosphi_value"
         android:textSize="16sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/textView48"
+        app:layout_constraintBaseline_toBaselineOf="@+id/TV_cosphi"
         app:layout_constraintStart_toStartOf="@+id/ed_V1ph" />
 
     <EditText
@@ -193,6 +190,55 @@
         android:paddingBottom="10dp"
         android:text="@string/Nominal_OL_value"
         android:textSize="16sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/textView49"
+        app:layout_constraintBaseline_toBaselineOf="@+id/TV_OL"
         app:layout_constraintStart_toStartOf="@+id/ed_V1ph" />
+
+    <ImageView
+        android:id="@+id/SpinnerArrow1"
+        android:layout_width="10dp"
+        android:layout_height="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/LoadTypeSpinner"
+        app:layout_constraintEnd_toEndOf="@+id/LoadTypeSpinner"
+        app:layout_constraintTop_toTopOf="@+id/LoadTypeSpinner"
+        app:srcCompat="@mipmap/arrow" />
+
+    <ImageView
+        android:id="@+id/SpinnerArrow2"
+        android:layout_width="10dp"
+        android:layout_height="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/LoadCableSpinner"
+        app:layout_constraintEnd_toEndOf="@+id/LoadCableSpinner"
+        app:layout_constraintTop_toTopOf="@+id/LoadCableSpinner"
+        app:srcCompat="@mipmap/arrow" />
+
+    <EditText
+        android:id="@+id/ed_Vdc"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="@string/DC_Voltage_value"
+        android:inputType="number|numberDecimal"
+        android:paddingBottom="10dp"
+        android:textSize="16sp"
+        android:visibility="invisible"
+        app:layout_constraintBaseline_toBaselineOf="@+id/TV_Vdc"
+        app:layout_constraintStart_toStartOf="@+id/ed_V1ph" />
+
+
+    <TextView
+        android:id="@+id/TV_Vdc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/DC_Voltage_text"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TV_LoadType" />
 </android.support.constraint.ConstraintLayout>

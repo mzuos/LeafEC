@@ -14,7 +14,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="24dp"
         android:onClick="LaunchPVInput"
-        android:text="@string/MainMenu_option1"
+        android:text="@string/MainMenu_option_1a"
         app:layout_constraintStart_toStartOf="@+id/textView10"
         app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
@@ -26,7 +26,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="24dp"
         android:onClick="LaunchInverterInput"
-        android:text="@string/MainMenu_option2"
+        android:text="@string/MainMenu_option_1b"
         app:layout_constraintStart_toStartOf="@+id/textView10"
         app:layout_constraintTop_toBottomOf="@+id/MainMenu_1" />
 
@@ -49,7 +49,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="24dp"
         android:onClick="LaunchCableforMCB"
-        android:text="@string/MainMenu_option3"
+        android:text="@string/MainMenu_option_2a"
         app:layout_constraintStart_toStartOf="@+id/textView47"
         app:layout_constraintTop_toBottomOf="@+id/textView47" />
 
@@ -61,7 +61,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="24dp"
         android:onClick="LaunchMCBforCable"
-        android:text="@string/MainMenu_option4"
+        android:text="@string/MainMenu_option_2b"
         app:layout_constraintStart_toStartOf="@+id/textView47"
         app:layout_constraintTop_toBottomOf="@+id/MainMenu_3" />
 
@@ -73,7 +73,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="24dp"
         android:onClick="LaunchDesignForLoad"
-        android:text="@string/MainMenu_option5"
+        android:text="@string/MainMenu_option_2c"
         app:layout_constraintStart_toStartOf="@+id/textView47"
         app:layout_constraintTop_toBottomOf="@+id/MainMenu_4" />
 
@@ -83,7 +83,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="32dp"
         android:text="@string/MainMenuTitle2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mainMenu_" />
@@ -127,6 +127,39 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@mipmap/tonibung_logo" />
+
+    <TextView
+        android:id="@+id/textView44"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/MainMenuTitle3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/MainMenu_5" />
+
+    <TextView
+        android:id="@+id/textView46"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/MainMenu_option_3a"
+        app:layout_constraintStart_toStartOf="@+id/textView44"
+        app:layout_constraintTop_toBottomOf="@+id/textView44" />
+
+    <TextView
+        android:id="@+id/textView48"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/MainMenu_option_3b"
+        app:layout_constraintStart_toStartOf="@+id/textView44"
+        app:layout_constraintTop_toBottomOf="@+id/textView46" />
 
 
 </android.support.constraint.ConstraintLayout>

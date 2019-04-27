@@ -3,4 +3,11 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="color_leaf_StatusBar">#15531D</color>
+    <color name="color_leaf_ToolBar">#31B442</color>
+    <color name="color_leaf_Toast">#15531D</color>
+    <color name = "toast_color">#6CB876</color>
+    <color name = "color_text_main">#48614D</color>
+    <color name = "color_text_user_input">#000000</color>
+    <color name= "dummy">#DCE6DD</color>
 </resources>

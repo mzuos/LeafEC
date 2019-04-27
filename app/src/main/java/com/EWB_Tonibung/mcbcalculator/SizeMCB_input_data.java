@@ -8,7 +8,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
-public class FindMCBforCable extends AppCompatActivity {
+public class SizeMCB_input_data extends AppCompatActivity {
 
     Spinner sp_cabletype, sp_cablesize;
     int CableType=0, dummy=0;
@@ -18,7 +18,7 @@ public class FindMCBforCable extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_find_mcbfor_cable);
+        setContentView(R.layout.activity_sizemcb_input_data);
 
         //initialise array adapters
         ArrayAdapter adapter_cabletype;
@@ -44,13 +44,13 @@ public class FindMCBforCable extends AppCompatActivity {
 
                 if (CableType==0 || CableType==1){ //copper cables
 
-                    sp_cablesize.setAdapter(new ArrayAdapter <String>(getApplicationContext(),android.R.layout.simple_spinner_dropdown_item,
+                    sp_cablesize.setAdapter(new ArrayAdapter <String>(getApplicationContext(),R.layout.multiline_spinner_dropdown_item,
                             getResources().getStringArray(R.array.Cu_WireSizeList)));
 
                 }
                 else {// for now we do it with an else, if more cable sizes available, make else_if
                     sp_cablesize.setAdapter(new ArrayAdapter <String>(getApplicationContext(),android.R.layout.simple_spinner_dropdown_item,
-                            getResources().getStringArray(R.array.Al_WireSizeList)));
+                            getResources().getStringArray(R.array.Al_WireSizeList_BS7671)));
                 }
                             }
 
@@ -65,7 +65,9 @@ public class FindMCBforCable extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
             {
-                SelectedSize = parent.getItemAtPosition(position).toString();
+                String Size_dummy = parent.getItemAtPosition(position).toString();
+
+                SelectedSize = Size_dummy.substring(0,1);
 
                 // Convert the cable size to a real number
 
@@ -103,7 +105,7 @@ public class FindMCBforCable extends AppCompatActivity {
 
         // Create and initialise the Intent
 
-        Intent intentMCBforCable = new Intent(this, MCBForCable.class);
+        Intent intentMCBforCable = new Intent(this, SizeMCB_results.class);
 
         //attach the bundle to the Intent object
 

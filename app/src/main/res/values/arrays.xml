@@ -9,41 +9,53 @@
 
     <array
         name="Cu_WireSizeList">
-        <item>"1" </item>
-        <item> "1.5" </item>
-        <item> "2.5" </item>
-        <item> "4" </item>
-        <item> "6" </item>
-        <item> "10" </item>
-        <item> "16" </item>
-        <item> "25" </item>
-        <item> "35" </item>
-        <item> "50" </item>
-        <item> "70" </item>
-        <item> "95" </item>
-        <item> "120" </item>
+        <item>"1 sqmm" </item>
+        <item> "1.5 sqmm" </item>
+        <item> "2.5 sqmm" </item>
+        <item> "4 sqmm" </item>
+        <item> "6 sqmm" </item>
+        <item> "10 sqmm" </item>
+        <item> "16 sqmm" </item>
+        <item> "25 sqmm" </item>
+        <item> "35 sqmm" </item>
+        <item> "50 sqmm" </item>
+        <item> "70 sqmm" </item>
+        <item> "95 sqmm" </item>
+        <item> "120 sqmm" </item>
     </array>
 
     <array
-        name="Al_WireSizeList">
-        <item> "16" </item>
-        <item> "25" </item>
-        <item> "35" </item>
-        <item> "50" </item>
-        <item> "70" </item>
-        <item> "95" </item>
+        name="Al_WireSizeList_BS7671">
+        <item> "16 sqmm" </item>
+        <item> "25 sqmm" </item>
+        <item> "35 sqmm" </item>
+        <item> "50 sqmm" </item>
+        <item> "70 sqmm" </item>
+        <item> "95 sqmm" </item>
+    </array>
+
+    <array
+        name="Al_WireSizeList_IEC">
+        <item> "10 sqmm" </item>
+        <item> "16 sqmm" </item>
+        <item> "25 sqmm" </item>
+        <item> "35 sqmm" </item>
+        <item> "50 sqmm" </item>
+
     </array>
 
     <array
         name="Load_type">
         <item>AC - Single Phase</item>
         <item>AC - Three Phase</item>
+        <item>DC - Direct Current</item>
     </array>
 
     <array
         name="SCC_type">
         <item>PWM</item>
         <item>MPPT</item>
+
     </array>
 
 

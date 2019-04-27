@@ -10,18 +10,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <!-- MCB and CABLE FOR LOAD - RESULT SCREEN -->
-        <activity android:name=".DesignForLoad"
+        <activity
+            android:name=".SizeforLoad_results"
             android:launchMode="singleTop"
-            android:parentActivityName=".LoadInput">
+            android:parentActivityName=".SizeforLoad_input_data">
 
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".LoadInput" />
-        </activity>
-        <!-- MCB and CABLE FOR LOAD - INPUT SCREEN -->
+                android:value=".SizeforLoad_input_data" />
+        </activity> <!-- MCB and CABLE FOR LOAD - INPUT SCREEN -->
         <activity
-            android:name=".LoadInput"
+            android:name=".SizeforLoad_input_data"
             android:launchMode="singleTop"
             android:parentActivityName=".MainActivity">
 
@@ -31,16 +31,16 @@
                 android:value=".MainActivity" />
         </activity> <!-- MCB FOR CABLE- RESULT SCREEN -->
         <activity
-            android:name=".MCBForCable"
-            android:parentActivityName=".FindMCBforCable">
+            android:name=".SizeMCB_results"
+            android:parentActivityName=".SizeMCB_input_data">
 
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".FindMCBforCable" />
+                android:value=".SizeMCB_input_data" />
         </activity> <!-- MCB FOR CABLE- INPUT SCREEN -->
         <activity
-            android:name=".FindMCBforCable"
+            android:name=".SizeMCB_input_data"
             android:launchMode="singleTop"
             android:parentActivityName=".MainActivity">
 
@@ -50,16 +50,16 @@
                 android:value=".MainActivity" />
         </activity> <!-- CABLE FOR MCB- RESULT SCREEN -->
         <activity
-            android:name=".CableForMCB"
-            android:parentActivityName=".FindCableforMCB">
+            android:name=".SizeCable_results"
+            android:parentActivityName=".SizeCable_input_data">
 
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".FindCableforMCB" />
+                android:value=".SizeCable_input_data" />
         </activity> <!-- CABLE FOR MCB- INPUT SCREEN -->
         <activity
-            android:name=".FindCableforMCB"
+            android:name=".SizeCable_input_data"
             android:launchMode="singleTop"
             android:parentActivityName=".MainActivity">
 
@@ -69,25 +69,25 @@
                 android:value=".MainActivity" />
         </activity> <!-- INVERTER CABLE AND MCB REQUIREMENT SCREEN -->
         <activity
-            android:name=".ProtectionInverter"
-            android:parentActivityName=".InverterCals">
+            android:name=".Inverter_results"
+            android:parentActivityName=".Inverter_input_data">
 
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".InverterCals" />
+                android:value=".Inverter_input_data" />
         </activity> <!-- CHARGE CONTROLLER CABLE AND MCB REQUIREMENT SCREEN -->
         <activity
-            android:name=".ProtectionSCC"
-            android:parentActivityName=".PVMCBCalcs">
+            android:name=".PV_results"
+            android:parentActivityName=".PV_input_data">
 
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".PVMCBCalcs" />
+                android:value=".PV_input_data" />
         </activity> <!-- INVERTER DATA INPUT SCREEN -->
         <activity
-            android:name=".InverterCals"
+            android:name=".Inverter_input_data"
             android:launchMode="singleTop"
             android:parentActivityName=".MainActivity">
 
@@ -97,7 +97,7 @@
                 android:value=".MainActivity" />
         </activity> <!-- PV PANELS DATA INPUT SCREEN -->
         <activity
-            android:name=".PVMCBCalcs"
+            android:name=".PV_input_data"
             android:launchMode="singleTop"
             android:parentActivityName=".MainActivity">
 
@@ -106,9 +106,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity> <!-- APP MAIN SCREEN -->
-        <activity
-            android:name=".MainActivity"
-            android:launchMode="singleTop">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

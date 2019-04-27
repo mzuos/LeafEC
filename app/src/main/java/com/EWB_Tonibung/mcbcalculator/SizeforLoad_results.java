@@ -5,12 +5,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
-public class DesignForLoad extends AppCompatActivity {
+public class SizeforLoad_results extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_design_for_load);
+        setContentView(R.layout.activity_sizeforload_results);
 
         //get the intent in the target activity
         Intent Intent_Load = getIntent();
@@ -29,6 +29,14 @@ public class DesignForLoad extends AppCompatActivity {
 
         String LoadDescription = "Load: " + Watts + " Watt - " + LoadType + ". "+OvLoad+" overload factor";
         String DesignCurrent =  "Design current: " + Amps + "A";
+        if (MCBSize.equals ("n/a")){ // this is the correct way to compare strings
+            MCBSize = "no MCB available";
+            CableSize = "n/a";
+        }
+        else{
+            MCBSize = MCBSize + " Amps";
+            CableSize = CableSize + " sqmm";
+        }
         //Capture the layout of the textviews and set the strings as their text
         TextView TView_LoadDescription = findViewById(R.id.TV_LoadDescription);
         TView_LoadDescription.setText (LoadDescription);

@@ -3,9 +3,24 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimary">@color/color_leaf_ToolBar</item>
+        <item name="colorPrimaryDark">@color/color_leaf_StatusBar</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="buttonStyle">@style/CustomButton</item>
+        <item name="spinnerDropDownItemStyle">@style/CustomSpinner</item>
+
+    </style>
+
+    <style name="CustomButton" parent="Widget.AppCompat.Button">
+        <item name="android:background">@drawable/custom_button</item>
+        <item name="android:textColor">#FFF</item>
+    </style>
+
+    <style name ="CustomSpinner" parent="Widget.AppCompat.Spinner.DropDown">
+        <item name="android:background">@drawable/custom_spinner</item>
+        <item name="android:textColor">@color/color_text_main</item>
+        <item name= "android:singleLine">false</item>
+        <item name= "android:spinnerMode">dialog</item>
     </style>
 
 </resources>
