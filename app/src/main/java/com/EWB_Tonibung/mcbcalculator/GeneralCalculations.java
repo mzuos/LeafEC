@@ -27,8 +27,8 @@ public class GeneralCalculations {
     //Current Rating in conduit
     public static double [] Rating_Cu_Conduit = new double [] {12, 15.5, 21, 28, 36, 50, 68, 89, 110, 134, 171, 207,239};
 
-    //Data from 17th Edition of BS7671 for Multicore non-armoured aluminium cables, PVC
-    // no data available for single core aluminium smaller than 50mm2
+    // ** NOT USED ** Data from 17th Edition of BS7671 for Multicore non-armoured aluminium cables, PVC
+    // no data available for single core aluminium smaller than 50mm2 ** NOT USED **
     public static double [] AlumWireArray = new double [] {16, 25, 35, 50, 70, 95};
     //Current Rating for cables in free Air
     public static double [] Rating_Al_Air= new double [] {73, 89, 111, 135, 173, 210};
@@ -40,6 +40,12 @@ public class GeneralCalculations {
     public static double [] Rating_Al_Air_IEC_XLPE= new double [] {47, 74, 102, 124, 157};
     //Resistance [Ohm/km] for volt drop
     public static double [] Ohm_Al_Air_IEC= new double [] {3.08, 1.91, 1.2, 0.868, 0.641};
+
+    // To be used by various functions within General Calculations class
+    public static double [] AmpacityArray;
+    public static double [] WireSizeArray;
+    public static double [] VoltdropArray;
+    public static int CableList;
 
 
     //************************* DC_MCB CALCULATOR **********************************
@@ -85,36 +91,50 @@ public class GeneralCalculations {
         return AC_MCBSize;
     }
 
+    // ************** LOAD SPEC FOR CABLE TYPE ************
 
-    public static double CableCurrentRating (int CableType,double CableSize){
-        double Rating=0;
-       double [] AmpacityArray = new double []{};
-       double [] WireSizeArray = new double[]{};
-        int CableList = 0;
-
-        // Get the ampacity and cable size arrays for the selected cable type
+    public static void LoadCableSpec (int CableType){
 
         if (CableType==0 ||CableType==1){
             CableList = CopperWireArray.length;
-            WireSizeArray=CopperWireArray;
+            WireSizeArray = CopperWireArray;
 
-            if (CableType==0){
-                AmpacityArray=Rating_Cu_Clipped;
+            if (CableType == 0){
+                AmpacityArray = Rating_Cu_Clipped;
             }
-            else if (CableType==1){
+            else if (CableType == 1){
                 AmpacityArray=Rating_Cu_Conduit;
             }
         }
-        else if (CableType==2) {
-            CableList = AlumWireArray.length;
-            WireSizeArray=AlumWireArray;
-            AmpacityArray=Rating_Al_Air;
+        else if (CableType == 2 || CableType == 3) {
+            CableList = AlumWireSize_IEC.length;
+            WireSizeArray = AlumWireSize_IEC;
+            VoltdropArray = Ohm_Al_Air_IEC;
+
+            if (CableType == 2){
+                AmpacityArray=Rating_Al_Air_IEC_PVC;
+            }
+            else if (CableType == 3){
+                AmpacityArray=Rating_Al_Air_IEC_XLPE;
+            }
 
         }
+    }
+
+    //************************* CABLE RATING**********************************
+
+    public static double CableCurrentRating (int CableType,double CableSize){
+
+        double Rating=0, Voltdrop=0;
+
+        // Load the ampacity and cable size arrays for the selected cable type
+        LoadCableSpec (CableType);
+
+        // Find Cable Rating
 
         for (int w=0; w<CableList; w++){
-            if (CableSize==WireSizeArray[w]){
-                   Rating=AmpacityArray[w];
+            if (CableSize == WireSizeArray[w]){
+                   Rating = AmpacityArray[w];
                    break;
             }
         }
@@ -127,34 +147,12 @@ public class GeneralCalculations {
 
     public static double CableSizeCalculator (int MCB_size,int CableType){
 
-        double [] WireSizeArray = new double[]{};
-        double [] AmpacityArray = new double []{};
-
-        // Get the ampacity and cable size arrays for the selected cable type
-
-        double WireSize=-1; // Negative value to detect code malfunctioning
-
-        int CableList = 0;
-
-        if (CableType==0 ||CableType==1){
-            CableList = CopperWireArray.length;
-            WireSizeArray=CopperWireArray;
-
-            if (CableType==0){
-                AmpacityArray=Rating_Cu_Clipped;
-            }
-            else if (CableType==1){
-                AmpacityArray=Rating_Cu_Conduit;
-            }
-        }
-        else if (CableType==2) {
-            CableList = AlumWireArray.length;
-            WireSizeArray=AlumWireArray;
-            AmpacityArray=Rating_Al_Air;
-
-        }
+        // Load the ampacity and cable size arrays for the selected cable type
+        LoadCableSpec (CableType);
 
         // Calculate the required wire size
+
+        double WireSize=-1; // Negative value to detect code malfunctioning
 
         for (int w=0; w < CableList; w++){
             if (MCB_size<AmpacityArray[w]){
@@ -169,33 +167,13 @@ public class GeneralCalculations {
 
     public static int Calculator_MCBforCable(double CableSize,int CableType){
 
-        double [] WireSizeArray = new double[]{};
-        double [] AmpacityArray = new double []{};
-
-        // Get the ampacity and cable size arrays for the selected cable type
+        // Load the ampacity and cable size arrays for the selected cable type
+        LoadCableSpec (CableType);
 
         double WireAmpacity=0;
         int MCBRating=0;
-        int CableList = 0;
         int MCBList=AC_MCB_Catalogue.length; // For Now, AC catalogue only
 
-        if (CableType==0 ||CableType==1){
-            CableList = CopperWireArray.length;
-            WireSizeArray=CopperWireArray;
-
-            if (CableType==0){
-                AmpacityArray=Rating_Cu_Clipped;
-            }
-            else if (CableType==1){
-                AmpacityArray=Rating_Cu_Conduit;
-            }
-        }
-
-        else if (CableType==2) {
-            CableList = AlumWireArray.length;
-            WireSizeArray=AlumWireArray;
-            AmpacityArray=Rating_Al_Air;
-        }
 
         // Find the amp rating of that wire size
 
@@ -214,6 +192,24 @@ public class GeneralCalculations {
         }
 
         return MCBRating;
+    }
+
+
+    //************************* GET VOLT DROP RESISTANCE **********************************
+
+    public static double getResistance (int CableType, double CableForLoad){
+
+        // Load the ampacity and cable size arrays for the selected cable type
+        LoadCableSpec (CableType);
+        double Ohm =0;
+        for (int w=0; w<CableList; w++){
+            if (CableForLoad == WireSizeArray[w]){
+                Ohm = VoltdropArray[w];
+                break;
+            }
+        }
+
+        return Ohm;
     }
 
 }

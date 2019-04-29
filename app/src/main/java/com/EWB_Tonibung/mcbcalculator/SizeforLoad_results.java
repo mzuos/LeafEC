@@ -3,6 +3,7 @@ package com.EWB_Tonibung.mcbcalculator;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 public class SizeforLoad_results extends AppCompatActivity {
@@ -26,9 +27,17 @@ public class SizeforLoad_results extends AppCompatActivity {
         String Watts = Bundle_Load.getString("POWER");
         String Amps = Bundle_Load.getString("AMPS");
         String OvLoad = Bundle_Load.getString("OVERLOAD");
+        String VDDisplay = Bundle_Load.getString("VDDISPLAY");
+        String VDrop = Bundle_Load.getString("VOLTDROP");
+        String VDPercent = Bundle_Load.getString("VDPERCENT");
+        String distance = Bundle_Load.getString("DISTANCE");
+
 
         String LoadDescription = "Load: " + Watts + " Watt - " + LoadType + ". "+OvLoad+" overload factor";
         String DesignCurrent =  "Design current: " + Amps + "A";
+
+
+
         if (MCBSize.equals ("n/a")){ // this is the correct way to compare strings
             MCBSize = "no MCB available";
             CableSize = "n/a";
@@ -46,5 +55,20 @@ public class SizeforLoad_results extends AppCompatActivity {
         TView_MCBSize.setText(MCBSize);
         TextView TView_CableSize = findViewById (R.id.TVLoad_CableSize);
         TView_CableSize.setText(CableSize);
+
+        TextView TView_VDResults = findViewById(R.id.TV_VdropResults);
+
+        if (VDDisplay.equals("YES")){
+
+            String VoltDrop = "Volt drop: " + VDrop + "V (= " + VDPercent + "%) over " + distance + " meters.";
+            TView_VDResults.setVisibility(View.VISIBLE);
+            TView_VDResults.setText(VoltDrop);
+        }
+        else{
+
+            TView_VDResults.setVisibility(View.INVISIBLE);
+
+        }
+
     }
 }

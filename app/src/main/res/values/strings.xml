@@ -97,12 +97,18 @@
     <string name="Nominal_V_3ph_value">400</string>
     <string name="Nominal_cosphi_value">0.85</string>
     <string name="Nominal_OL_value">1.25</string>
+    <string name="VoltDrop_checkbox">Volt drop calculation</string>
+    <string name="distance_text">Insert distance (one way) [meters]:</string>
+    <string name="distance_value">xxm</string>
+    <string name="maxVoltDrop_text">Optional: Specify max. volt drop [%]:</string>
+    <string name="maxVoltDrop_value">xx%</string>
 
     <!--LOAD RESULT SCREEN STRINGS-->
     <string name="LoadResultScr_LoadDescription">Load description:</string>
     <string name="LoadResultScr_DesignCurrent">Design current:</string>
     <string name="LoadResultScr_Title1">The suggested MCB size is:</string>
     <string name="LoadResultScr_Title2">The minimum suggested cable size for that MCB is:</string>
+    <string name="VDropResults">Volt drop results:</string>
 
     <!--MULTIPLE SCREEN STRINGS-->
     <string name="CableSelection">Select cable type:</string>

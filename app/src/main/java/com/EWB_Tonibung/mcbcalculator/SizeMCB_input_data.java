@@ -50,7 +50,7 @@ public class SizeMCB_input_data extends AppCompatActivity {
                 }
                 else {// for now we do it with an else, if more cable sizes available, make else_if
                     sp_cablesize.setAdapter(new ArrayAdapter <String>(getApplicationContext(),android.R.layout.simple_spinner_dropdown_item,
-                            getResources().getStringArray(R.array.Al_WireSizeList_BS7671)));
+                            getResources().getStringArray(R.array.Al_WireSizeList_IEC)));
                 }
                             }
 
