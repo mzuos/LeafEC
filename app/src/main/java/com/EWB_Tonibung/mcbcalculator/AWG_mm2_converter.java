@@ -6,29 +6,193 @@ import static com.EWB_Tonibung.mcbcalculator.listview_constant.THIRD_COLUMN;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.HashMap;
-import android.app.Activity;
+import java.util.Locale;
+
+import android.widget.Spinner;
+import android.widget.TextView;
 
 // CODE SOURCE: http://www.technotalkative.com/android-multi-column-listview/
 
-public class AWG_sizelist extends AppCompatActivity{
+    public class AWG_mm2_converter extends AppCompatActivity{
 
+        public static int [] AWG_size_list = new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
 
     private ArrayList<HashMap> list;
 
+    String SelectedSize;
+    double I_know_mm2 = 0, I_know_AWG = 0, mm2_equiv = 0;
+    int AWG_equiv = 0;
+    boolean mode = true;
+    Spinner spinner_cable_sizes;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_awg_sizelist);
+        setContentView(R.layout.activity_awg_mm2_converter);
 
         ListView lview = (ListView) findViewById(R.id.AWG_listview);
         populateList();
         listviewAdapter adapter = new listviewAdapter(this, list);
         lview.setAdapter(adapter);
+
+        spinner_cable_sizes = (Spinner) findViewById(R.id.spinner_cable_sizes);
+        spinner_cable_sizes.setAdapter(new ArrayAdapter <String>(getApplicationContext(),android.R.layout.simple_spinner_dropdown_item,
+                getResources().getStringArray(R.array.Cu_WireSizeList))); //On Create comes in Iknowmm2 mode
+
+
+        spinner_cable_sizes.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+        {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+            {
+                if (mode == true){
+                    String Size_dummy = parent.getItemAtPosition(position).toString();
+
+                    //SelectedSize = Size_dummy.substring(0,1);
+                    String [] dummy  = Size_dummy.split(" ");
+                    SelectedSize = dummy [0];
+
+                    // Convert the cable size to a real number
+
+                    I_know_mm2 = Float.parseFloat(SelectedSize);
+                    find_AWG_equivalent();
+                }
+                else{
+
+                    double mm2 = 0;
+
+                    if (position > 3){
+                       String AWG_selection = parent.getItemAtPosition(position).toString();
+                       String [] AWG = AWG_selection.split(" ");
+                       int n = Integer.parseInt (AWG[1]);
+
+
+
+                       double exp = (36-n)/19.5;
+                       mm2 = 0.012668 * Math.pow(92,exp);
+                    }
+                    else if (position == 3){ //(1/0)
+                        mm2 = 53.4751; // The exact area for the cable
+                    }
+                    else if (position == 2){ //(2/0)
+                        mm2 = 67.4309; // The exact area for the cable
+                    }
+                    else if (position == 1){ //(3/0)
+                        mm2 = 85.0288; // The exact area for the cable
+                    }
+                    else if (position == 0){ //(4/0)
+                        mm2 = 107.2193; // The exact area for the cable
+                    }
+
+                    find_sqmm_equivalent(mm2);
+
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {}
+
+        });
+
+    }
+
+    public void swap_converter_mode (View view){
+
+        mode = !mode;
+
+        //setContentView(R.layout.activity_awg_mm2_converter);
+
+        TextView TV_Iknow = (TextView) findViewById(R.id.TV_Iknow);
+        TextView TV_Iwant = (TextView) findViewById(R.id.TV_Iwant);
+
+
+        if (mode == true){ // I know mm2 - I want AWG
+
+            TV_Iknow.setText("I know sqmm size");
+            TV_Iwant.setText ("AWG equivalent");
+            spinner_cable_sizes.setAdapter(new ArrayAdapter <String>(getApplicationContext(),android.R.layout.simple_spinner_dropdown_item,
+                    getResources().getStringArray(R.array.Cu_WireSizeList)));
+        }
+        else{ // I know AWG - I want mm2
+
+            TV_Iknow.setText("I know AWG size");
+            TV_Iwant.setText ("sqmm equivalent");
+
+            spinner_cable_sizes.setAdapter(new ArrayAdapter <String>(getApplicationContext(),android.R.layout.simple_spinner_dropdown_item,
+                    getResources().getStringArray(R.array.AWG_sizes)));
+        }
+
+    }
+
+   public void find_sqmm_equivalent (double sqmm){
+
+        int sqmm_sizes = GeneralCalculations.CopperWireArray.length;
+
+        if (sqmm >= GeneralCalculations.CopperWireArray [sqmm_sizes-1]){//largest than larger sqmm
+            mm2_equiv = GeneralCalculations.CopperWireArray [sqmm_sizes-1];
+        }
+        else{
+            for (int i = 0; i < sqmm_sizes; i++){
+
+                if (sqmm < GeneralCalculations.CopperWireArray [i]) {
+
+                    if (i == 0){
+                        mm2_equiv = 0.5;
+                    }
+                    else{
+                        mm2_equiv = GeneralCalculations.CopperWireArray [i-1];
+                    }
+                    break;
+
+                }
+            }
+
+        }
+
+        TextView TV_sqmm_equiv = (TextView) findViewById(R.id.TV_size_equiv);
+       String Str_sqmm_equiv = String.format (Locale.UK, "%.1f", mm2_equiv);
+       Str_sqmm_equiv = Str_sqmm_equiv + " sqmm";
+       TV_sqmm_equiv.setText(Str_sqmm_equiv);
+
+
+
+    }
+
+    private void find_AWG_equivalent(){
+
+        // mm2 to AWG formula converter:
+
+        // Formula: mm2 = 0.012668 [mm2] x 92^((36-n)/19.5)
+
+        int AWG_sizes = AWG_size_list.length;
+        double mm2_dummy =0;
+
+        for ( int i = 0; i < AWG_sizes; i++){
+
+            int n = AWG_size_list [i];
+            mm2_dummy = (36-n)/19.5;
+            mm2_dummy = 0.012668 * Math.pow(92,mm2_dummy);
+
+            if (mm2_dummy <= I_know_mm2){
+                AWG_equiv = AWG_size_list [i];
+                break;
+            }
+
+        }
+
+        TextView TV_AWG_equiv = (TextView) findViewById(R.id.TV_size_equiv);
+        String Str_AWG_equiv = Integer.toString(AWG_equiv);
+        Str_AWG_equiv = "AWG " + Str_AWG_equiv;
+        TV_AWG_equiv.setText(Str_AWG_equiv);
+
+
     }
 
     private void populateList() {

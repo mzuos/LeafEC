@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
     //Launched from Main Menu
     public void LaunchAWGSizeViewer(View view) {
-        Intent intent_AWG = new Intent (this, AWG_sizelist.class);
+        Intent intent_AWG = new Intent (this, AWG_mm2_converter.class);
         startActivity(intent_AWG);
     }
 

@@ -102,6 +102,7 @@
     <string name="distance_value">xxm</string>
     <string name="maxVoltDrop_text">Optional: Specify max. volt drop [%]:</string>
     <string name="maxVoltDrop_value">xx%</string>
+    <string name="opt_VD_cablesize">Optional: Specify cable size:</string>
 
     <!--LOAD RESULT SCREEN STRINGS-->
     <string name="LoadResultScr_LoadDescription">Load description:</string>
@@ -119,6 +120,10 @@
     <string name="AWG_diamunit">(mm)</string>
     <string name="AWG_area">Area</string>
     <string name="AWG_areaunit">(sqmm)</string>
+    <string name="IknowAWG"> I know AWG size</string>
+    <string name="Iknowmm2"> I know mm2 size</string>
+    <string name="IwantAWG"> AWG equivalent</string>
+    <string name="Iwantmm2"> I want mm2 equivalent</string>
 
 
     <!--MULTIPLE SCREEN STRINGS-->

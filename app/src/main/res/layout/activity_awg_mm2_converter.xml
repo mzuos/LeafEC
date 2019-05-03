@@ -12,11 +12,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:text="@string/AWG_title"
         android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -25,13 +26,13 @@
         android:id="@+id/textView51"
         android:layout_width="wrap_content"
         android:layout_height="22dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="60dp"
         android:text="@string/AWG"
         android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/textView52"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView38" />
+        app:layout_constraintTop_toBottomOf="@+id/spinner_cable_sizes" />
 
     <TextView
         android:id="@+id/textView52"
@@ -87,5 +88,83 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView66" />View>
+        app:layout_constraintTop_toBottomOf="@+id/textView66" />
+
+    <TextView
+        android:id="@+id/TV_Iknow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginLeft="48dp"
+        android:layout_marginTop="32dp"
+        android:textAlignment="center"
+        android:text="@string/Iknowmm2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView38" />
+
+    <Spinner
+        android:id="@+id/spinner_cable_sizes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/custom_spinner"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/TV_Iknow"
+        app:layout_constraintStart_toStartOf="@+id/TV_Iknow"
+        app:layout_constraintTop_toBottomOf="@+id/TV_Iknow" />
+
+
+    <TextView
+        android:id="@+id/TV_Iwant"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="48dp"
+        android:layout_marginRight="48dp"
+        android:text="@string/IwantAWG"
+        android:textAlignment="center"
+        app:layout_constraintBaseline_toBaselineOf="@+id/TV_Iknow"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/TV_size_equiv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/spinner_cable_sizes"
+        app:layout_constraintEnd_toEndOf="@+id/TV_Iwant"
+        app:layout_constraintStart_toStartOf="@+id/TV_Iwant"
+        app:layout_constraintTop_toTopOf="@+id/spinner_cable_sizes" />
+
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="wrap_content"
+        android:layout_height="5dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/spinner_cable_sizes"
+        app:layout_constraintEnd_toEndOf="@+id/spinner_cable_sizes"
+        app:layout_constraintTop_toTopOf="@+id/spinner_cable_sizes"
+        app:srcCompat="@mipmap/arrow" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:adjustViewBounds="false"
+        android:background="@drawable/custom_button"
+        android:onClick="swap_converter_mode"
+        android:src="@mipmap/swap_arrows"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/spinner_cable_sizes"
+        app:layout_constraintEnd_toStartOf="@+id/TV_Iwant"
+        app:layout_constraintStart_toEndOf="@+id/TV_Iknow"
+        app:layout_constraintTop_toTopOf="@+id/TV_Iknow" />
+
 </android.support.constraint.ConstraintLayout>

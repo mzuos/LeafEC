@@ -187,6 +187,37 @@
 
     </array>
 
+    <array name="AWG_sizes">
+        <item> AWG (4/0) </item>
+        <item> AWG (3/0) </item>
+        <item> AWG (2/0) </item>
+        <item> AWG (1/0)</item>
+        <item> AWG 1 </item>
+        <item> AWG 2 </item>
+        <item> AWG 3 </item>
+        <item> AWG 4 </item>
+        <item> AWG 5 </item>
+        <item> AWG 6 </item>
+        <item> AWG 7 </item>
+        <item> AWG 8 </item>
+        <item> AWG 9 </item>
+        <item> AWG 10 </item>
+        <item> AWG 11 </item>
+        <item> AWG 12 </item>
+        <item> AWG 13 </item>
+        <item> AWG 14 </item>
+        <item> AWG 15 </item>
+        <item> AWG 16 </item>
+        <item> AWG 17 </item>
+        <item> AWG 18 </item>
+        <item> AWG 19 </item>
+        <item> AWG 20 </item>
+
+
+    </array>
+
+
+
     <array
         name="AWG_table">
 

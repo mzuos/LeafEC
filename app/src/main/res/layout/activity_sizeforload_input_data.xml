@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="36dp"
         android:text="@string/LoadInputScr_LoadType"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TV_InsertLoad" />
@@ -51,7 +51,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="36dp"
         android:text="@string/CableSelection"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TV_OL" />
@@ -92,7 +92,7 @@
         android:id="@+id/cableForMCB_PB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="118dp"
+        android:layout_marginTop="168dp"
         android:onClick="LoadInput_DataValidation"
         android:text="  CALCULATE  "
         android:textSize="16sp"
@@ -107,7 +107,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
         android:layout_marginLeft="48dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="32dp"
         android:text="@string/Nominal_V_1ph_text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TV_LoadType" />
@@ -271,18 +271,6 @@
         app:layout_constraintStart_toStartOf="@+id/VoltDrop_checkBox"
         app:layout_constraintTop_toBottomOf="@+id/VoltDrop_checkBox" />
 
-    <TextView
-        android:id="@+id/TV_maxVoltDrop"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:visibility="invisible"
-        android:text="@string/maxVoltDrop_text"
-        app:layout_constraintStart_toStartOf="@+id/VoltDrop_checkBox"
-        app:layout_constraintTop_toBottomOf="@+id/TV_distance" />
-
     <EditText
         android:id="@+id/ET_km"
         android:layout_width="50dp"
@@ -301,14 +289,14 @@
         android:id="@+id/ET_maxVD"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
-        android:imeOptions="actionDone"
         android:ems="10"
         android:gravity="center"
+        android:imeOptions="actionDone"
+        android:inputType="numberDecimal"
         android:textSize="16sp"
         android:visibility="invisible"
-        android:inputType="numberDecimal"
-        app:layout_constraintBaseline_toBaselineOf="@+id/TV_maxVoltDrop"
-        app:layout_constraintStart_toStartOf="@+id/ET_km" />
+        app:layout_constraintStart_toStartOf="@+id/ET_km"
+        tools:layout_editor_absoluteY="428dp" />
 
     <TextView
         android:id="@+id/TV_OL_DC"
@@ -332,5 +320,26 @@
         android:textSize="16sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/TV_OL_DC"
         app:layout_constraintStart_toStartOf="@+id/ed_V1ph" />
+
+    <RadioButton
+        android:id="@+id/radioButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/maxVoltDrop_text"
+        app:layout_constraintStart_toStartOf="@+id/TV_distance"
+        app:layout_constraintTop_toBottomOf="@+id/TV_distance" />
+
+    <RadioButton
+        android:id="@+id/radioButton2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="RadioButton"
+        app:layout_constraintStart_toStartOf="@+id/radioButton"
+        app:layout_constraintTop_toBottomOf="@+id/radioButton" />
+
 </android.support.constraint.ConstraintLayout>
 

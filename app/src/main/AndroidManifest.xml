@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".AWG_sizelist"
+            android:name=".AWG_mm2_converter"
             android:configChanges="orientation"
             android:launchMode="singleTop"
             android:parentActivityName=".MainActivity"
