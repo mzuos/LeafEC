@@ -61,11 +61,11 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginEnd="32dp"
         android:layout_marginRight="16dp"
-        android:textSize="16sp"
         android:background="@drawable/custom_spinner"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/TV_LoadType"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/TV_LoadType"
@@ -309,5 +309,28 @@
         android:inputType="numberDecimal"
         app:layout_constraintBaseline_toBaselineOf="@+id/TV_maxVoltDrop"
         app:layout_constraintStart_toStartOf="@+id/ET_km" />
+
+    <TextView
+        android:id="@+id/TV_OL_DC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/Nominal_OL_text"
+        app:layout_constraintStart_toStartOf="@+id/TV_Vdc"
+        app:layout_constraintTop_toBottomOf="@+id/TV_Vdc" />
+
+    <EditText
+        android:id="@+id/ED_OL_DC"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:imeOptions="actionDone"
+        android:ems="10"
+        android:gravity="center"
+        android:inputType="numberDecimal"
+        android:paddingBottom="10dp"
+        android:text="@string/Nominal_OL_value"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/TV_OL_DC"
+        app:layout_constraintStart_toStartOf="@+id/ed_V1ph" />
 </android.support.constraint.ConstraintLayout>
 

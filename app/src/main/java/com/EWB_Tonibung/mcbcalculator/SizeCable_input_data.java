@@ -88,7 +88,7 @@ public class SizeCable_input_data extends AppCompatActivity {
 
             //Gets the actual oval background of the Toast then sets the colour filter
             viewtext.getBackground().setColorFilter(getResources().getColor(R.color.color_leaf_Toast), PorterDuff.Mode.SRC_IN);
-            toast.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL, 0, -100);
+            toast.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL, 0, -380);
             TextView toastMessage = (TextView) toast.getView().findViewById(android.R.id.message);
             toastMessage.setTextColor(Color.WHITE);
             toast.show();

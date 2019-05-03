@@ -21,17 +21,61 @@ public class PV_results extends AppCompatActivity {
         //Extracting the stored data from the bundle
         //String user_name = extras.getString("USER_NAME");
 
-        String DispSCC_Idesign = PVProtectionSet.getString("I_DESIGN") + " A (< " + PVProtectionSet.getString("SCC_MAX_A") + "A)";
+        String DispSCC_Idesign = PVProtectionSet.getString("I_DESIGN") + " A (< " + PVProtectionSet.getString("SCC_MAX_A") + " A)";
         String Disp_PV_Series = PVProtectionSet.getString("NUM_SERIES");
         String Disp_PV_Parallel = PVProtectionSet.getString("NUM_PARALLEL");
 
-        String DispSCC_In_MCB = PVProtectionSet.getString("SCC_IN_MCB")+ " A";
-        String DispSCC_In_Cu = PVProtectionSet.getString("SCC_IN_CU")+ " sqmm";
-        String DispSCC_In_Al = PVProtectionSet.getString("SCC_IN_AL")+ " sqmm";
+        String DispSCC_V_In = PVProtectionSet.getString("V_DC_IN") + " V";
+        String DispSCC_V_Out = PVProtectionSet.getString("V_DC_OUT") + " V";
 
-        String DispSCC_Out_MCB = PVProtectionSet.getString("SCC_OUT_MCB")+ " A";
-        String DispSCC_Out_Cu = PVProtectionSet.getString("SCC_OUT_CU")+ " sqmm";
-        String DispSCC_Out_Al = PVProtectionSet.getString("SCC_OUT_AL")+" sqmm";
+
+
+        String DispSCC_In_MCB = PVProtectionSet.getString("SCC_IN_MCB");
+        String DispSCC_In_Cu = PVProtectionSet.getString("SCC_IN_CU");
+        String DispSCC_In_Al = PVProtectionSet.getString("SCC_IN_AL");
+
+        String DispSCC_Out_MCB = PVProtectionSet.getString("SCC_OUT_MCB");
+        String DispSCC_Out_Cu = PVProtectionSet.getString("SCC_OUT_CU");
+        String DispSCC_Out_Al = PVProtectionSet.getString("SCC_OUT_AL");
+
+        //Inputs to charge controller
+
+        if (DispSCC_In_MCB.equals("-1")){
+            DispSCC_In_MCB = "n/a";
+        }
+        else DispSCC_In_MCB = DispSCC_In_MCB + " A";
+
+
+        if (DispSCC_In_Cu.equals ("-1.0")){
+            DispSCC_In_Cu = "n/a";
+        }
+        else DispSCC_In_Cu = DispSCC_In_Cu + " sqmm";
+
+
+        if (DispSCC_In_Al.equals ("-1.0")){
+            DispSCC_In_Al = "n/a";
+        }
+        else DispSCC_In_Al = DispSCC_In_Al + " sqmm";
+
+        //Outputs to charge controller
+
+        if (DispSCC_Out_MCB.equals("-1")){
+            DispSCC_Out_MCB = "n/a";
+        }
+        else DispSCC_Out_MCB = DispSCC_Out_MCB + " A";
+
+
+        if (DispSCC_Out_Cu.equals ("-1.0")){
+            DispSCC_Out_Cu = "n/a";
+        }
+        else DispSCC_Out_Cu = DispSCC_Out_Cu + " sqmm";
+
+        if (DispSCC_Out_Al.equals ("-1.0")){
+            DispSCC_Out_Al = "n/a";
+        }
+        else DispSCC_Out_Al = DispSCC_Out_Al + " sqmm";
+
+
 
         //Capture the layout of the textviews and set the strings as their text
 
@@ -47,6 +91,9 @@ public class PV_results extends AppCompatActivity {
         TextView TV_SCC_In_MCB = findViewById (R.id.Show_SCC_in_MCC);
         TV_SCC_In_MCB.setText (DispSCC_In_MCB);
 
+        TextView TV_SCC_V_in = findViewById (R.id.TV_DC_Vrating_IN);
+        TV_SCC_V_in.setText (DispSCC_V_In);
+
         TextView TV_SCC_In_Cu = findViewById (R.id.Show_SCC_In_Cu);
         TV_SCC_In_Cu.setText (DispSCC_In_Cu);
 
@@ -55,6 +102,9 @@ public class PV_results extends AppCompatActivity {
 
         TextView TV_SCC_Out_MCB = findViewById (R.id.Show_SCC_Out_MCB);
         TV_SCC_Out_MCB.setText (DispSCC_Out_MCB);
+
+        TextView TV_SCC_V_out = findViewById (R.id.TV_DC_Vrating_OUT);
+        TV_SCC_V_out.setText (DispSCC_V_Out);
 
         TextView TV_SCC_Out_Cu = findViewById (R.id.Show_SCC_Out_Cu);
         TV_SCC_Out_Cu.setText (DispSCC_Out_Cu);

@@ -21,8 +21,9 @@ import static java.lang.Boolean.TRUE;
 
 public class PV_input_data extends AppCompatActivity {
 
-    double Vpmax = 0, Ipmax = 0, Isc = 0, ImaxSCC = 0;
+    double PV_Voc = 0, Ipmax = 0, Isc = 0, ImaxSCC = 0;
     int SystemV = 0, NumPV = 0,  n_series = 1, n_parallel;
+    int V_dc_rating_in = 0, V_dc_rating_out = 0;
     public double SCC_In_WireSize_Cu = 0, SCC_In_WireSize_Al = 0;
     public double SCC_Out_WireSize_Cu=0, SCC_Out_WireSize_Al=0;
     public int SCC_In_MCBSize = 0, SCC_Out_MCBSize = 0;
@@ -69,12 +70,12 @@ public class PV_input_data extends AppCompatActivity {
         }
 
 
-        EditText editTextVpmax = (EditText) findViewById(R.id.Insert_Vpmax);
+        EditText editTextVpmax = (EditText) findViewById(R.id.Insert_Voc);
         String Vpmax_srt = editTextVpmax.getText().toString();
         if (Vpmax_srt.isEmpty()) {
-            Vpmax = 0.1;//just giving a random value that is not zero for Toasts to work properly
+            PV_Voc = 0.1;//just giving a random value that is not zero for Toasts to work properly
         } else {
-            Vpmax = Float.parseFloat(Vpmax_srt);
+            PV_Voc = Float.parseFloat(Vpmax_srt);
         }
 
 
@@ -113,7 +114,7 @@ public class PV_input_data extends AppCompatActivity {
         boolean dataOK = true;
         String PopUpText = "";
 
-        if (Vpmax == 0.0 || Ipmax == 0.0 || ImaxSCC == 0.0 || Isc == 0.0 || SystemV == 0 || NumPV == 0) {
+        if (PV_Voc == 0.0 || Ipmax == 0.0 || ImaxSCC == 0.0 || Isc == 0.0 || SystemV == 0 || NumPV == 0) {
             dataOK = false;
             PopUpText = "Input field cannot be zero";
         }
@@ -144,12 +145,14 @@ public class PV_input_data extends AppCompatActivity {
         double PVSeriesV = 0;
         double SCC_In_C_SF = 1.56; // PV current input safety factor: 125% x 125% = 156%.
         boolean designOK = true;
+        int MaxNumPanels = 0;
+        double V_design_in = 0, V_design_out;
         String Text;
 
         // Calculate maximum current from the PV panels, including safety factor
 
         while (TRUE) {
-            PVSeriesV = Vpmax * n_series;
+            PVSeriesV = PV_Voc * n_series;
             if (PVSeriesV < SystemV) {
                 n_series++;
             }
@@ -157,49 +160,94 @@ public class PV_input_data extends AppCompatActivity {
                 break;
             }
         }
+
+        V_design_in = PV_Voc * n_series * 1.25; // 1.25 factor for sunnier conditions than standard test conditions;
+
+        V_design_out = SystemV * 1.25;
+
+        V_dc_rating_in = GeneralCalculations.DC_V_Rating_Calculator(V_design_in);
+        V_dc_rating_out = GeneralCalculations.DC_V_Rating_Calculator(V_design_out);
+
         // we know there are "n" panels in series, we can calculate the maximum combined PV array current
 
         n_parallel = NumPV / n_series; // n_parallel and n_series are integer values
         int dummy_check = n_parallel*n_series;
 
-        if (dummy_check < NumPV){ // means the amount of panels does not match the series-parallel arrangement
+        PV_In_Design_Current = SCC_In_C_SF * Isc * n_parallel;
+
+        //MaxNumPanels is an integer: Controller max current/current per branch
+        MaxNumPanels = (int)(ImaxSCC/(SCC_In_C_SF * Isc))*n_series; //(SCC_In_C_SF * Isc) = current in each branch
+
+        if (PV_In_Design_Current > ImaxSCC) {
+
             designOK = false;
-            String Text1 = "Choose between " + (n_parallel*n_series) + " and " + ((n_parallel+1)*n_series) + " panels.";
-            String Text2 = "\n(" + n_series + " panels in series per branch) ";
-            Text = Text1 + Text2;
+            SCC_In_MCBSize = 0;
+            Text = "Current exceeds Charge Controller limit. Maximum number of panels allowable per controller: " + MaxNumPanels;
             duration = Toast.LENGTH_LONG;
             DisplayToast(Text, duration);
         }
+
         else{
-
-            PV_In_Design_Current = SCC_In_C_SF * Isc * n_parallel; // (NumPV/n) gives the branches in parallel. This is the maximum short circuit current of all the branches
-
-            if (PV_In_Design_Current > ImaxSCC) {
-                // Pop UP: more than one Charge controller or reduce panels
+            if (dummy_check < NumPV){ // means the amount of panels does not match the series-parallel arrangement
                 designOK = false;
-                SCC_In_MCBSize = 0;
-                int  MaxNumPanels = (int)(ImaxSCC/(SCC_In_C_SF * Isc))*n_series; //(SCC_In_C_SF * Isc) = current in each branch
-                Text = "Current exceeds Charge Controller limit. Max num. of panels allowable per controller: " + MaxNumPanels;
+
+                String Text1 = "Charge controller requires " + n_series + " panels in series per branch.";
+                String Text2 = "\nExample: " + ((MaxNumPanels/n_series - 1) * n_series) + " or " + (MaxNumPanels) + " panels.";
+
+                Text = Text1 + Text2;
                 duration = Toast.LENGTH_LONG;
                 DisplayToast(Text, duration);
             }
+
+            else{
+
+                PV_In_Design_Current = SCC_In_C_SF * Isc * n_parallel;
+            }
+
         }
+
+        // The MCB and wire sizing is per Charge Controller. There may be more than one charge controller.
        if (designOK == true) {
             SCC_In_MCBSize = GeneralCalculations.DC_MCB_Calculator(PV_In_Design_Current);
-            SCC_In_WireSize_Cu = GeneralCalculations.CableSizeCalculator (SCC_In_MCBSize, 0);
-            SCC_In_WireSize_Al = GeneralCalculations.CableSizeCalculator (SCC_In_MCBSize,1);
+
+           if (SCC_In_MCBSize == -1){// means we wer unable to find a suitable MCB
+
+               SCC_In_WireSize_Cu = -1;
+               SCC_In_WireSize_Al = -1;
+           }
+
+           else { // means we have a suitable MCB
+
+               SCC_In_WireSize_Cu = GeneralCalculations.CableSizeCalculator (SCC_In_MCBSize, 0);
+               SCC_In_WireSize_Al = GeneralCalculations.CableSizeCalculator (SCC_In_MCBSize,2);
+
+           }
+
+
 
             // Solar Charger to Battery MCB and Cable Sizes:
 
-            if (SelectedType=="PMW"){
+            if (SelectedType.equals("PWM")){// PWM type. Input and output currents are the same
                 SCC_Out_MCBSize = SCC_In_MCBSize;
                 SCC_Out_WireSize_Cu = SCC_In_WireSize_Cu;
                 SCC_Out_WireSize_Al = SCC_In_WireSize_Al;
             }
-            else { // =MPPT type controller
-                SCC_Out_MCBSize = GeneralCalculations.DC_MCB_Calculator (ImaxSCC);
-                SCC_Out_WireSize_Cu = GeneralCalculations.CableSizeCalculator (SCC_Out_MCBSize, 0);
-                SCC_Out_WireSize_Al = GeneralCalculations.CableSizeCalculator (SCC_Out_MCBSize,1);
+            else { // =MPPT type controller - match controller output * 1.25
+                double Idesign_MPPT = ImaxSCC *1.25; // continuous use de-rating
+                SCC_Out_MCBSize = GeneralCalculations.DC_MCB_Calculator (Idesign_MPPT);
+
+                if (SCC_Out_MCBSize == -1){// means we wer unable to find a suitable MCB
+
+                    SCC_Out_WireSize_Cu = -1;
+                    SCC_Out_WireSize_Al = -1;
+
+                }
+                else { // means we have a suitable MCB
+
+                    SCC_Out_WireSize_Cu = GeneralCalculations.CableSizeCalculator (SCC_Out_MCBSize, 0);
+                    SCC_Out_WireSize_Al = GeneralCalculations.CableSizeCalculator (SCC_Out_MCBSize,2);
+                }
+
             }
 
             DisplaySelectedProtection(); // Call the function that displays the data
@@ -228,15 +276,22 @@ public class PV_input_data extends AppCompatActivity {
 
         String SrtSCC_Idesign = String.format(Locale.UK,"%.1f",PV_In_Design_Current); // Show 1 decimal only
         String Srt_n_series = Integer.toString(n_series);
-        String Srt_n_parallel =  Integer.toString(n_parallel);
+        String Srt_n_parallel = Integer.toString(n_parallel);
+        String StrSCC_In_MCB, StrSCC_In_Cu, StrSCC_In_Al, StrSCC_Out_MCB, StrSCC_Out_Cu, StrSCC_Out_Al;
 
-        String StrSCC_In_MCB =Integer.toString(SCC_In_MCBSize);
-        String StrSCC_In_Cu = Double.toString(SCC_In_WireSize_Cu);
-        String StrSCC_In_Al = Double.toString(SCC_In_WireSize_Al);
+        //Input to charge controller
+        String StrSCC_In_MCB_Vrating = Integer.toString (V_dc_rating_in);
+        StrSCC_In_MCB = Integer.toString(SCC_In_MCBSize);
+        StrSCC_In_Cu = Double.toString(SCC_In_WireSize_Cu);
+        StrSCC_In_Al = Double.toString(SCC_In_WireSize_Al);
 
-        String SrtSCC_Out_MCB = Integer.toString(SCC_Out_MCBSize);
-        String SrtSCC_Out_Cu = Double.toString(SCC_Out_WireSize_Cu);
-        String SrtSCC_Out_Al = Double.toString(SCC_Out_WireSize_Al);
+
+        //Output to charge controller
+        String StrSCC_Out_MCB_Vrating = Integer.toString (V_dc_rating_out);
+        StrSCC_Out_MCB = Integer.toString(SCC_Out_MCBSize);
+        StrSCC_Out_Cu = Double.toString(SCC_Out_WireSize_Cu);
+        StrSCC_Out_Al = Double.toString(SCC_Out_WireSize_Al);
+
 
         //Create a Bundle object and add key value pairs to the bundle.
 
@@ -248,12 +303,14 @@ public class PV_input_data extends AppCompatActivity {
         PV_Protection_Set.putString("NUM_PARALLEL", Srt_n_parallel);
 
         PV_Protection_Set.putString("SCC_IN_MCB", StrSCC_In_MCB);
+        PV_Protection_Set.putString("V_DC_IN", StrSCC_In_MCB_Vrating);
         PV_Protection_Set.putString("SCC_IN_CU", StrSCC_In_Cu);
         PV_Protection_Set.putString("SCC_IN_AL", StrSCC_In_Al);
 
-        PV_Protection_Set.putString("SCC_OUT_MCB", SrtSCC_Out_MCB);
-        PV_Protection_Set.putString("SCC_OUT_CU", SrtSCC_Out_Cu);
-        PV_Protection_Set.putString ("SCC_OUT_AL", SrtSCC_Out_Al);
+        PV_Protection_Set.putString("SCC_OUT_MCB", StrSCC_Out_MCB);
+        PV_Protection_Set.putString("V_DC_OUT", StrSCC_Out_MCB_Vrating);
+        PV_Protection_Set.putString("SCC_OUT_CU", StrSCC_Out_Cu);
+        PV_Protection_Set.putString ("SCC_OUT_AL", StrSCC_Out_Al);
 
         // Create and initialise the Intent
 

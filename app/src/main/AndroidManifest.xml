@@ -9,11 +9,50 @@
         android:roundIcon="@mipmap/leaf_logo_light"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <!-- MCB and CABLE FOR LOAD - RESULT SCREEN -->
+        <activity
+            android:name=".AWG_sizelist"
+            android:configChanges="orientation"
+            android:launchMode="singleTop"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait">
+
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+
+        <!-- CABLE RATINGS -->
+        <activity
+            android:name=".CableRatings"
+            android:configChanges="orientation"
+            android:launchMode="singleTop"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait">
+
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity> <!-- MCB RATINGS -->
+        <activity
+            android:name=".MCBRatings"
+            android:configChanges="orientation"
+            android:launchMode="singleTop"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait">
+
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity> <!-- MCB and CABLE FOR LOAD - INPUT SCREEN -->
         <activity
             android:name=".SizeforLoad_results"
+            android:configChanges="orientation"
             android:launchMode="singleTop"
-            android:parentActivityName=".SizeforLoad_input_data">
+            android:parentActivityName=".SizeforLoad_input_data"
+            android:screenOrientation="portrait">
 
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
@@ -22,8 +61,10 @@
         </activity> <!-- MCB and CABLE FOR LOAD - INPUT SCREEN -->
         <activity
             android:name=".SizeforLoad_input_data"
+            android:configChanges="orientation"
             android:launchMode="singleTop"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait">
 
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
@@ -32,7 +73,9 @@
         </activity> <!-- MCB FOR CABLE- RESULT SCREEN -->
         <activity
             android:name=".SizeMCB_results"
-            android:parentActivityName=".SizeMCB_input_data">
+            android:configChanges="orientation"
+            android:parentActivityName=".SizeMCB_input_data"
+            android:screenOrientation="portrait">
 
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
@@ -41,8 +84,10 @@
         </activity> <!-- MCB FOR CABLE- INPUT SCREEN -->
         <activity
             android:name=".SizeMCB_input_data"
+            android:configChanges="orientation"
             android:launchMode="singleTop"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait">
 
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
@@ -51,7 +96,9 @@
         </activity> <!-- CABLE FOR MCB- RESULT SCREEN -->
         <activity
             android:name=".SizeCable_results"
-            android:parentActivityName=".SizeCable_input_data">
+            android:configChanges="orientation"
+            android:parentActivityName=".SizeCable_input_data"
+            android:screenOrientation="portrait">
 
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
@@ -60,8 +107,10 @@
         </activity> <!-- CABLE FOR MCB- INPUT SCREEN -->
         <activity
             android:name=".SizeCable_input_data"
+            android:configChanges="orientation"
             android:launchMode="singleTop"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait">
 
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
@@ -70,7 +119,9 @@
         </activity> <!-- INVERTER CABLE AND MCB REQUIREMENT SCREEN -->
         <activity
             android:name=".Inverter_results"
-            android:parentActivityName=".Inverter_input_data">
+            android:configChanges="orientation"
+            android:parentActivityName=".Inverter_input_data"
+            android:screenOrientation="portrait">
 
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
@@ -79,7 +130,9 @@
         </activity> <!-- CHARGE CONTROLLER CABLE AND MCB REQUIREMENT SCREEN -->
         <activity
             android:name=".PV_results"
-            android:parentActivityName=".PV_input_data">
+            android:configChanges="orientation"
+            android:parentActivityName=".PV_input_data"
+            android:screenOrientation="portrait">
 
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
@@ -88,8 +141,10 @@
         </activity> <!-- INVERTER DATA INPUT SCREEN -->
         <activity
             android:name=".Inverter_input_data"
+            android:configChanges="orientation"
             android:launchMode="singleTop"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait">
 
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
@@ -98,15 +153,20 @@
         </activity> <!-- PV PANELS DATA INPUT SCREEN -->
         <activity
             android:name=".PV_input_data"
+            android:configChanges="orientation"
             android:launchMode="singleTop"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait">
 
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity> <!-- APP MAIN SCREEN -->
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

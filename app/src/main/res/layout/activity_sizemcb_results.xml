@@ -15,7 +15,7 @@
         android:layout_marginTop="24dp"
         android:text="@string/MCBSelectionforCable_title"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView51" />
+        app:layout_constraintTop_toBottomOf="@+id/TV_SizeMCB_CableRating" />
 
     <TextView
         android:id="@+id/TV_MCBSize"
@@ -46,7 +46,7 @@
         app:layout_constraintStart_toEndOf="@+id/TV_MCBSize" />
 
     <TextView
-        android:id="@+id/textView51"
+        android:id="@+id/TV_SizeMCB_CableRating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -57,13 +57,17 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/TV_CableRating"
+        android:id="@+id/TV_largestMCB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:text="@string/CableSize"
-        app:layout_constraintBaseline_toBaselineOf="@+id/textView51"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TV_MCBSize" />
 
 </android.support.constraint.ConstraintLayout>

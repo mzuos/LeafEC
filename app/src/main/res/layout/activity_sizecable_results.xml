@@ -7,13 +7,14 @@
     tools:context=".SizeCable_results">
 
     <TextView
-        android:id="@+id/textView38"
+        android:id="@+id/TV_cable_descrip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
         android:text="@string/CableSelectionforMCB_title"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -21,6 +22,8 @@
         android:id="@+id/TV_CableSize"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
         android:layout_marginTop="24dp"
         android:gravity="end"
         android:text="@string/CableSize"
@@ -29,7 +32,7 @@
         app:layout_constraintEnd_toStartOf="@+id/textView41"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView38" />
+        app:layout_constraintTop_toBottomOf="@+id/TV_cable_descrip" />
 
     <TextView
         android:id="@+id/textView41"
@@ -37,6 +40,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
         android:text="@string/Cable_size_unit"
         android:textSize="48sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/TV_CableSize"
@@ -45,24 +50,15 @@
         app:layout_constraintStart_toEndOf="@+id/TV_CableSize" />
 
     <TextView
-        android:id="@+id/textView52"
+        android:id="@+id/TV_CableRating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="32dp"
         android:text="@string/CableRating"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TV_CableSize" />
-
-    <TextView
-        android:id="@+id/TV_CableRating"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
-        android:text="@string/CableSize"
-        app:layout_constraintBaseline_toBaselineOf="@+id/textView52"
-        app:layout_constraintEnd_toEndOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

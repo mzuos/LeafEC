@@ -13,7 +13,8 @@ public class SizeMCB_input_data extends AppCompatActivity {
     Spinner sp_cabletype, sp_cablesize;
     int CableType=0, dummy=0;
     double CableSize=0, WireRating=0;
-    String SelectedType, SelectedSize;
+    String SelectedType, SelectedSize = "0";
+    int a = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,13 +39,13 @@ public class SizeMCB_input_data extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 //ArrayAdapter adapter_cablesize;
-                CableType=position;
-                SelectedType=(String) parent.getItemAtPosition(position);
+                CableType = position;
+                SelectedType = (String) parent.getItemAtPosition(position);
 
 
-                if (CableType==0 || CableType==1){ //copper cables
+                if (CableType == 0 || CableType == 1){ //copper cables
 
-                    sp_cablesize.setAdapter(new ArrayAdapter <String>(getApplicationContext(),R.layout.multiline_spinner_dropdown_item,
+                    sp_cablesize.setAdapter(new ArrayAdapter <String>(getApplicationContext(),android.R.layout.simple_spinner_dropdown_item,
                             getResources().getStringArray(R.array.Cu_WireSizeList)));
 
                 }
@@ -67,18 +68,23 @@ public class SizeMCB_input_data extends AppCompatActivity {
             {
                 String Size_dummy = parent.getItemAtPosition(position).toString();
 
-                SelectedSize = Size_dummy.substring(0,1);
+                //SelectedSize = Size_dummy.substring(0,1);
+                String [] dummy  = Size_dummy.split(" ");
+                SelectedSize = dummy [0];
 
                 // Convert the cable size to a real number
 
-                CableSize=Float.parseFloat(SelectedSize);
+                CableSize = Float.parseFloat(SelectedSize);
 
             }
+
+
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {}
 
         });
+
 
     }
 
@@ -89,6 +95,14 @@ public class SizeMCB_input_data extends AppCompatActivity {
         int MCB_Selection=0;
         MCB_Selection = GeneralCalculations.Calculator_MCBforCable(CableSize, CableType);
         WireRating = GeneralCalculations.CableCurrentRating(CableType,CableSize);
+
+        int CatalogLength = GeneralCalculations.AC_MCB_Catalogue.length;
+
+        Boolean FinalItem = false;
+
+        if (MCB_Selection == GeneralCalculations.AC_MCB_Catalogue[CatalogLength-1]){
+            FinalItem = true;
+        }
 
 
 
@@ -102,6 +116,7 @@ public class SizeMCB_input_data extends AppCompatActivity {
 
         Bundle_MCBforCable.putString("MCB_SIZE", Str_MCBSize);
         Bundle_MCBforCable.putString("WIRE_RATING", Str_WireRating);
+        Bundle_MCBforCable.putBoolean("FINAL_MCB",FinalItem);
 
         // Create and initialise the Intent
 

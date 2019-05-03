@@ -70,7 +70,7 @@
         android:layout_marginTop="16dp"
         android:text="Suggested AC-MCB Size:"
         app:layout_constraintStart_toStartOf="@+id/textView30"
-        app:layout_constraintTop_toBottomOf="@+id/textView34" />
+        app:layout_constraintTop_toBottomOf="@+id/TV_MCB_type" />
 
     <TextView
         android:id="@+id/textView32"
@@ -95,13 +95,13 @@
         app:layout_constraintTop_toBottomOf="@+id/textView32" />
 
     <TextView
-        android:id="@+id/textView34"
+        android:id="@+id/TV_MCB_type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
-        android:text="Minimum AC voltage rating required:"
+        android:text="@string/TypeACMCB"
         app:layout_constraintStart_toStartOf="@+id/textView30"
         app:layout_constraintTop_toBottomOf="@+id/textView30" />
 
@@ -112,6 +112,7 @@
         android:layout_marginEnd="36dp"
         android:layout_marginRight="36dp"
         android:text="@string/INV_DC_MCB"
+        android:textStyle="bold"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView27"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -120,6 +121,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/INV_DC_CU"
+        android:textStyle="bold"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView28"
         app:layout_constraintEnd_toEndOf="@+id/TV_DC_MCB" />
 
@@ -128,15 +130,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/INV_DC_Al"
+        android:textStyle="bold"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView29"
-        app:layout_constraintEnd_toEndOf="@+id/TV_DC_MCB" />
-
-    <TextView
-        android:id="@+id/TV_V_AC"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/INV_AC_V"
-        app:layout_constraintBaseline_toBaselineOf="@+id/textView34"
         app:layout_constraintEnd_toEndOf="@+id/TV_DC_MCB" />
 
     <TextView
@@ -144,24 +139,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/INV_AC_MCB"
+        android:textStyle="bold"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView31"
-        app:layout_constraintEnd_toEndOf="@+id/TV_V_AC" />
+        app:layout_constraintEnd_toEndOf="@+id/TV_DC_Al" />
 
     <TextView
         android:id="@+id/TV_AC_Cu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/INV_AC_Cu"
+        android:textStyle="bold"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView32"
-        app:layout_constraintEnd_toEndOf="@+id/TV_V_AC" />
+        app:layout_constraintEnd_toEndOf="@+id/TV_AC_MCB" />
 
     <TextView
         android:id="@+id/TV_AC_Al"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/INV_AC_Al"
+        android:textStyle="bold"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView33"
-        app:layout_constraintEnd_toEndOf="@+id/TV_V_AC" />
+        app:layout_constraintEnd_toEndOf="@+id/TV_AC_Cu" />
 
     <TextView
         android:id="@+id/textView42"
@@ -191,6 +189,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:text="@string/DC_Num"
+        android:textStyle="bold"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView37"
         app:layout_constraintEnd_toStartOf="@+id/textView37" />
 
@@ -201,7 +200,41 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:text="unit(s) of "
+        android:textStyle="bold"
         app:layout_constraintBaseline_toBaselineOf="@+id/TV_DC_MCB"
         app:layout_constraintEnd_toStartOf="@+id/TV_DC_MCB" />
+
+    <TextView
+        android:id="@+id/textView62"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="48dp"
+        android:text="@string/CableDisclaimer"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView33" />
+
+    <TextView
+        android:id="@+id/textView63"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/CableType1"
+        app:layout_constraintStart_toStartOf="@+id/textView62"
+        app:layout_constraintTop_toBottomOf="@+id/textView62" />
+
+    <TextView
+        android:id="@+id/textView64"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/CableType2"
+        app:layout_constraintStart_toStartOf="@+id/textView62"
+        app:layout_constraintTop_toBottomOf="@+id/textView63" />
 
 </android.support.constraint.ConstraintLayout>

@@ -22,7 +22,6 @@
         <item> "50 sqmm" </item>
         <item> "70 sqmm" </item>
         <item> "95 sqmm" </item>
-        <item> "120 sqmm" </item>
     </array>
 
     <array
@@ -46,6 +45,128 @@
     </array>
 
     <array
+        name="Cu_WireRating_Clipped_DC">
+        <item> "  1.0 sqmm   -   15.5 Amp   -   44  mV/(A*m)" </item>
+        <item> "  1.5 sqmm   -   20.0 Amp   -   29  mV/(A*m" </item>
+        <item> "  2.5 sqmm   -   27.0 Amp   -   18  mV/(A*m" </item>
+        <item> "  4.0 sqmm   -   37.0 Amp   -   11  mV/(A*m)" </item>
+        <item> "  6.0 sqmm   -   47.0 Amp   -   7.3  mV/(A*m)" </item>
+        <item> " 10.0 sqmm   -   65.0 Amp   -   4.4  mV/(A*m)" </item>
+        <item> " 16.0 sqmm   -   87.0 Amp   -   2.8  mV/(A*m)" </item>
+        <item> " 25.0 sqmm   -  114.0 Amp   -   1.75 mV/(A*m)" </item>
+        <item> " 35.0 sqmm   -  141.0 Amp   -   1.25 mV/(A*m)" </item>
+        <item> " 50.0 sqmm   -  181.0 Amp   -   0.93 mV/(A*m)" </item>
+        <item> " 70.0 sqmm   -  234.0 Amp   -   0.63 mV/(A*m)" </item>
+        <item> " 95.0 sqmm   -  284.0 Amp   -   0.46 mV/(A*m)" </item>
+
+    </array>
+
+    <array
+        name="Cu_WireRating_Clipped_1ph">
+        <item> "  1.0 sqmm   -   15.5 Amp   -   44  mV/(A*m)" </item>
+        <item> "  1.5 sqmm   -   20.0 Amp   -   29  mV/(A*m" </item>
+        <item> "  2.5 sqmm   -   27.0 Amp   -   18  mV/(A*m" </item>
+        <item> "  4.0 sqmm   -   37.0 Amp   -   11  mV/(A*m)" </item>
+        <item> "  6.0 sqmm   -   47.0 Amp   -   7.3  mV/(A*m)" </item>
+        <item> " 10.0 sqmm   -   65.0 Amp   -   4.4  mV/(A*m)" </item>
+        <item> " 16.0 sqmm   -   87.0 Amp   -   2.8  mV/(A*m)" </item>
+        <item> " 25.0 sqmm   -  114.0 Amp   -   1.80 mV/(A*m)" </item>
+        <item> " 35.0 sqmm   -  141.0 Amp   -   1.30 mV/(A*m)" </item>
+        <item> " 50.0 sqmm   -  181.0 Amp   -   0.97 mV/(A*m)" </item>
+        <item> " 70.0 sqmm   -  234.0 Amp   -   0.69 mV/(A*m)" </item>
+        <item> " 95.0 sqmm   -  284.0 Amp   -   0.54 mV/(A*m)" </item>
+
+    </array>
+
+    <array
+        name="Cu_WireRating_Clipped_3ph">
+        <item> "  1.0 sqmm   -   15.5 Amp   -   38  mV/(A*m)" </item>
+        <item> "  1.5 sqmm   -   20.0 Amp   -   25  mV/(A*m" </item>
+        <item> "  2.5 sqmm   -   27.0 Amp   -   15  mV/(A*m" </item>
+        <item> "  4.0 sqmm   -   37.0 Amp   -   9.5  mV/(A*m)" </item>
+        <item> "  6.0 sqmm   -   47.0 Amp   -   6.4  mV/(A*m)" </item>
+        <item> " 10.0 sqmm   -   65.0 Amp   -   3.8  mV/(A*m)" </item>
+        <item> " 16.0 sqmm   -   87.0 Amp   -   2.4  mV/(A*m)" </item>
+        <item> " 25.0 sqmm   -  114.0 Amp   -   1.55 mV/(A*m)" </item>
+        <item> " 35.0 sqmm   -  141.0 Amp   -   1.15 mV/(A*m)" </item>
+        <item> " 50.0 sqmm   -  181.0 Amp   -   0.86 mV/(A*m)" </item>
+        <item> " 70.0 sqmm   -  234.0 Amp   -   0.63mV/(A*m)" </item>
+        <item> " 95.0 sqmm   -  284.0 Amp   -   0.51 mV/(A*m)" </item>
+
+    </array>
+
+    <array
+        name="Cu_WireRating_Conduit_DC">
+        <item> "  1.0 sqmm   -   12.0 Amp   -   44  mV/(A*m)" </item>
+        <item> "  1.5 sqmm   -   15.5 Amp   -   29  mV/(A*m" </item>
+        <item> "  2.5 sqmm   -   21.0 Amp   -   18  mV/(A*m" </item>
+        <item> "  4.0 sqmm   -   28.0 Amp   -   11  mV/(A*m)" </item>
+        <item> "  6.0 sqmm   -   36.0 Amp   -   7.3  mV/(A*m)" </item>
+        <item> " 10.0 sqmm   -   50.0 Amp   -   4.4  mV/(A*m)" </item>
+        <item> " 16.0 sqmm   -   68.0 Amp   -   2.8  mV/(A*m)" </item>
+        <item> " 25.0 sqmm   -   89.0 Amp   -   1.75 mV/(A*m)" </item>
+        <item> " 35.0 sqmm   -  110.0 Amp   -   1.25 mV/(A*m)" </item>
+        <item> " 50.0 sqmm   -  134.0 Amp   -   0.93 mV/(A*m)" </item>
+        <item> " 70.0 sqmm   -  171.0 Amp   -   0.63 mV/(A*m)" </item>
+        <item> " 95.0 sqmm   -  207.0 Amp   -   0.46 mV/(A*m)" </item>
+
+    </array>
+
+    <array
+        name="Cu_WireRating_Conduit_1ph">
+        <item> "  1.0 sqmm   -   12.0 Amp   -   44  mV/(A*m)" </item>
+        <item> "  1.5 sqmm   -   15.5 Amp   -   29  mV/(A*m" </item>
+        <item> "  2.5 sqmm   -   21.0 Amp   -   18  mV/(A*m" </item>
+        <item> "  4.0 sqmm   -   28.0 Amp   -   11  mV/(A*m)" </item>
+        <item> "  6.0 sqmm   -   36.0 Amp   -   7.3  mV/(A*m)" </item>
+        <item> " 10.0 sqmm   -   50.0 Amp   -   4.4  mV/(A*m)" </item>
+        <item> " 16.0 sqmm   -   68.0 Amp   -   2.8  mV/(A*m)" </item>
+        <item> " 25.0 sqmm   -   89.0 Amp   -   1.80 mV/(A*m)" </item>
+        <item> " 35.0 sqmm   -  110.0 Amp   -   1.30 mV/(A*m)" </item>
+        <item> " 50.0 sqmm   -  134.0 Amp   -   1.00 mV/(A*m)" </item>
+        <item> " 70.0 sqmm   -  171.0 Amp   -   0.72 mV/(A*m)" </item>
+        <item> " 95.0 sqmm   -  207.0 Amp   -   0.56 mV/(A*m)" </item>
+
+    </array>
+
+    <array
+        name="Cu_WireRating_Conduit_3ph">
+        <item> "  1.0 sqmm   -   12.0 Amp   -   38  mV/(A*m)" </item>
+        <item> "  1.5 sqmm   -   15.5 Amp   -   25  mV/(A*m" </item>
+        <item> "  2.5 sqmm   -   21.0 Amp   -   15  mV/(A*m" </item>
+        <item> "  4.0 sqmm   -   28.0 Amp   -   9.5  mV/(A*m)" </item>
+        <item> "  6.0 sqmm   -   36.0 Amp   -   6.4  mV/(A*m)" </item>
+        <item> " 10.0 sqmm   -   50.0 Amp   -   3.8  mV/(A*m)" </item>
+        <item> " 16.0 sqmm   -   68.0 Amp   -   2.4  mV/(A*m)" </item>
+        <item> " 25.0 sqmm   -   89.0 Amp   -   1.55 mV/(A*m)" </item>
+        <item> " 35.0 sqmm   -  110.0 Amp   -   1.10 mV/(A*m)" </item>
+        <item> " 50.0 sqmm   -  134.0 Amp   -   0.85 mV/(A*m)" </item>
+        <item> " 70.0 sqmm   -  171.0 Amp   -   0.61 mV/(A*m)" </item>
+        <item> " 95.0 sqmm   -  207.0 Amp   -   0.48 mV/(A*m)" </item>
+
+    </array>
+
+
+    <array
+        name="Al_WireRating_IEC_PVC">
+        <item> "10 sqmm   -    35 Amp   -   3.080 Ohm/km" </item>
+        <item> "16 sqmm   -    56 Amp   -   1.910 Ohm/km" </item>
+        <item> "25 sqmm   -    70 Amp   -   1.200 Ohm/km" </item>
+        <item> "35 sqmm   -    90 Amp   -   0.868 Ohm/km" </item>
+        <item> "50 sqmm   -   110 Amp   -   0.641 Ohm/km" </item>
+
+    </array>
+
+    <array
+        name="Al_WireRating_IEC_XLPE">
+        <item> "10 sqmm   -    47 Amp   -   3.080 Ohm/km" </item>
+        <item> "16 sqmm   -    74 Amp   -   1.910 Ohm/km" </item>
+        <item> "25 sqmm   -   102 Amp   -   1.200 Ohm/km" </item>
+        <item> "35 sqmm   -   124 Amp   -   0.868 Ohm/km" </item>
+        <item> "50 sqmm   -   157 Amp   -   0.641 Ohm/km" </item>
+    </array>
+
+    <array
         name="Load_type">
         <item>AC - Single Phase</item>
         <item>AC - Three Phase</item>
@@ -53,9 +174,46 @@
     </array>
 
     <array
+        name="AC_output_type">
+        <item>AC - Single Phase</item>
+        <item>AC - Three Phase</item>
+
+    </array>
+
+    <array
         name="SCC_type">
         <item>PWM</item>
         <item>MPPT</item>
+
+    </array>
+
+    <array
+        name="AWG_table">
+
+        <item>(4/0) ---- 11.6840 ---- 107.2193 </item>
+        <item>(3/0) ---- 10.4049 ---- 85.0288 </item>
+        <item>(2/0) ----- 9.2658 ----- 7.4309 </item>
+        <item>(1/0) ----- 8.2515 ----- 53.4751 </item>
+        <item> 1 -------- 7.3481 ----- 42.4077 </item>
+        <item> 2 -------- 6.5437 ----- 33.6308 </item>
+        <item> 3 -------- 5.8273 ----- 26.6705 </item>
+        <item> 4 -------- 5.1894 ----- 21.1506 </item>
+        <item> 5 -------- 4.6213 ----- 16.7732 </item>
+        <item> 6        4.1154		13.3018 </item>
+        <item> 7        3.6649		10.5488 </item>
+        <item> 8        3.2636		 8.3656 </item>
+        <item> 9        2.9064		 6.6342 </item>
+        <item>10        2.5882		 5.2612 </item>
+        <item>11        2.3048		 4.1723 </item>
+        <item>12        2.0525		 3.3088 </item>
+        <item>13        1.8278		 2.6240 </item>
+        <item>14        1.6277		 2.0809 </item>
+        <item>15	    1.4495		 1.6502 </item>
+        <item>16	    1.2908		 1.3087 </item>
+        <item>17	    1.1495		 1.0378 </item>
+        <item>18	    1.0237		 0.8230 </item>
+        <item>19	    0.9116		 0.6527 </item>
+        <item>20	    0.8118		 0.5176 </item>
 
     </array>
 

@@ -20,10 +20,26 @@ public class SizeCable_results extends AppCompatActivity {
 
         //Extracting the stored data from the bundle
 
+
+        String MCBRating = BundleCableForMCB.getString("MCB_SIZE");
+        MCBRating = "Minimum suggested cable size for " + MCBRating + "A MCB:";
+
         String CableSize = BundleCableForMCB.getString("WIRE_SIZE");
-        String CableRating = BundleCableForMCB.getString("WIRE_RATING");
+        String CableRating = BundleCableForMCB.getString("WIRE_RATING") + " A";
+        CableRating = "Current Rating of the cable for continous use: " + CableRating;
+
+
+        if (CableSize.equals ("-1.0")){
+
+            CableSize = "n/a";
+            CableRating  = "No cable of this type available for MCB rating";
+        }
+
 
         //Capture the layout of the textviews and set the strings as their text
+        TextView TView_MCBdescription = findViewById(R.id.TV_cable_descrip);
+        TView_MCBdescription.setText (MCBRating);
+
         TextView TView_CableSize = findViewById (R.id.TV_CableSize);
         TView_CableSize.setText(CableSize);
 

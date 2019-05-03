@@ -17,10 +17,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Locale;
+import java.util.function.DoubleToIntFunction;
 
 public class SizeforLoad_input_data extends AppCompatActivity {
 
-    double Watts, voltage_DC, distance, maxVoltDrop, VoltDrop, PercentVD;
+    double Watts, voltage_DC, distance, maxVD_percent, max_VoltDrop, VoltDrop, PercentVD, OL_DC;
     int LoadType;
     int CableType;
     Spinner Spinner_CableType, Spinner_LoadType;
@@ -29,7 +30,7 @@ public class SizeforLoad_input_data extends AppCompatActivity {
 
     // Declared at the start as used by different methods in the code
 
-    String V1ph_Srt, V3ph_Srt,CosPhi_Srt, OL_Srt, Vdc_Str;
+    String V1ph_Srt, V3ph_Srt,CosPhi_Srt, OL_Srt, Vdc_Str, OL_dc_Str;
     CheckBox VD_CheckBox;
 
     @Override
@@ -42,17 +43,19 @@ public class SizeforLoad_input_data extends AppCompatActivity {
         addListenerOnVoltDropCheckBox();
 
        // declare all the fields that toggle visibility with Load Type
-        final TextView TV_V1ph = findViewById(R.id.TV_V1ph);
-        final TextView TV_V3ph = findViewById(R.id.TV_V3ph);
-        final TextView TV_cosphi = findViewById(R.id.TV_cosphi);
-        final TextView TV_OL = findViewById(R.id.TV_OL);
-        final TextView TV_Vdc = findViewById(R.id.TV_Vdc);
+        final TextView TV_V1ph = (TextView)findViewById(R.id.TV_V1ph);
+        final TextView TV_V3ph = (TextView)findViewById(R.id.TV_V3ph);
+        final TextView TV_cosphi = (TextView)findViewById(R.id.TV_cosphi);
+        final TextView TV_OL = (TextView)findViewById(R.id.TV_OL);
+        final TextView TV_Vdc = (TextView)findViewById(R.id.TV_Vdc);
+        final TextView TV_OL_DC = (TextView)findViewById(R.id.TV_OL_DC);
 
-        final EditText ed_V1ph = findViewById(R.id.ed_V1ph);
-        final EditText ed_V3ph = findViewById(R.id.ed_V3ph);
-        final EditText ed_cosphi = findViewById(R.id.ed_cosphi);
-        final EditText ed_OL = findViewById(R.id.ed_OL);
-        final EditText ed_Vdc = findViewById(R.id.ed_Vdc);
+        final EditText ed_V1ph = (EditText)findViewById(R.id.ed_V1ph);
+        final EditText ed_V3ph = (EditText)findViewById(R.id.ed_V3ph);
+        final EditText ed_cosphi = (EditText)findViewById(R.id.ed_cosphi);
+        final EditText ed_OL = (EditText)findViewById(R.id.ed_OL);
+        final EditText ed_Vdc = (EditText)findViewById(R.id.ed_Vdc);
+        final EditText ed_OL_DC = (EditText)findViewById(R.id.ED_OL_DC);
 
         //get the spinners from the xml.
         Spinner_CableType = findViewById(R.id.LoadCableSpinner);
@@ -114,6 +117,8 @@ public class SizeforLoad_input_data extends AppCompatActivity {
 
                 TV_Vdc.setVisibility(MakeDCVisible);
                 ed_Vdc.setVisibility(MakeDCVisible);
+                TV_OL_DC.setVisibility(MakeDCVisible);
+                ed_OL_DC.setVisibility(MakeDCVisible);
 
             }
 
@@ -157,18 +162,22 @@ public class SizeforLoad_input_data extends AppCompatActivity {
 
     public void LoadInput_DataValidation(View view) {
 
+        // LOAD RELEVANT DATA
+
         /* Note to self: need to declare them again so that it updates the values with the
         * user input data. Cannot declare them as global outside OnCreate because the layout hasn't
         * been set up yet and it can't find the texboxes*/
 
-        EditText ed_V1ph = findViewById(R.id.ed_V1ph);
-        EditText ed_V3ph = findViewById(R.id.ed_V3ph);
-        EditText ed_cosphi = findViewById(R.id.ed_cosphi);
-        EditText ed_OL = findViewById(R.id.ed_OL);
-        EditText ed_Vdc = findViewById(R.id.ed_Vdc);
+        EditText ed_V1ph = (EditText)findViewById(R.id.ed_V1ph);
+        EditText ed_V3ph = (EditText)findViewById(R.id.ed_V3ph);
+        EditText ed_cosphi = (EditText)findViewById(R.id.ed_cosphi);
+        EditText ed_OL = (EditText)findViewById(R.id.ed_OL);
+        EditText ed_Vdc = (EditText)findViewById(R.id.ed_Vdc);
+        EditText ed_OL_DC = (EditText)findViewById(R.id.ED_OL_DC);
 
-        if (2==LoadType){
+        if (2 == LoadType){
             Vdc_Str = ed_Vdc.getText().toString();
+            OL_dc_Str = ed_OL_DC.getText().toString();
         }
 
         else{
@@ -178,14 +187,16 @@ public class SizeforLoad_input_data extends AppCompatActivity {
             OL_Srt = ed_OL.getText().toString();
         }
 
+        EditText editText_LoadInput = (EditText) findViewById(R.id.ET_InsertLoad);
+        String LoadSrt = editText_LoadInput.getText().toString();
 
         int ToastXOffset = 280;
 
         boolean dataOK = true;
         CharSequence PopUpText = "";
 
-        EditText editText_LoadInput = (EditText) findViewById(R.id.ET_InsertLoad);
-        String LoadSrt = editText_LoadInput.getText().toString();
+        // DATA VALIDATION CHECK
+
         if (LoadSrt.isEmpty()) {
             Watts = -1;//just giving a random value that is not zero for Toasts to work
             dataOK=false;
@@ -198,7 +209,7 @@ public class SizeforLoad_input_data extends AppCompatActivity {
             PopUpText = "Load cannot be zero";
         }
 
-        if (2==LoadType){
+        if (2 == LoadType){
             if (Vdc_Str.isEmpty()){
                 voltage_DC = 1; //just giving a random value that is not zero for Toasts to work
                 dataOK = false;
@@ -212,6 +223,20 @@ public class SizeforLoad_input_data extends AppCompatActivity {
                 dataOK = false;
                 PopUpText = "DC voltage cannot be zero";
             }
+
+            if (OL_dc_Str.isEmpty()){
+                OL_DC = -1; //just giving a random value that is not zero for Toasts to work
+                dataOK = false;
+                PopUpText = "Overload cannot be blank";
+            }
+            else{
+                OL_DC = Float.parseFloat(OL_dc_Str);
+            }
+
+            if (OL_DC == 0 ) {
+                dataOK = false;
+                PopUpText = "Overload cannot be zero";
+            }
         }
 
         if (VD_CheckBox.isChecked()){
@@ -219,7 +244,7 @@ public class SizeforLoad_input_data extends AppCompatActivity {
             EditText ED_distance = (EditText)findViewById(R.id.ET_km);
             String Str_distance = ED_distance.getText().toString();
             EditText ED_maxVdrop = (EditText)findViewById(R.id.ET_maxVD);
-            String Str_voltdrop = ED_maxVdrop.getText().toString();
+            String Str_maxVdrop = ED_maxVdrop.getText().toString();
 
             if (Str_distance.isEmpty()){
                 dataOK = false;
@@ -229,20 +254,20 @@ public class SizeforLoad_input_data extends AppCompatActivity {
                 distance = Float.parseFloat(Str_distance);
             }
 
-            if (distance ==0){
+            if (distance == 0){
                 dataOK=false;
                 PopUpText = "Distance cannot be zero";
             }
 
-            if (!Str_voltdrop.isEmpty()){
-                maxVoltDrop = Float.parseFloat(Str_voltdrop);
-                if (maxVoltDrop>=100 || maxVoltDrop<=0){
+            if (!Str_maxVdrop.isEmpty()){
+                maxVD_percent = Float.parseFloat(Str_maxVdrop);
+                if (maxVD_percent >= 100 || maxVD_percent <= 0){
                     dataOK=false;
                     PopUpText = "Maximum volt drop must be >0 and <100";
                 }
             }
             else{
-                maxVoltDrop = -1; // Random value so that I know the field is empty
+                maxVD_percent = -1; // Random value so that I know the field is empty
             }
 
 
@@ -271,20 +296,22 @@ public class SizeforLoad_input_data extends AppCompatActivity {
 
     public void DesignForLoad(){
 
-        double Amps=0;
+        double Amps = 0, Amps_R =0; //Amps_R: real amps, Amps = aparent amps
         int MCBforLoad=0;
-        double CableForLoad=0, CableForVoltDrop=0;
-        int voltage_1ph, voltage_3ph;
-        double cosphi, Overload=1.1; //initialised at weird values to help me identify mistakes
+        double CableForLoad = 0, CableForVoltDrop = 0, ChosenCable = 0, Ohms = 0;
+        int voltage_1ph = 1, voltage_3ph = 1;//initialised with silly values !=0
+        double cosphi, Overload=0.999; //initialised at weird values to help me identify mistakes
+        double VD_goal = 0 ; // The value we need to search for
 
-        String Str_LoadType="TBC",Str_MCBSize,Str_WireSize, VDShow="NO";
+        String Str_LoadType = "TBC", Str_MCBSize, Str_WireSize, VD_requirement = "NO", VDShow = "NO", VD_satisfied = "YES";
 
 
-        if (LoadType==2){ //DC Load
+        if (LoadType == 2){ //DC Load
 
             Str_LoadType = "DC Load";
-            Amps=Watts/voltage_DC*1.25; // Make overload dynamic!
-            MCBforLoad=GeneralCalculations.DC_MCB_Calculator(Amps);
+            Amps_R = Watts / voltage_DC ; //for volt drop we consider the actual current, no overload
+            Amps = Amps_R * OL_DC;
+            MCBforLoad = GeneralCalculations.DC_MCB_Calculator(Amps);
         }
 
         else{ //it's an AC Load
@@ -294,42 +321,111 @@ public class SizeforLoad_input_data extends AppCompatActivity {
             cosphi =Float.parseFloat(CosPhi_Srt);
             Overload =Float.parseFloat(OL_Srt);
 
-            if (LoadType==0){ //AC - Single Phase
+            if (LoadType == 0){ //AC - Single Phase
                 Str_LoadType = "Single Phase";
-                Amps=Watts/voltage_1ph/cosphi*Overload;
+                Amps_R = Watts / voltage_1ph ; //for volt drop we consider the actual current, no overload
+                Amps = Amps_R  / cosphi * Overload ;
             }
-            else if (LoadType==1){ //AC - Three Phase
+            else if (LoadType == 1){ //AC - Three Phase
                 Str_LoadType = "Three Phase";
-                Amps=Watts/1.732/voltage_3ph/cosphi*Overload;
+                Amps_R = Watts /1.732 / voltage_3ph ; //for volt drop we consider the actual current, no overload
+                Amps = Amps_R / cosphi * Overload;
             }
-            MCBforLoad=GeneralCalculations.AC_MCB_Calculator(Amps);
+            MCBforLoad = GeneralCalculations.AC_MCB_Calculator(Amps);
 
         }
 
-        if (MCBforLoad ==71){// means we found a suitable MCB
+        if (MCBforLoad == -1){// means we found a suitable MCB
 
             Str_MCBSize ="n/a";
-            Str_WireSize = "n/a";
+            MCBforLoad = (int)Math.round(Amps); // We are gonna calculate the cable size and volt drop for the load
+
+
         }
 
         else{
 
             Str_MCBSize =Integer.toString(MCBforLoad);
-            CableForLoad=GeneralCalculations.CableSizeCalculator(MCBforLoad,CableType);
+        }
 
-            if (VD_CheckBox.isChecked()&& (maxVoltDrop == -1)){ // no max Volt drop, just retrieve value
+        CableForLoad = GeneralCalculations.CableSizeCalculator(MCBforLoad,CableType);
+
+        if (CableForLoad == -1){ // unable to find cable for load or MCB
+
+            Str_WireSize = "n/a";
+        }
+
+        else{
+
+            if (VD_CheckBox.isChecked()){ //
                 VDShow = "YES";
-                double Ohms = GeneralCalculations.getResistance (CableType, CableForLoad);
-                VoltDrop = Ohms * distance /1000 * 2 * Amps;
-                PercentVD = VoltDrop/230 *100;
 
+                if (maxVD_percent != -1) {//userspecified max. volt drop
+                    VD_requirement = "YES";
+
+                    if (LoadType == 0){ //AC - 1ph
+                        max_VoltDrop = voltage_1ph * maxVD_percent / 100;
+                    }
+                    else if (LoadType == 1) { //AC - 3ph
+                        max_VoltDrop = voltage_3ph * maxVD_percent / 100;
+                    }
+                    else if (LoadType == 2) { //DC
+                        max_VoltDrop = voltage_DC * maxVD_percent / 100;
+                    }
+
+                    if (CableType == 0 || CableType == 1){ //VD tables in (mV/Amp*m), distance one way
+                        VD_goal = max_VoltDrop * 1000 / Amps_R / distance;
+                    }
+
+                    else if (CableType == 2 || CableType == 3){ //VD tables in (Ohm/km), distance 2 ways
+                        VD_goal = max_VoltDrop / Amps_R / (distance / 1000 * 2);
+                    }
+
+                    CableForVoltDrop = GeneralCalculations.CableForVoltDrop (CableType, LoadType, VD_goal);
+
+                    if (CableForVoltDrop > CableForLoad) { // Choose highest cable
+                        ChosenCable = CableForVoltDrop;
+                    }
+                    else{
+                        ChosenCable = CableForLoad;
+                    }
+                }
+
+                else{
+                    ChosenCable = CableForLoad;
+                }
+
+
+                //Retrieve volt drop information for selected cable, regardless it's been selected for Load or Voltdrop
+
+                Ohms = GeneralCalculations.VoltDropInfo (CableType, LoadType, ChosenCable);
+
+                if (CableType == 2 || CableType == 3){ //Aluminium cables
+                    // Ohms comes in(Ohm/A*km)
+                    VoltDrop = Ohms * (distance / 1000 * 2) * Amps_R; //We consider 2 times the distance
+                }
+                else if (CableType == 0 || CableType ==1){ //Copper cables
+                    // Ohms comes in(mV/A*m)
+                    VoltDrop = (Ohms / 1000) * distance * Amps_R; //We consider 1 time the distance
+                }
+
+                if (LoadType == 0){ //AC - 1ph
+                    PercentVD = VoltDrop / voltage_1ph *100;
+                }
+                else if (LoadType == 1) { //AC - 3ph
+                    PercentVD = VoltDrop / voltage_3ph *100;
+                }
+                else if (LoadType == 2) { //DC
+                    PercentVD = VoltDrop / voltage_DC * 100;
+                }
             }
+
             else{
                 VDShow = "NO";
+                ChosenCable = CableForLoad;
             }
 
-
-            Str_WireSize = Double.toString(CableForLoad);
+            Str_WireSize = Double.toString(ChosenCable);
 
         }
 
@@ -337,11 +433,30 @@ public class SizeforLoad_input_data extends AppCompatActivity {
 
 
 
+
+        if (VD_requirement.equals("YES") && (max_VoltDrop < VoltDrop)){ //means we were unable ot find a suitable cable
+
+            VD_satisfied = "NO";
+        }
+
+
+        //************ DISPLAY VALUES ***************************************************
+
         // Save the MCB and cable size values as Strings
 
         String Str_Amps = String.format (Locale.UK, "%.1f", Amps); // Display with one decimal only
         String Str_Watts = String.format (Locale.UK, "%.0f", Watts);
-        String Str_OvLoad = String.format (Locale.UK, "%.2f", Overload);
+        String Str_OvLoad = "tbc";
+
+        if (LoadType == 2){ //DCLOAD
+
+            Str_OvLoad = String.format (Locale.UK, "%.2f", OL_DC);
+        }
+        else{
+            Str_OvLoad = String.format (Locale.UK, "%.2f", Overload);
+        }
+
+        String.format (Locale.UK, "%.2f", Overload);
         String Str_VoltDrop = String.format (Locale.UK, "%.1f", VoltDrop);
         String Str_PercentVD = String.format (Locale.UK, "%.2f", PercentVD);
         String Str_distance = Double.toString(distance);
@@ -361,6 +476,9 @@ public class SizeforLoad_input_data extends AppCompatActivity {
         Bundle_Load.putString("VOLTDROP", Str_VoltDrop);
         Bundle_Load.putString("VDPERCENT", Str_PercentVD);
         Bundle_Load.putString("DISTANCE", Str_distance);
+        Bundle_Load.putString ("VD_REQ", VD_requirement);
+        Bundle_Load.putString ("VD_SATISFIED", VD_satisfied);
+
 
 
         // Create and initialise the Intent

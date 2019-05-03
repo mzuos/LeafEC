@@ -13,7 +13,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="48dp"
-        android:text="@string/PVInputScr_text1"
+        android:text="@string/PVResultScr_text1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView55" />
 
@@ -92,7 +92,7 @@
         android:layout_marginTop="16dp"
         android:text="@string/SCC_Out_Cu_text"
         app:layout_constraintStart_toStartOf="@+id/textView21"
-        app:layout_constraintTop_toBottomOf="@+id/textView22" />
+        app:layout_constraintTop_toBottomOf="@+id/textView34" />
 
     <TextView
         android:id="@+id/textView24"
@@ -112,13 +112,15 @@
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
         android:text="@string/SCC_In_MCB"
+        android:textStyle="bold"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView17"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
-        android:id="@+id/textView26"
+        android:id="@+id/TV_DC_Vrating_IN"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="@string/MCB_minV"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView18"
         app:layout_constraintEnd_toEndOf="@+id/Show_SCC_in_MCC" />
 
@@ -127,6 +129,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/SCC_In_Cu"
+        android:textStyle="bold"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView19"
         app:layout_constraintEnd_toEndOf="@+id/Show_SCC_in_MCC" />
 
@@ -143,6 +146,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/SCC_Out_MCB"
+        android:textStyle="bold"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView22"
         app:layout_constraintEnd_toEndOf="@+id/Show_SCC_In_Al" />
 
@@ -151,6 +155,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/SCC_Out_Cu"
+        android:textStyle="bold"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView23"
         app:layout_constraintEnd_toEndOf="@+id/Show_SCC_Out_MCB" />
 
@@ -218,5 +223,24 @@
         android:text="@string/SCC_Idesign_value"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView55"
         app:layout_constraintEnd_toEndOf="@+id/TV_Idesign" />
+
+    <TextView
+        android:id="@+id/textView34"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/MCB_minV_text"
+        app:layout_constraintStart_toStartOf="@+id/textView21"
+        app:layout_constraintTop_toBottomOf="@+id/textView22" />
+
+    <TextView
+        android:id="@+id/TV_DC_Vrating_OUT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/MCB_minV"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textView34"
+        app:layout_constraintEnd_toEndOf="@+id/Show_SCC_Out_MCB" />
 
 </android.support.constraint.ConstraintLayout>

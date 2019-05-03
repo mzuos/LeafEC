@@ -8,17 +8,16 @@
 
     <Spinner
         android:id="@+id/CableSizeSpinner"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
         android:layout_marginLeft="48dp"
         android:background="@drawable/custom_spinner"
-        android:singleLine="false"
         android:textSize="16sp"
-        android:spinnerMode="dropdown"
         app:layout_constraintBottom_toBottomOf="@+id/textView40"
         app:layout_constraintStart_toEndOf="@+id/textView40"
         app:layout_constraintTop_toTopOf="@+id/textView40" />
+
 
     <TextView
         android:id="@+id/textView39"
