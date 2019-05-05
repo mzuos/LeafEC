@@ -295,7 +295,7 @@
         android:inputType="numberDecimal"
         android:textSize="16sp"
         android:visibility="invisible"
-        app:layout_constraintBaseline_toBaselineOf="@+id/radioButton"
+        app:layout_constraintBaseline_toBaselineOf="@+id/TV_maxVoltDrop"
         app:layout_constraintStart_toStartOf="@+id/ET_km" />
 
     <TextView
@@ -321,60 +321,17 @@
         app:layout_constraintBaseline_toBaselineOf="@+id/TV_OL_DC"
         app:layout_constraintStart_toStartOf="@+id/ed_V1ph" />
 
-
-    <Spinner
-        android:id="@+id/Sp_load_c_size"
-        android:layout_width="0dp"
+    <TextView
+        android:id="@+id/TV_maxVoltDrop"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/custom_spinner"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/radioGroup"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/radioButton2" />
-
-    <ImageView
-        android:id="@+id/imageView10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/Sp_load_c_size"
-        app:layout_constraintEnd_toEndOf="@+id/Sp_load_c_size"
-        app:layout_constraintTop_toTopOf="@+id/Sp_load_c_size"
-        app:srcCompat="@mipmap/arrow" />
-
-    <RadioGroup
-        android:id="@+id/radioGroup"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TV_distance">
-
-        <RadioButton
-            android:id="@+id/RD_max_VD"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/maxVoltDrop_text" />
-
-        <RadioButton
-            android:id="@+id/radioButton4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/opt_VD_cablesize" />
-    </RadioGroup>
+        android:layout_marginTop="24dp"
+        android:visibility="invisible"
+        android:text="@string/maxVoltDrop_text"
+        app:layout_constraintStart_toStartOf="@+id/VoltDrop_checkBox"
+        app:layout_constraintTop_toBottomOf="@+id/TV_distance" />
 
 
 </android.support.constraint.ConstraintLayout>

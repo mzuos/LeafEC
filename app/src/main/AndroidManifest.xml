@@ -9,6 +9,18 @@
         android:roundIcon="@mipmap/leaf_logo_light"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <activity
+            android:name=".Image_viewer"
+            android:configChanges="orientation"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait">
+
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
         <activity
             android:name=".AWG_mm2_converter"
             android:configChanges="orientation"
@@ -20,9 +32,7 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
-        </activity>
-
-        <!-- CABLE RATINGS -->
+        </activity> <!-- CABLE RATINGS -->
         <activity
             android:name=".CableRatings"
             android:configChanges="orientation"
@@ -46,11 +56,10 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
-        </activity> <!-- MCB and CABLE FOR LOAD - INPUT SCREEN -->
+        </activity> <!-- MCB and CABLE FOR LOAD - RESULTS SCREEN -->
         <activity
             android:name=".SizeforLoad_results"
             android:configChanges="orientation"
-            android:launchMode="singleTop"
             android:parentActivityName=".SizeforLoad_input_data"
             android:screenOrientation="portrait">
 

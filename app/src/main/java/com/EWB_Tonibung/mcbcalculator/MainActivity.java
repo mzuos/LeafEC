@@ -56,6 +56,12 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent_AWG);
     }
 
+    //IMAGE VIEWER - Launched from Main Menu
+    public void LaunchImageViewer(View view) {
+        Intent intent_image = new Intent (this, Image_viewer.class);
+        startActivity(intent_image);
+    }
+
 
 
 

@@ -16,8 +16,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.Locale;
-import java.util.function.DoubleToIntFunction;
 
 public class SizeforLoad_input_data extends AppCompatActivity {
 
@@ -25,8 +25,25 @@ public class SizeforLoad_input_data extends AppCompatActivity {
     int LoadType;
     int CableType;
     Spinner Spinner_CableType, Spinner_LoadType;
-    int dummy =0;
 
+    double Amps = 0, Amps_R =0; //Amps_R: real amps, Amps = aparent amps
+    int MCBforLoad=0;
+    double CableForLoad = 0, CableForVoltDrop = 0, ChosenCable = 0, Ohms = 0;
+    int voltage_1ph = 1, voltage_3ph = 1;//initialised with silly values !=0
+    double cosphi, Overload=0.999; //initialised at weird values to help me identify mistakes
+    double VD_goal = 0 ; // The value we need to search for
+
+    String Str_LoadType = "TBC", Str_MCBSize, Str_WireSize, Str_WireforLoad;
+    String VD_requirement = "NO", VDShow = "NO", VD_satisfied = "YES";
+
+    String Str_maxVD_PC, Str_VoltDrop, Str_PercentVD, Str_distance ;
+
+    int catalog_length, cable_position = 0;
+
+    ArrayList  <String> Ohms_array = new ArrayList<String>();
+    ArrayList <String> VD_array = new ArrayList<String>();
+    ArrayList <String> VD_percent_array = new ArrayList<String>();
+    ArrayList <String> mm2_array = new ArrayList<String>();
 
     // Declared at the start as used by different methods in the code
 
@@ -244,7 +261,7 @@ public class SizeforLoad_input_data extends AppCompatActivity {
             EditText ED_distance = (EditText)findViewById(R.id.ET_km);
             String Str_distance = ED_distance.getText().toString();
             EditText ED_maxVdrop = (EditText)findViewById(R.id.ET_maxVD);
-            String Str_maxVdrop = ED_maxVdrop.getText().toString();
+            Str_maxVD_PC = ED_maxVdrop.getText().toString();
 
             if (Str_distance.isEmpty()){
                 dataOK = false;
@@ -259,8 +276,8 @@ public class SizeforLoad_input_data extends AppCompatActivity {
                 PopUpText = "Distance cannot be zero";
             }
 
-            if (!Str_maxVdrop.isEmpty()){
-                maxVD_percent = Float.parseFloat(Str_maxVdrop);
+            if (!Str_maxVD_PC.isEmpty()){
+                maxVD_percent = Float.parseFloat(Str_maxVD_PC);
                 if (maxVD_percent >= 100 || maxVD_percent <= 0){
                     dataOK=false;
                     PopUpText = "Maximum volt drop must be >0 and <100";
@@ -296,15 +313,6 @@ public class SizeforLoad_input_data extends AppCompatActivity {
 
     public void DesignForLoad(){
 
-        double Amps = 0, Amps_R =0; //Amps_R: real amps, Amps = aparent amps
-        int MCBforLoad=0;
-        double CableForLoad = 0, CableForVoltDrop = 0, ChosenCable = 0, Ohms = 0;
-        int voltage_1ph = 1, voltage_3ph = 1;//initialised with silly values !=0
-        double cosphi, Overload=0.999; //initialised at weird values to help me identify mistakes
-        double VD_goal = 0 ; // The value we need to search for
-
-        String Str_LoadType = "TBC", Str_MCBSize, Str_WireSize, VD_requirement = "NO", VDShow = "NO", VD_satisfied = "YES";
-
 
         if (LoadType == 2){ //DC Load
 
@@ -331,6 +339,7 @@ public class SizeforLoad_input_data extends AppCompatActivity {
                 Amps_R = Watts /1.732 / voltage_3ph ; //for volt drop we consider the actual current, no overload
                 Amps = Amps_R / cosphi * Overload;
             }
+
             MCBforLoad = GeneralCalculations.AC_MCB_Calculator(Amps);
 
         }
@@ -339,7 +348,6 @@ public class SizeforLoad_input_data extends AppCompatActivity {
 
             Str_MCBSize ="n/a";
             MCBforLoad = (int)Math.round(Amps); // We are gonna calculate the cable size and volt drop for the load
-
 
         }
 
@@ -350,6 +358,20 @@ public class SizeforLoad_input_data extends AppCompatActivity {
 
         CableForLoad = GeneralCalculations.CableSizeCalculator(MCBforLoad,CableType);
 
+        //FIND POSITION OF THAT CABLE IN THE CATALOGUE
+
+        if (CableType == 0 || CableType == 1){//Copper cables
+
+            catalog_length = GeneralCalculations.CopperWireArray.length;
+
+        }
+        else if (CableType == 2 || CableType ==3){//Aluminium cables
+
+            catalog_length = GeneralCalculations.AlumWireSize_IEC.length;
+
+        }
+
+
         if (CableForLoad == -1){ // unable to find cable for load or MCB
 
             Str_WireSize = "n/a";
@@ -357,67 +379,12 @@ public class SizeforLoad_input_data extends AppCompatActivity {
 
         else{
 
+            cable_position = GeneralCalculations.FindCablePosition (CableType, CableForLoad);
+
             if (VD_CheckBox.isChecked()){ //
                 VDShow = "YES";
 
-                if (maxVD_percent != -1) {//userspecified max. volt drop
-                    VD_requirement = "YES";
-
-                    if (LoadType == 0){ //AC - 1ph
-                        max_VoltDrop = voltage_1ph * maxVD_percent / 100;
-                    }
-                    else if (LoadType == 1) { //AC - 3ph
-                        max_VoltDrop = voltage_3ph * maxVD_percent / 100;
-                    }
-                    else if (LoadType == 2) { //DC
-                        max_VoltDrop = voltage_DC * maxVD_percent / 100;
-                    }
-
-                    if (CableType == 0 || CableType == 1){ //VD tables in (mV/Amp*m), distance one way
-                        VD_goal = max_VoltDrop * 1000 / Amps_R / distance;
-                    }
-
-                    else if (CableType == 2 || CableType == 3){ //VD tables in (Ohm/km), distance 2 ways
-                        VD_goal = max_VoltDrop / Amps_R / (distance / 1000 * 2);
-                    }
-
-                    CableForVoltDrop = GeneralCalculations.CableForVoltDrop (CableType, LoadType, VD_goal);
-
-                    if (CableForVoltDrop > CableForLoad) { // Choose highest cable
-                        ChosenCable = CableForVoltDrop;
-                    }
-                    else{
-                        ChosenCable = CableForLoad;
-                    }
-                }
-
-                else{
-                    ChosenCable = CableForLoad;
-                }
-
-
-                //Retrieve volt drop information for selected cable, regardless it's been selected for Load or Voltdrop
-
-                Ohms = GeneralCalculations.VoltDropInfo (CableType, LoadType, ChosenCable);
-
-                if (CableType == 2 || CableType == 3){ //Aluminium cables
-                    // Ohms comes in(Ohm/A*km)
-                    VoltDrop = Ohms * (distance / 1000 * 2) * Amps_R; //We consider 2 times the distance
-                }
-                else if (CableType == 0 || CableType ==1){ //Copper cables
-                    // Ohms comes in(mV/A*m)
-                    VoltDrop = (Ohms / 1000) * distance * Amps_R; //We consider 1 time the distance
-                }
-
-                if (LoadType == 0){ //AC - 1ph
-                    PercentVD = VoltDrop / voltage_1ph *100;
-                }
-                else if (LoadType == 1) { //AC - 3ph
-                    PercentVD = VoltDrop / voltage_3ph *100;
-                }
-                else if (LoadType == 2) { //DC
-                    PercentVD = VoltDrop / voltage_DC * 100;
-                }
+                Volt_drop_calculations (); // CAll VOLT DROP CALCULATIONS FUNCTION
             }
 
             else{
@@ -425,20 +392,139 @@ public class SizeforLoad_input_data extends AppCompatActivity {
                 ChosenCable = CableForLoad;
             }
 
+            Str_WireforLoad = Double.toString(CableForLoad);
             Str_WireSize = Double.toString(ChosenCable);
 
         }
-
-
-
-
-
 
         if (VD_requirement.equals("YES") && (max_VoltDrop < VoltDrop)){ //means we were unable ot find a suitable cable
 
             VD_satisfied = "NO";
         }
+        else{
 
+            VD_satisfied = "YES";
+        }
+        Prepare_return_values(); // CAll the functions that prepares the Bundle
+
+
+    }
+
+    void Volt_drop_calculations (){
+
+        double cablesize;
+
+        if (maxVD_percent != -1) {//userspecified max. volt drop
+            VD_requirement = "YES";
+
+            if (LoadType == 0){ //AC - 1ph
+                max_VoltDrop = voltage_1ph * maxVD_percent / 100;
+            }
+            else if (LoadType == 1) { //AC - 3ph
+                max_VoltDrop = voltage_3ph * maxVD_percent / 100;
+            }
+            else if (LoadType == 2) { //DC
+                max_VoltDrop = voltage_DC * maxVD_percent / 100;
+            }
+
+            if (CableType == 0 || CableType == 1){ //VD tables in (mV/Amp*m), distance one way
+                VD_goal = max_VoltDrop * 1000 / Amps_R / distance;
+            }
+
+            else if (CableType == 2 || CableType == 3){ //VD tables in (Ohm/km), distance 2 ways
+                VD_goal = max_VoltDrop / Amps_R / (distance / 1000 * 2);
+            }
+
+            CableForVoltDrop = GeneralCalculations.CableForVoltDrop (CableType, LoadType, VD_goal);
+
+            if (CableForVoltDrop > CableForLoad) { // Choose highest cable
+                ChosenCable = CableForVoltDrop;
+            }
+            else{
+                ChosenCable = CableForLoad;
+            }
+
+            // LOOP THE CALCULATION FOR THE REST OF THE CABLES IN THE CATALOGUE
+
+            cablesize = ChosenCable;
+
+            Calculate_Ohm_VD_VDPC (cablesize);
+
+            Str_VoltDrop = String.format (Locale.UK, "%.1f", VoltDrop);
+            Str_PercentVD = String.format (Locale.UK, "%.2f", PercentVD);
+            Str_distance = Double.toString(distance);
+
+            mm2_array.clear();
+            Ohms_array.clear();
+            VD_array.clear();
+            VD_percent_array.clear();
+
+            for (int i = cable_position; i < catalog_length; i++ ){
+
+                if (CableType == 0 || CableType ==1){
+
+                    cablesize = GeneralCalculations.CopperWireArray [i];
+
+                }
+                else if (CableType == 2 || CableType ==3){
+
+                    cablesize = GeneralCalculations.AlumWireSize_IEC [i];
+
+                }
+
+                Calculate_Ohm_VD_VDPC (cablesize);
+
+                String dummy_cablesize =  String.format (Locale.UK, "%.1f", cablesize) + " sqmm";
+                String dummy_ohms =  String.format (Locale.UK, "%.3f", Ohms);
+                String dummy_VD = String.format (Locale.UK, "%.2f", VoltDrop) + " V";
+                String dummy_VD_percent = String.format (Locale.UK, "%.2f", PercentVD) + " %";
+
+                mm2_array.add (dummy_cablesize);
+                Ohms_array.add(dummy_ohms);
+                VD_array.add (dummy_VD);
+                VD_percent_array.add(dummy_VD_percent);
+            }
+
+        }
+
+        else{
+            ChosenCable = CableForLoad;
+            //Retrieve volt drop information for selected cable, regardless it's been selected for Load or Voltdrop
+            Calculate_Ohm_VD_VDPC (ChosenCable);
+            Str_VoltDrop = String.format (Locale.UK, "%.1f", VoltDrop);
+            Str_PercentVD = String.format (Locale.UK, "%.2f", PercentVD);
+            Str_distance = Double.toString(distance);
+        }
+
+
+    }
+
+    void Calculate_Ohm_VD_VDPC (double cable){
+
+        Ohms = GeneralCalculations.VoltDropInfo (CableType, LoadType, cable);
+
+        if (CableType == 2 || CableType == 3){ //Aluminium cables
+            // Ohms comes in(Ohm/A*km)
+            VoltDrop = Ohms * (distance / 1000 * 2) * Amps_R; //We consider 2 times the distance
+        }
+        else if (CableType == 0 || CableType ==1){ //Copper cables
+            // Ohms comes in(mV/A*m)
+            VoltDrop = (Ohms / 1000) * distance * Amps_R; //We consider 1 time the distance
+        }
+
+        if (LoadType == 0){ //AC - 1ph
+            PercentVD = VoltDrop / voltage_1ph *100;
+        }
+        else if (LoadType == 1) { //AC - 3ph
+            PercentVD = VoltDrop / voltage_3ph *100;
+        }
+        else if (LoadType == 2) { //DC
+            PercentVD = VoltDrop / voltage_DC * 100;
+        }
+
+    }
+
+    void Prepare_return_values (){
 
         //************ DISPLAY VALUES ***************************************************
 
@@ -447,6 +533,21 @@ public class SizeforLoad_input_data extends AppCompatActivity {
         String Str_Amps = String.format (Locale.UK, "%.1f", Amps); // Display with one decimal only
         String Str_Watts = String.format (Locale.UK, "%.0f", Watts);
         String Str_OvLoad = "tbc";
+
+        int size = Ohms_array.size();
+
+        String [] mm2_array_Str = new String [size];
+        String [] Ohms_array_Str = new String [size];
+        String [] VD_array_Str = new String [size];
+        String [] VDPC_array_Str = new String [size];
+
+        for (int i=0; i <  size; i++){
+
+            mm2_array_Str [i] = mm2_array.get(i);
+            Ohms_array_Str [i] = Ohms_array.get(i);
+            VD_array_Str [i] = VD_array.get(i);
+            VDPC_array_Str [i] = VD_percent_array.get(i);
+        }
 
         if (LoadType == 2){ //DCLOAD
 
@@ -457,9 +558,7 @@ public class SizeforLoad_input_data extends AppCompatActivity {
         }
 
         String.format (Locale.UK, "%.2f", Overload);
-        String Str_VoltDrop = String.format (Locale.UK, "%.1f", VoltDrop);
-        String Str_PercentVD = String.format (Locale.UK, "%.2f", PercentVD);
-        String Str_distance = Double.toString(distance);
+
 
 
         //Create a Bundle object and add key value pairs to the bundle.
@@ -467,19 +566,27 @@ public class SizeforLoad_input_data extends AppCompatActivity {
         Bundle Bundle_Load = new Bundle ();
 
         Bundle_Load.putString("MCB_SIZE", Str_MCBSize);
+        Bundle_Load.putString("WIRE_4_LOAD", Str_WireforLoad);
         Bundle_Load.putString("WIRE_SIZE", Str_WireSize);
         Bundle_Load.putString("LOAD_TYPE", Str_LoadType);
         Bundle_Load.putString ("POWER", Str_Watts);
         Bundle_Load.putString("AMPS", Str_Amps);
         Bundle_Load.putString("OVERLOAD", Str_OvLoad);
         Bundle_Load.putString("VDDISPLAY", VDShow);
+
         Bundle_Load.putString("VOLTDROP", Str_VoltDrop);
         Bundle_Load.putString("VDPERCENT", Str_PercentVD);
+        Bundle_Load.putString("MAX_VD_PC", Str_maxVD_PC);
         Bundle_Load.putString("DISTANCE", Str_distance);
         Bundle_Load.putString ("VD_REQ", VD_requirement);
         Bundle_Load.putString ("VD_SATISFIED", VD_satisfied);
 
-
+        Bundle_Load.putInt ("SIZE", size);
+        Bundle_Load.putInt ("WIRE_POSITION", cable_position);
+        Bundle_Load.putStringArray("SQMM_ARRAY", mm2_array_Str);
+        Bundle_Load.putStringArray("OHMS_ARRAY", Ohms_array_Str);
+        Bundle_Load.putStringArray("VD_ARRAY", VD_array_Str);
+        Bundle_Load.putStringArray("VDPC_ARRAY", VDPC_array_Str);
 
         // Create and initialise the Intent
 
@@ -494,6 +601,5 @@ public class SizeforLoad_input_data extends AppCompatActivity {
         startActivity(Intent_Load);
 
     }
-
 
 }

@@ -72,8 +72,6 @@ import android.widget.TextView;
                        String [] AWG = AWG_selection.split(" ");
                        int n = Integer.parseInt (AWG[1]);
 
-
-
                        double exp = (36-n)/19.5;
                        mm2 = 0.012668 * Math.pow(92,exp);
                     }

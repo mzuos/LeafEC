@@ -335,6 +335,24 @@ public class GeneralCalculations {
     }
 
 
+    public static int FindCablePosition (int CableType, double CableForLoad){
+
+        LoadCableSpec (CableType);
+
+        int position = 0;
+
+        for (int i = 0; i < CableList; i++){
+            if (CableForLoad == WireSizeArray [i]){
+                position = i;
+                break;
+            }
+        }
+
+        return position;
+
+    }
+
+
 
 }
 

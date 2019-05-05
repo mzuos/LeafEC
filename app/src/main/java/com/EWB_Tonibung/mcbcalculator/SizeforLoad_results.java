@@ -4,7 +4,10 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 public class SizeforLoad_results extends AppCompatActivity {
 
@@ -23,17 +26,42 @@ public class SizeforLoad_results extends AppCompatActivity {
 
         String MCBSize = Bundle_Load.getString("MCB_SIZE");
         String CableSize = Bundle_Load.getString("WIRE_SIZE");
+        double Chosen_size = Float.parseFloat(CableSize);
+        String CableforLoad = Bundle_Load.getString("WIRE_4_LOAD") + " sqmm";
         String LoadType = Bundle_Load.getString("LOAD_TYPE");
         String Watts = Bundle_Load.getString("POWER");
         String Amps = Bundle_Load.getString("AMPS");
         String OvLoad = Bundle_Load.getString("OVERLOAD");
+
         String VDDisplay = Bundle_Load.getString("VDDISPLAY");
         String VDrop = Bundle_Load.getString("VOLTDROP");
         String VDPercent = Bundle_Load.getString("VDPERCENT");
+        String VD_max_PC = Bundle_Load.getString("MAX_VD_PC");
         String distance = Bundle_Load.getString("DISTANCE");
         String VD_req = Bundle_Load.getString ("VD_REQ");
         String VD_satisf = Bundle_Load.getString ("VD_SATISFIED");
 
+        int size = Bundle_Load.getInt ("SIZE");
+        int wire_position = Bundle_Load.getInt ("WIRE_POSITION");
+        String [] mm2_array = Bundle_Load.getStringArray("SQMM_ARRAY");
+        String [] Ohm_array = Bundle_Load.getStringArray("OHMS_ARRAY");
+        String [] VD_array = Bundle_Load.getStringArray("VD_ARRAY");
+        String [] VDPC_array = Bundle_Load.getStringArray("VDPC_ARRAY");
+
+        ArrayList<String> mm2_list = new ArrayList<String>();
+        ArrayList<String> Ohm_list = new ArrayList<String>();
+        ArrayList<String> VD_list = new ArrayList<String>();
+        ArrayList<String> VDPC_list = new ArrayList<String>();
+
+
+
+        for (int i = 0; i < size; i++){
+
+            mm2_list.add (mm2_array[i]);
+            Ohm_list.add (Ohm_array[i]);
+            VD_list.add (VD_array[i]);
+            VDPC_list.add (VDPC_array[i]);
+        }
 
         String LoadDescription = "Load: " + Watts + " Watt - " + LoadType + ". "+OvLoad+" overload factor";
         String DesignCurrent =  "Design current for MCB sizing: " + Amps + " A";
@@ -75,16 +103,41 @@ public class SizeforLoad_results extends AppCompatActivity {
 
         TextView TView_VDResults = (TextView) findViewById(R.id.TV_VdropResults);
 
+        //List view and titles
 
+        TextView TView_lv_sqmm = (TextView) findViewById (R.id.TV_lv_sqmm);
+        TextView TView_lv_VD = (TextView) findViewById (R.id.TV_lv_VD);
+        TextView TView_lv_VDPC = (TextView) findViewById (R.id.TV_lv_VDPC);
+
+        ListView VD_lview = (ListView) findViewById(R.id.VD_ListView);
 
 
         if (VDDisplay.equals("YES")){
 
             String VoltDrop = "";
 
+
             if (VD_req.equals ("YES")){
 
-                CableSelect_Str = "Min cable size for load and Volt-drop requirements:";
+                TView_lv_sqmm.setVisibility(View.VISIBLE);
+                TView_lv_VD.setVisibility(View.VISIBLE);
+                TView_lv_VDPC.setVisibility(View.VISIBLE);
+                VD_lview.setVisibility(View.VISIBLE);
+
+                //CALL TO THE LIST VIEW ADAPTER:
+
+                if (VD_satisf.equals("NO")){
+                    Chosen_size = 100000; // ridiculous large value, otherwise final cable will show GREEN
+                }
+
+                // Call list view
+                listview_adapter_array adapter = new listview_adapter_array(this, Chosen_size, mm2_list, VD_list, VDPC_list);
+                VD_lview.setAdapter(adapter);
+
+
+                //CableSelect_Str = "Min cable size for load and Volt-drop requirements:";
+
+                CableSelect_Str = "Min cable size for load is: "+ CableforLoad + "\nMin cable size for load and Volt-drop requirements:\n";
 
                 if (VD_req.equals("YES")&& VD_satisf.equals ("NO")){
                     VoltDrop = "Unable to satisfy volt drop requirement." + "\nWith biggest cable size available of " + CableSize + ": " + "\n";
@@ -101,20 +154,36 @@ public class SizeforLoad_results extends AppCompatActivity {
             else{
 
                 TView_CableSize.setText (CableSize);
+                TView_lv_sqmm.setVisibility(View.INVISIBLE);
+                TView_lv_VD.setVisibility(View.INVISIBLE);
+                TView_lv_VDPC.setVisibility(View.INVISIBLE);
+                VD_lview.setVisibility(View.INVISIBLE);
+
+
             }
 
-            VoltDrop = VoltDrop + "Volt drop: " + VDrop + "V (= " + VDPercent + "%) over " + distance + " meters.";
+            VoltDrop = VoltDrop + "Volt drop: " + VDrop + "V (= " + VDPercent + "% < " + VD_max_PC +"% ) over " + distance + " meters.";
             TView_VDResults.setVisibility(View.VISIBLE);
             TView_VDResults.setText(VoltDrop);
+
 
         }
         else{
 
             TView_CableSize.setText (CableSize);
             TView_VDResults.setVisibility(View.INVISIBLE);
+            TView_lv_sqmm.setVisibility(View.INVISIBLE);
+            TView_lv_VD.setVisibility(View.INVISIBLE);
+            TView_lv_VDPC.setVisibility(View.INVISIBLE);
+            VD_lview.setVisibility(View.INVISIBLE);
+
         }
 
         TView_Cabledescrip.setText(CableSelect_Str);
+
+        //GET DATA INTO THE LIST VIEW
+
+
 
     }
 }

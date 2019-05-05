@@ -20,7 +20,7 @@
     <string name="MainMenuTitle3">Cable and MCB Catalog</string>
     <string name="MainMenu_option_3a">DC and AC MCB sizes</string>
     <string name="MainMenu_option_3b">Cable ratings</string>
-    <string name = "AWG_size_list"> AWG size list</string>
+    <string name="AWG_size_list"> AWG size list</string>
 
     <!--PV INPUT SCREEN STRINGS-->
     <string name="PVInputScr_text1">From Inverter or Charge Controller nameplate, insert:</string>

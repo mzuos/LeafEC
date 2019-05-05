@@ -174,5 +174,17 @@
         app:layout_constraintStart_toEndOf="@+id/MainMenu_3"
         app:layout_constraintTop_toTopOf="@+id/MainMenu_3" />
 
+    <TextView
+        android:id="@+id/TV_ImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginLeft="64dp"
+        android:layout_marginTop="16dp"
+        android:onClick="LaunchImageViewer"
+        android:text="ImageView"
+        app:layout_constraintStart_toEndOf="@+id/MainMenu_4"
+        app:layout_constraintTop_toBottomOf="@+id/textView26" />
+
 
 </android.support.constraint.ConstraintLayout>
