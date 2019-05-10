@@ -1,0 +1,476 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+
+    android:layout_height="match_parent"
+
+    android:padding="5dp">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_marginTop = "-150dp"
+        tools:context=".Image_gallery">
+
+        <TextView
+            android:id="@+id/TV_ind_delta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textAlignment="center"
+            android:text="Delta"
+            app:layout_constraintEnd_toEndOf="@+id/IV_ind_delta"
+            app:layout_constraintStart_toStartOf="@+id/IV_ind_delta"
+            app:layout_constraintTop_toBottomOf="@+id/IV_ind_delta" />
+
+        <ImageView
+            android:id="@+id/IV_ind_delta"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="16dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toStartOf="@+id/IV_ind_star"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView73"
+            app:srcCompat="@drawable/ind_gen_delta_thumb" />
+
+        <ImageView
+            android:id="@+id/IV_ind_star"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            app:layout_constraintBottom_toBottomOf="@+id/IV_ind_delta"
+            app:layout_constraintEnd_toStartOf="@+id/IV_ind_caps"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/IV_ind_delta"
+            app:layout_constraintTop_toTopOf="@+id/IV_ind_delta"
+            app:srcCompat="@drawable/ind_gen_star_thumb" />
+
+        <TextView
+            android:id="@+id/TV_ind_star"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Star"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="@+id/IV_ind_star"
+            app:layout_constraintStart_toStartOf="@+id/IV_ind_star"
+            app:layout_constraintTop_toBottomOf="@+id/IV_ind_star" />
+
+        <ImageView
+            android:id="@+id/IV_ind_caps"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginRight="32dp"
+            app:layout_constraintBottom_toBottomOf="@+id/IV_ind_star"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/IV_ind_star"
+            app:layout_constraintTop_toTopOf="@+id/IV_ind_star"
+            app:srcCompat="@drawable/ind_gen_caps_cw_thumb" />
+
+        <TextView
+            android:id="@+id/TV_caps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Capacitors"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="@+id/IV_ind_caps"
+            app:layout_constraintStart_toStartOf="@+id/IV_ind_caps"
+            app:layout_constraintTop_toBottomOf="@+id/IV_ind_caps" />
+
+        <TextView
+            android:id="@+id/textView73"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:text="INDUCTION GENERATORS"
+            android:textColor="@color/color_leaf_StatusBar"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView74"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="48dp"
+            android:text="SYNCHRONOUS GENERATORS"
+            android:textColor="@color/color_leaf_StatusBar"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/TV_igc_wiring" />
+
+        <ImageView
+            android:id="@+id/IV_synch_star"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="@+id/IV_ind_delta"
+            app:layout_constraintTop_toBottomOf="@+id/textView74"
+            app:srcCompat="@drawable/synch_star_wired_thumb" />
+
+        <TextView
+            android:id="@+id/textView76"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="48dp"
+            android:text="ELECTRICAL REVIEW"
+            android:textColor="@color/color_leaf_StatusBar"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/TV_ballast1ph" />
+
+        <ImageView
+            android:id="@+id/IV_symbols"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toStartOf="@+id/IV_basics"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView76"
+            app:srcCompat="@drawable/ac_dc_symbols_thumb" />
+
+        <TextView
+            android:id="@+id/TV_symbols"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Symbols"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="@+id/IV_symbols"
+            app:layout_constraintStart_toStartOf="@+id/IV_symbols"
+            app:layout_constraintTop_toBottomOf="@+id/IV_symbols" />
+
+        <TextView
+            android:id="@+id/TV_synch_star"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Star (12 wire)"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="@+id/IV_synch_star"
+            app:layout_constraintStart_toStartOf="@+id/IV_synch_star"
+            app:layout_constraintTop_toBottomOf="@+id/IV_synch_star" />
+
+        <ImageView
+            android:id="@+id/IV_basics"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            app:layout_constraintBottom_toBottomOf="@+id/IV_symbols"
+            app:layout_constraintEnd_toStartOf="@+id/IV_ohm"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/IV_symbols"
+            app:layout_constraintTop_toTopOf="@+id/IV_symbols"
+            app:srcCompat="@drawable/basics_thumb" />
+
+        <TextView
+            android:id="@+id/TV_VIR"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="V - I - R"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="@+id/IV_basics"
+            app:layout_constraintStart_toStartOf="@+id/IV_basics"
+            app:layout_constraintTop_toBottomOf="@+id/IV_basics" />
+
+        <ImageView
+            android:id="@+id/IV_ohm"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginRight="32dp"
+            app:layout_constraintBottom_toBottomOf="@+id/IV_basics"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/IV_basics"
+            app:layout_constraintTop_toTopOf="@+id/IV_basics"
+            app:srcCompat="@drawable/ohm_thumb" />
+
+        <TextView
+            android:id="@+id/TV_ohm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Oms's law"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="@+id/IV_ohm"
+            app:layout_constraintStart_toStartOf="@+id/IV_ohm"
+            app:layout_constraintTop_toBottomOf="@+id/IV_ohm" />
+
+        <ImageView
+            android:id="@+id/IV_igc_wiring"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintEnd_toEndOf="@+id/IV_ind_delta"
+            app:layout_constraintStart_toStartOf="@+id/IV_ind_delta"
+            app:layout_constraintTop_toBottomOf="@+id/TV_ind_delta"
+            app:srcCompat="@drawable/igc_wiring_thumb" />
+
+        <TextView
+            android:id="@+id/TV_igc_wiring"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="IGC Wiring"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="@+id/IV_igc_wiring"
+            app:layout_constraintStart_toStartOf="@+id/IV_igc_wiring"
+            app:layout_constraintTop_toBottomOf="@+id/IV_igc_wiring" />
+
+        <ImageView
+            android:id="@+id/IV_units"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintEnd_toEndOf="@+id/IV_symbols"
+            app:layout_constraintStart_toStartOf="@+id/IV_symbols"
+            app:layout_constraintTop_toBottomOf="@+id/TV_symbols"
+            app:srcCompat="@drawable/units_thumb" />
+
+        <TextView
+            android:id="@+id/TV_units"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Units"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="@+id/IV_units"
+            app:layout_constraintStart_toStartOf="@+id/IV_units"
+            app:layout_constraintTop_toBottomOf="@+id/IV_units" />
+
+        <ImageView
+            android:id="@+id/IV_ser_parall"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            app:layout_constraintBottom_toBottomOf="@+id/IV_units"
+            app:layout_constraintEnd_toEndOf="@+id/IV_basics"
+            app:layout_constraintStart_toStartOf="@+id/IV_basics"
+            app:layout_constraintTop_toTopOf="@+id/IV_units"
+            app:srcCompat="@drawable/series_parallel_thumb" />
+
+        <TextView
+            android:id="@+id/TV_series_par"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Series/parallel"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="@+id/IV_ser_parall"
+            app:layout_constraintStart_toStartOf="@+id/IV_ser_parall"
+            app:layout_constraintTop_toBottomOf="@+id/IV_ser_parall" />
+
+        <ImageView
+            android:id="@+id/IV_zigzag"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            app:layout_constraintBottom_toBottomOf="@+id/IV_synch_star"
+            app:layout_constraintEnd_toEndOf="@+id/IV_basics"
+            app:layout_constraintStart_toStartOf="@+id/IV_basics"
+            app:layout_constraintTop_toTopOf="@+id/IV_synch_star"
+            app:srcCompat="@drawable/synch_zizzag_thumb" />
+
+        <TextView
+            android:id="@+id/TV_zigzag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Zig-Zag (12 wire)"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="@+id/TV_synch_star"
+            app:layout_constraintEnd_toEndOf="@+id/IV_zigzag"
+            app:layout_constraintStart_toStartOf="@+id/IV_zigzag"
+            app:layout_constraintTop_toTopOf="@+id/TV_synch_star"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <ImageView
+            android:id="@+id/IV_star_delta"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            app:layout_constraintBottom_toBottomOf="@+id/IV_ser_parall"
+            app:layout_constraintEnd_toEndOf="@+id/IV_ohm"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/IV_ohm"
+            app:layout_constraintTop_toTopOf="@+id/IV_ser_parall"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@drawable/star_delta_thumb" />
+
+        <TextView
+            android:id="@+id/TV_star_delta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Star/Delta"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="@+id/IV_star_delta"
+            app:layout_constraintStart_toStartOf="@+id/IV_star_delta"
+            app:layout_constraintTop_toBottomOf="@+id/IV_star_delta" />
+
+        <ImageView
+            android:id="@+id/IV_ELC"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            app:layout_constraintBottom_toBottomOf="@+id/IV_zigzag"
+            app:layout_constraintEnd_toEndOf="@+id/IV_ohm"
+            app:layout_constraintStart_toStartOf="@+id/IV_ohm"
+            app:layout_constraintTop_toTopOf="@+id/IV_zigzag"
+            app:srcCompat="@drawable/elc_wiring_thumb" />
+
+        <TextView
+            android:id="@+id/textView71"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="ELC wiring"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="@+id/IV_ELC"
+            app:layout_constraintStart_toStartOf="@+id/IV_ELC"
+            app:layout_constraintTop_toBottomOf="@+id/IV_ELC" />
+
+        <TextView
+            android:id="@+id/textView72"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            android:text="BALLAST LOAD WIRING"
+            android:textColor="@color/color_leaf_StatusBar"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/textView74"
+            app:layout_constraintTop_toBottomOf="@+id/TV_synch_star" />
+
+        <ImageView
+            android:id="@+id/IV_ballast1ph"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="@+id/IV_synch_star"
+            app:layout_constraintStart_toStartOf="@+id/IV_synch_star"
+            app:layout_constraintTop_toBottomOf="@+id/textView72"
+            app:srcCompat="@drawable/ballast_1ph_thumb" />
+
+        <TextView
+            android:id="@+id/TV_ballast1ph"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textAlignment="center"
+            android:text="Single Phase"
+            app:layout_constraintEnd_toEndOf="@+id/IV_ballast1ph"
+            app:layout_constraintStart_toStartOf="@+id/IV_ballast1ph"
+            app:layout_constraintTop_toBottomOf="@+id/IV_ballast1ph" />
+
+        <ImageView
+            android:id="@+id/IV_ballast_3ph_ren"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            app:layout_constraintBottom_toBottomOf="@+id/IV_ballast1ph"
+            app:layout_constraintEnd_toEndOf="@+id/IV_zigzag"
+            app:layout_constraintStart_toStartOf="@+id/IV_zigzag"
+            app:layout_constraintTop_toTopOf="@+id/IV_ballast1ph"
+            app:srcCompat="@drawable/ballast_3ph_rener_thumb" />
+
+        <TextView
+            android:id="@+id/textView77"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="3 Phase \n 'Renerconsys' ELC"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="@+id/IV_ballast_3ph_ren"
+            app:layout_constraintStart_toStartOf="@+id/IV_ballast_3ph_ren"
+            app:layout_constraintTop_toBottomOf="@+id/IV_ballast_3ph_ren" />
+
+        <ImageView
+            android:id="@+id/IV_ballast_3ph_blue"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            app:layout_constraintBottom_toBottomOf="@+id/IV_ballast_3ph_ren"
+            app:layout_constraintEnd_toEndOf="@+id/IV_ELC"
+            app:layout_constraintStart_toStartOf="@+id/IV_ELC"
+            app:layout_constraintTop_toTopOf="@+id/IV_ballast_3ph_ren"
+            app:srcCompat="@drawable/ballast_3ph_bluebird_thumb" />
+
+        <TextView
+            android:id="@+id/TV_ballast_3ph_blue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="3 Phase \n 'Bluebird' ELC"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="@+id/IV_ballast_3ph_blue"
+            app:layout_constraintStart_toStartOf="@+id/IV_ballast_3ph_blue"
+            app:layout_constraintTop_toBottomOf="@+id/IV_ballast_3ph_blue" />
+
+        <ImageView
+            android:id="@+id/IV_power_1ph"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            app:layout_constraintBottom_toBottomOf="@+id/IV_igc_wiring"
+            app:layout_constraintEnd_toEndOf="@+id/IV_zigzag"
+            app:layout_constraintStart_toStartOf="@+id/IV_zigzag"
+            app:layout_constraintTop_toTopOf="@+id/IV_igc_wiring"
+            app:srcCompat="@drawable/power_1ph_thumb" />
+
+        <TextView
+            android:id="@+id/textView81"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Power - 1 phase"
+            app:layout_constraintEnd_toEndOf="@+id/IV_power_1ph"
+            app:layout_constraintStart_toStartOf="@+id/IV_power_1ph"
+            app:layout_constraintTop_toBottomOf="@+id/IV_power_1ph" />
+
+        <ImageView
+            android:id="@+id/IV_consumer"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintEnd_toEndOf="@+id/IV_units"
+            app:layout_constraintStart_toStartOf="@+id/IV_units"
+            app:layout_constraintTop_toBottomOf="@+id/TV_units"
+            app:srcCompat="@drawable/consumer_unit_thumb" />
+
+        <TextView
+            android:id="@+id/textView82"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Consumer unit"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="@+id/IV_consumer"
+            app:layout_constraintStart_toStartOf="@+id/IV_consumer"
+            app:layout_constraintTop_toBottomOf="@+id/IV_consumer" />
+
+
+    </android.support.constraint.ConstraintLayout>
+
+
+</ScrollView>

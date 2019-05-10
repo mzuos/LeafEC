@@ -42,5 +42,22 @@ public class SizeMCB_results extends AppCompatActivity {
 
         TextView TView_largest = (TextView) findViewById (R.id.TV_largestMCB);
         TView_largest.setText(Str_LargestMCB);
+
+        TextView TView_MCB_catalogue = (TextView) findViewById (R.id.TV_MCB_catalogue);
+
+        String MCB_catalogue = "";
+
+        int cat_length = GeneralCalculations.AC_MCB_Catalogue.length;
+        int i;
+
+         for (i = 0; i < cat_length-1; i++){
+             MCB_catalogue = MCB_catalogue + Integer.toString(GeneralCalculations.AC_MCB_Catalogue[i])+ "A, ";
+         }
+
+         MCB_catalogue = MCB_catalogue + GeneralCalculations.AC_MCB_Catalogue[i] + "A";
+         MCB_catalogue = "Available MCB sizes are: " + MCB_catalogue;
+         TView_MCB_catalogue.setText(MCB_catalogue);
+
+
     }
 }

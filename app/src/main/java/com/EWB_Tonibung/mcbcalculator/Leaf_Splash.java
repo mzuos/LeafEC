@@ -23,7 +23,7 @@ public class Leaf_Splash extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             }
-        }, 1500);
+        }, 1000);
 
     }
 }

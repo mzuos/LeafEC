@@ -38,7 +38,7 @@ public class SizeforLoad_input_data extends AppCompatActivity {
 
     String Str_maxVD_PC, Str_VoltDrop, Str_PercentVD, Str_distance ;
 
-    int catalog_length, cable_position = 0;
+    int catalog_length, load_cable_position = 0;
 
     ArrayList  <String> Ohms_array = new ArrayList<String>();
     ArrayList <String> VD_array = new ArrayList<String>();
@@ -358,7 +358,7 @@ public class SizeforLoad_input_data extends AppCompatActivity {
 
         CableForLoad = GeneralCalculations.CableSizeCalculator(MCBforLoad,CableType);
 
-        //FIND POSITION OF THAT CABLE IN THE CATALOGUE
+        //FIND POSITION OF "CABLE FOR LOAD" IN THAT SPECIFIC CABLE CATALOGUE
 
         if (CableType == 0 || CableType == 1){//Copper cables
 
@@ -379,12 +379,16 @@ public class SizeforLoad_input_data extends AppCompatActivity {
 
         else{
 
-            cable_position = GeneralCalculations.FindCablePosition (CableType, CableForLoad);
+            load_cable_position = GeneralCalculations.FindCablePosition (CableType, CableForLoad);
 
             if (VD_CheckBox.isChecked()){ //
                 VDShow = "YES";
 
-                Volt_drop_calculations (); // CAll VOLT DROP CALCULATIONS FUNCTION
+                //********** VOLT DROP CALCULATIONS *************
+
+                Volt_drop_calculations ();
+
+                //****************************8******************
             }
 
             else{
@@ -459,7 +463,7 @@ public class SizeforLoad_input_data extends AppCompatActivity {
             VD_array.clear();
             VD_percent_array.clear();
 
-            for (int i = cable_position; i < catalog_length; i++ ){
+            for (int i = load_cable_position; i < catalog_length; i++ ){
 
                 if (CableType == 0 || CableType ==1){
 
@@ -495,7 +499,6 @@ public class SizeforLoad_input_data extends AppCompatActivity {
             Str_PercentVD = String.format (Locale.UK, "%.2f", PercentVD);
             Str_distance = Double.toString(distance);
         }
-
 
     }
 
@@ -533,6 +536,7 @@ public class SizeforLoad_input_data extends AppCompatActivity {
         String Str_Amps = String.format (Locale.UK, "%.1f", Amps); // Display with one decimal only
         String Str_Watts = String.format (Locale.UK, "%.0f", Watts);
         String Str_OvLoad = "tbc";
+        String Str_Volts = "tbc";
 
         int size = Ohms_array.size();
 
@@ -552,14 +556,28 @@ public class SizeforLoad_input_data extends AppCompatActivity {
         if (LoadType == 2){ //DCLOAD
 
             Str_OvLoad = String.format (Locale.UK, "%.2f", OL_DC);
+            Str_Volts = Vdc_Str;
         }
         else{
             Str_OvLoad = String.format (Locale.UK, "%.2f", Overload);
+
+            if (LoadType == 0){ //AC Single Phase
+                Str_Volts = V1ph_Srt;
+            }
+            else{
+                Str_Volts = V3ph_Srt; //AC Three Phase
+            }
         }
 
         String.format (Locale.UK, "%.2f", Overload);
 
 
+
+        //Find position of chosen cable in the cable catalog (used for ListView focus)
+
+        int chosen_cable_position = GeneralCalculations.FindCablePosition(CableType,ChosenCable);
+
+        chosen_cable_position = chosen_cable_position - load_cable_position;
 
         //Create a Bundle object and add key value pairs to the bundle.
 
@@ -570,6 +588,7 @@ public class SizeforLoad_input_data extends AppCompatActivity {
         Bundle_Load.putString("WIRE_SIZE", Str_WireSize);
         Bundle_Load.putString("LOAD_TYPE", Str_LoadType);
         Bundle_Load.putString ("POWER", Str_Watts);
+        Bundle_Load.putString ("VOLTAGE", Str_Volts);
         Bundle_Load.putString("AMPS", Str_Amps);
         Bundle_Load.putString("OVERLOAD", Str_OvLoad);
         Bundle_Load.putString("VDDISPLAY", VDShow);
@@ -582,7 +601,7 @@ public class SizeforLoad_input_data extends AppCompatActivity {
         Bundle_Load.putString ("VD_SATISFIED", VD_satisfied);
 
         Bundle_Load.putInt ("SIZE", size);
-        Bundle_Load.putInt ("WIRE_POSITION", cable_position);
+        Bundle_Load.putInt ("CHOSEN_WIRE_POSITION", chosen_cable_position);
         Bundle_Load.putStringArray("SQMM_ARRAY", mm2_array_Str);
         Bundle_Load.putStringArray("OHMS_ARRAY", Ohms_array_Str);
         Bundle_Load.putStringArray("VD_ARRAY", VD_array_Str);

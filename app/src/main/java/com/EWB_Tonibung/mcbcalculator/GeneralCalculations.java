@@ -16,41 +16,44 @@ public class GeneralCalculations {
 
     // Preferred values are: The preferred values are 6, 8, 10, 13, 16, 20, 25, 32, 40, 50, 63, 80, 100 and 125 A
 
-    public static int[] DC_MCB_Catalogue = new int[]{6, 10, 16, 32, 40, 63, 125};
-    public static int[] AC_MCB_Catalogue = new int[]{6, 10, 16, 20, 32, 40, 63, 125};
+    public static int[] DC_MCB_Catalogue = new int[] {3, 6, 10, 16, 20, 25, 32, 40, 50, 63, 80, 100, 125};
+
+    //original catalog (based on available on Lazada)
+
+    public static int[] AC_MCB_Catalogue = new int[]{1, 2, 4, 6, 10, 13, 16, 20, 25, 32, 40, 50, 63, 80, 100, 125};
 
     //****** Data from 17th Edition of BS7671 for Single Core Copper Conductors, Unarmoured, PVC ********
 
     //**** Clipped direct *****
 
     // Same values used for copper twin flat cable
-    public static double [] CopperWireArray = new double[] {1, 1.5, 2.5, 4, 6, 10, 16, 25, 35, 50, 70, 95};
+    public static double [] CopperWireArray = new double[] {0.5, 1, 1.5, 2.5, 4, 6, 10, 16, 25, 35, 50, 70, 95};
 
     //Current Rating for Clipped Direct:
-    public static double [] Rating_Cu_Clipped = new double [] {15.5, 20, 27, 37, 47, 65, 87, 114, 141, 181, 234, 284};
+    public static double [] Rating_Cu_Clipped = new double [] {3, 15.5, 20, 27, 37, 47, 65, 87, 114, 141, 181, 234, 284};
 
     //Clipped direct - volt drop DC in(mV/A*m)
-    public static double [] VD_Cu_Clipped_DC = new double [] { 44, 29, 18, 11, 7.3, 4.4, 2.8, 1.75, 1.25, 0.93, 0.63, 0.46};
+    public static double [] VD_Cu_Clipped_DC = new double [] { 93, 44, 29, 18, 11, 7.3, 4.4, 2.8, 1.75, 1.25, 0.93, 0.63, 0.46};
 
     //Clipped direct - volt drop AC-1ph in(mV/A*m)
-    public static double [] VD_Cu_Clipped_1phAC = new double [] { 44, 29, 18, 11, 7.3, 4.4, 2.8, 1.80, 1.30, 0.97, 0.69, 0.54};
+    public static double [] VD_Cu_Clipped_1phAC = new double [] { 93, 44, 29, 18, 11, 7.3, 4.4, 2.8, 1.80, 1.30, 0.97, 0.69, 0.54};
 
     //Clipped direct - volt drop AC-3ph in(mV/A*m)
-    public static double [] VD_Cu_Clipped_3phAC = new double [] { 38, 25, 15, 9.5, 6.4, 3.8, 2.4, 1.55, 1.15, 0.86, 0.63, 0.51};
+    public static double [] VD_Cu_Clipped_3phAC = new double [] { 80, 38, 25, 15, 9.5, 6.4, 3.8, 2.4, 1.55, 1.15, 0.86, 0.63, 0.51};
 
     //**** In Conduit *****
 
     //Current Rating in conduit
-    public static double [] Rating_Cu_Conduit = new double [] {12, 15.5, 21, 28, 36, 50, 68, 89, 110, 134, 171, 207};
+    public static double [] Rating_Cu_Conduit = new double [] {3, 12, 15.5, 21, 28, 36, 50, 68, 89, 110, 134, 171, 207};
 
     //In conduit - volt drop DC in(mV/A*m) (DC volt drop is the same in conduit or clipped)
-    public static double [] VD_Cu_Conduit_DC = new double [] { 44, 29, 18, 11, 7.3, 4.4, 2.8, 1.75, 1.25, 0.93, 0.63, 0.46};
+    public static double [] VD_Cu_Conduit_DC = new double [] { 93, 44, 29, 18, 11, 7.3, 4.4, 2.8, 1.75, 1.25, 0.93, 0.63, 0.46};
 
     //In conduit - volt drop AC-1ph in(mV/A*m)
-    public static double [] VD_Cu_Conduit_1phAC = new double [] { 44, 29, 18, 11, 7.3, 4.4, 2.8, 1.80, 1.30, 1.00, 0.72, 0.56};
+    public static double [] VD_Cu_Conduit_1phAC = new double [] { 93, 44, 29, 18, 11, 7.3, 4.4, 2.8, 1.80, 1.30, 1.00, 0.72, 0.56};
 
     //In conduit - volt drop AC-3ph in(mV/A*m)
-    public static double [] VD_Cu_Conduit_3phAC = new double [] { 38, 25, 15, 9.5, 6.4, 3.8, 2.4, 1.55, 1.10, 0.85, 0.61, 0.48};
+    public static double [] VD_Cu_Conduit_3phAC = new double [] { 80, 38, 25, 15, 9.5, 6.4, 3.8, 2.4, 1.55, 1.10, 0.85, 0.61, 0.48};
 
 
     // ************** ALUMINIUM CABLES *******************************************************

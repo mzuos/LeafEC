@@ -9,12 +9,37 @@
         android:roundIcon="@mipmap/leaf_logo_light"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity
-            android:name=".Image_viewer"
+            android:name=".GeneralCalcs_screen"
             android:configChanges="orientation"
-            android:parentActivityName=".MainActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+
+        </activity>
+        <activity
+            android:name=".Resources_screen"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity
+            android:name=".PV_main_screen"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity
+            android:name=".borrable"
+            android:parentActivityName=".MainActivity">
 
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
@@ -22,47 +47,66 @@
                 android:value=".MainActivity" />
         </activity>
         <activity
-            android:name=".AWG_mm2_converter"
+            android:name=".Image_gallery"
+            android:parentActivityName=".Resources_screen">
+
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Resources_screen" />
+        </activity>
+        <activity
+            android:name=".Image_viewer"
             android:configChanges="orientation"
-            android:launchMode="singleTop"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".Resources_screen"
             android:screenOrientation="portrait">
 
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value=".Resources_screen" />
+        </activity>
+        <activity
+            android:name=".AWG_mm2_converter"
+            android:configChanges="orientation"
+            android:launchMode="singleTop"
+            android:parentActivityName=".Resources_screen"
+            android:screenOrientation="portrait">
+
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Resources_screen" />
         </activity> <!-- CABLE RATINGS -->
         <activity
             android:name=".CableRatings"
             android:configChanges="orientation"
             android:launchMode="singleTop"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".Resources_screen"
             android:screenOrientation="portrait">
 
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value=".Resources_screen" />
         </activity> <!-- MCB RATINGS -->
         <activity
             android:name=".MCBRatings"
             android:configChanges="orientation"
             android:launchMode="singleTop"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".Resources_screen"
             android:screenOrientation="portrait">
 
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value=".Resources_screen" />
         </activity> <!-- MCB and CABLE FOR LOAD - RESULTS SCREEN -->
         <activity
             android:name=".SizeforLoad_results"
-            android:configChanges="orientation"
             android:parentActivityName=".SizeforLoad_input_data"
+            android:configChanges="orientation"
             android:screenOrientation="portrait">
-
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -72,13 +116,13 @@
             android:name=".SizeforLoad_input_data"
             android:configChanges="orientation"
             android:launchMode="singleTop"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".GeneralCalcs_screen"
             android:screenOrientation="portrait">
 
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value=".GeneralCalcs_screen" />
         </activity> <!-- MCB FOR CABLE- RESULT SCREEN -->
         <activity
             android:name=".SizeMCB_results"
@@ -95,13 +139,13 @@
             android:name=".SizeMCB_input_data"
             android:configChanges="orientation"
             android:launchMode="singleTop"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".GeneralCalcs_screen"
             android:screenOrientation="portrait">
 
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value=".GeneralCalcs_screen" />
         </activity> <!-- CABLE FOR MCB- RESULT SCREEN -->
         <activity
             android:name=".SizeCable_results"
@@ -118,13 +162,13 @@
             android:name=".SizeCable_input_data"
             android:configChanges="orientation"
             android:launchMode="singleTop"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".GeneralCalcs_screen"
             android:screenOrientation="portrait">
 
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value=".GeneralCalcs_screen" />
         </activity> <!-- INVERTER CABLE AND MCB REQUIREMENT SCREEN -->
         <activity
             android:name=".Inverter_results"
@@ -152,25 +196,25 @@
             android:name=".Inverter_input_data"
             android:configChanges="orientation"
             android:launchMode="singleTop"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".PV_main_screen"
             android:screenOrientation="portrait">
 
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value=".PV_main_screen" />
         </activity> <!-- PV PANELS DATA INPUT SCREEN -->
         <activity
             android:name=".PV_input_data"
             android:configChanges="orientation"
             android:launchMode="singleTop"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".PV_main_screen"
             android:screenOrientation="portrait">
 
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value=".PV_main_screen" />
         </activity> <!-- APP MAIN SCREEN -->
         <activity
             android:name=".MainActivity"

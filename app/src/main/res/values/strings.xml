@@ -16,11 +16,12 @@
     <string name="MainMenuTitle2">General MCB and cable sizing</string>
     <string name="MainMenu_option_2a">Size cable for a MCB</string>
     <string name="MainMenu_option_2b">Size MCB for a cable</string>
-    <string name="MainMenu_option_2c">Size cable and MCB for load (Watts)</string>
-    <string name="MainMenuTitle3">Cable and MCB Catalog</string>
+    <string name="MainMenu_option_2c">Size MCB and cable for kW and voltdrop</string>
+    <string name="MainMenuTitle3">Resources</string>
     <string name="MainMenu_option_3a">DC and AC MCB sizes</string>
     <string name="MainMenu_option_3b">Cable ratings</string>
-    <string name="AWG_size_list"> AWG size list</string>
+    <string name="AWG_size_list"> AWG to mm2 converter</string>
+    <string name="Gallery">Gallery</string>
 
     <!--PV INPUT SCREEN STRINGS-->
     <string name="PVInputScr_text1">From Inverter or Charge Controller nameplate, insert:</string>
@@ -37,6 +38,7 @@
     <string name="ImaxSCC_text">Maximum current [A]:</string>
     <string name="ImaxSCC_value">0</string>
     <string name="SCC_Type_text">Type of controller (default: PWM):</string>
+    <string name="SCC_max_V">Controller maximum input DC voltage [V]: </string>
     <string name="NumPV_text">Number of PV panels per controller:</string>
     <string name="NumPV_value">0</string>
     <string name="CalculatePB">CALCULATE</string>
@@ -149,6 +151,8 @@
     <string name="MCBSelectionforCable_title">Maximum suggested MCB size for cable:</string>
     <string name="CableSelectionforMCB_title">Minimum suggested cable size for TBC MCB:</string>
     <string name="CableRating"> Current Rating of the cable:  TBC</string>
+    <string name="title_activity_solar_pv_main">solarPV_main</string>
+    <string name="title_activity_pv_main_screen">PV_main_screen</string>
 
 
 </resources>

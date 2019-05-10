@@ -52,15 +52,23 @@ import android.widget.TextView;
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
             {
                 if (mode == true){
-                    String Size_dummy = parent.getItemAtPosition(position).toString();
 
-                    //SelectedSize = Size_dummy.substring(0,1);
-                    String [] dummy  = Size_dummy.split(" ");
-                    SelectedSize = dummy [0];
+                    if (position ==0){
 
-                    // Convert the cable size to a real number
+                        I_know_mm2 = 0.5; // position "0" is 23/0.15mm = 0.5mm2
+                    }
+                    else {
 
-                    I_know_mm2 = Float.parseFloat(SelectedSize);
+                        String Size_dummy = parent.getItemAtPosition(position).toString();
+
+                        //SelectedSize = Size_dummy.substring(0,1);
+                        String [] dummy  = Size_dummy.split(" ");
+                        SelectedSize = dummy [0];
+
+                        // Convert the cable size to a real number
+                        I_know_mm2 = Float.parseFloat(SelectedSize);
+                    }
+
                     find_AWG_equivalent();
                 }
                 else{

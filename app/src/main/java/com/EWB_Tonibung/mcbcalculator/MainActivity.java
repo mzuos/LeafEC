@@ -14,53 +14,28 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    //Launched by selecting Main Menu Option 1a
-    public void LaunchPVInput(View view) {
-        Intent intentPVInput = new Intent(this, PV_input_data.class);
-        startActivity(intentPVInput);
+    //Launched by selecting Main Menu Option 1
+    public void LaunchSolarPVScreen(View view) {
+        Intent intentSolarPVScreen = new Intent(this, PV_main_screen.class);
+        startActivity(intentSolarPVScreen);
     }
 
-    //Launched by selecting Main Menu Option 1b
-    public void LaunchInverterInput(View view) {
-        Intent intentInverterInput = new Intent(this, Inverter_input_data.class);
-        startActivity(intentInverterInput);
+    //Launched by selecting Main Menu Option 2
+    public void LaunchGeneralCalcScreen(View view) {
+        Intent intentMainCalcScreen = new Intent(this, GeneralCalcs_screen.class);
+        startActivity(intentMainCalcScreen);
     }
 
-    //Launched by selecting Main Menu Option 2a
-    public void LaunchCableforMCB(View view) {
-        Intent intentCableforMCB = new Intent(this, SizeCable_input_data.class);
-        startActivity(intentCableforMCB);
+    //Launched by selecting Main Menu Option 3
+    public void LaunchResourcesScreen(View view) {
+        Intent intentResourcesScreen = new Intent(this, Resources_screen.class);
+        startActivity(intentResourcesScreen);
     }
 
-    //Launched by selecting Main Menu Option 2b
-    public void LaunchMCBforCable(View view) {
-        Intent intentMCBforCable = new Intent (this, SizeMCB_input_data.class);
-        startActivity(intentMCBforCable);
-    }
 
-    //Launched by selecting Main Menu Option 2c
-    public void LaunchDesignForLoad(View view) {
-        Intent intent_Load = new Intent (this, SizeforLoad_input_data.class);
-        startActivity(intent_Load);
-    }
 
-    //Launched by selecting Main Menu Option 3b
-    public void LaunchCableRatings(View view) {
-        Intent intent_ratings = new Intent (this, CableRatings.class);
-        startActivity(intent_ratings);
-    }
 
-    //Launched from Main Menu
-    public void LaunchAWGSizeViewer(View view) {
-        Intent intent_AWG = new Intent (this, AWG_mm2_converter.class);
-        startActivity(intent_AWG);
-    }
 
-    //IMAGE VIEWER - Launched from Main Menu
-    public void LaunchImageViewer(View view) {
-        Intent intent_image = new Intent (this, Image_viewer.class);
-        startActivity(intent_image);
-    }
 
 
 

@@ -29,6 +29,7 @@ public class SizeforLoad_results extends AppCompatActivity {
         double Chosen_size = Float.parseFloat(CableSize);
         String CableforLoad = Bundle_Load.getString("WIRE_4_LOAD") + " sqmm";
         String LoadType = Bundle_Load.getString("LOAD_TYPE");
+        String Voltage = Bundle_Load.getString("VOLTAGE");
         String Watts = Bundle_Load.getString("POWER");
         String Amps = Bundle_Load.getString("AMPS");
         String OvLoad = Bundle_Load.getString("OVERLOAD");
@@ -42,7 +43,7 @@ public class SizeforLoad_results extends AppCompatActivity {
         String VD_satisf = Bundle_Load.getString ("VD_SATISFIED");
 
         int size = Bundle_Load.getInt ("SIZE");
-        int wire_position = Bundle_Load.getInt ("WIRE_POSITION");
+        int wire_position = Bundle_Load.getInt ("CHOSEN_WIRE_POSITION");
         String [] mm2_array = Bundle_Load.getStringArray("SQMM_ARRAY");
         String [] Ohm_array = Bundle_Load.getStringArray("OHMS_ARRAY");
         String [] VD_array = Bundle_Load.getStringArray("VD_ARRAY");
@@ -134,6 +135,13 @@ public class SizeforLoad_results extends AppCompatActivity {
                 listview_adapter_array adapter = new listview_adapter_array(this, Chosen_size, mm2_list, VD_list, VDPC_list);
                 VD_lview.setAdapter(adapter);
 
+                // Set list view focus to selected cable
+
+                if (wire_position > 1){
+                    VD_lview.setSelection(wire_position-2);
+                }
+
+
 
                 //CableSelect_Str = "Min cable size for load and Volt-drop requirements:";
 
@@ -162,7 +170,7 @@ public class SizeforLoad_results extends AppCompatActivity {
 
             }
 
-            VoltDrop = VoltDrop + "Volt drop: " + VDrop + "V (= " + VDPercent + "% < " + VD_max_PC +"% ) over " + distance + " meters.";
+            VoltDrop = VoltDrop + "Volt drop: " + VDrop + "V (= " + VDPercent + "% < " + VD_max_PC +"% ) over " + Voltage + " V and " + distance + " meters.";
             TView_VDResults.setVisibility(View.VISIBLE);
             TView_VDResults.setText(VoltDrop);
 

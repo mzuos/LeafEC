@@ -27,8 +27,8 @@ public class PV_input_data extends AppCompatActivity {
     public double SCC_In_WireSize_Cu = 0, SCC_In_WireSize_Al = 0;
     public double SCC_Out_WireSize_Cu=0, SCC_Out_WireSize_Al=0;
     public int SCC_In_MCBSize = 0, SCC_Out_MCBSize = 0;
-    double PV_In_Design_Current = 0;
-    String SelectedType, ImaxSCC_srt;
+    double PV_In_Design_Current = 0, MPPT_Vmax = 0;
+    String ControllerType, ImaxSCC_srt;
     int duration;
 
     @Override
@@ -40,17 +40,27 @@ public class PV_input_data extends AppCompatActivity {
 
         //get the spinner from the xml.
         Spinner sp_SCCtype = findViewById(R.id.SCC_spinner);
-        adapter_SCCtype = ArrayAdapter.createFromResource(this,R.array.SCC_type,R.layout.multiline_spinner_dropdown_item );
+        adapter_SCCtype = ArrayAdapter.createFromResource(this,R.array.SCC_type,R.layout.custom_spinner_dropdown);
 
         //set the spinners adapter to the previously created one.
         sp_SCCtype.setAdapter(adapter_SCCtype);
 
-        //Setting OnItemClickListener to the CABLE TYPE Spinner
+        //Setting OnItemClickListener to the SCC type Spinner
         sp_SCCtype.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-                SelectedType=(String) parent.getItemAtPosition(position);
+                EditText ED_SCC_Vmax = (EditText) findViewById(R.id.ED_SCC_Vmax);
+
+                ControllerType = (String) parent.getItemAtPosition(position);
+                if (position == 0){ //PWM
+                    ED_SCC_Vmax.setEnabled (false);
+                    ED_SCC_Vmax.setHint("n/a");
+                }
+                else{
+                    ED_SCC_Vmax.setEnabled (true);
+                    ED_SCC_Vmax.setHint("0");
+                }
             }
 
             @Override
@@ -103,23 +113,43 @@ public class PV_input_data extends AppCompatActivity {
             ImaxSCC = Float.parseFloat(ImaxSCC_srt);
         }
 
+        EditText ED_MPPT_Vmax = (EditText) findViewById(R.id.ED_SCC_Vmax);
+
+        String MTTP_Vmax_str = ED_MPPT_Vmax.getText().toString();
+
+        if (ControllerType.equals("MPPT")){
+
+            if(MTTP_Vmax_str.isEmpty()){
+                MPPT_Vmax = 1; //just giving a random value that is not zero for Toasts to work properly
+            }
+            else{
+                MPPT_Vmax = Float.parseFloat(MTTP_Vmax_str);
+            }
+        }
+        else{
+            MTTP_Vmax_str = "-1";
+            MPPT_Vmax = -1 ; //Random non-zero value, controller is PWM, we don't need to know Vmax
+        }
+
+
         EditText editTextNumPV = (EditText) findViewById(R.id.Insert_NumPV);
         String NumPV_srt = editTextNumPV.getText().toString();
         if (NumPV_srt.isEmpty()) {
             NumPV = 1;//just giving a random value that is not zero for Toasts to work properly
-        } else {
+        }
+        else {
             NumPV = Integer.parseInt(NumPV_srt);
         }
 
         boolean dataOK = true;
         String PopUpText = "";
 
-        if (PV_Voc == 0.0 || Ipmax == 0.0 || ImaxSCC == 0.0 || Isc == 0.0 || SystemV == 0 || NumPV == 0) {
+        if (PV_Voc == 0.0 || Ipmax == 0.0 || ImaxSCC == 0.0 || Isc == 0.0 || SystemV == 0 || NumPV == 0 || MPPT_Vmax == 0) {
             dataOK = false;
             PopUpText = "Input field cannot be zero";
         }
 
-        if (Vpmax_srt.isEmpty() || Ipmax_srt.isEmpty() || Isc_srt.isEmpty() || ImaxSCC_srt.isEmpty() || SystemV_srt.isEmpty() || NumPV_srt.isEmpty()) {
+        if (Vpmax_srt.isEmpty() || Ipmax_srt.isEmpty() || Isc_srt.isEmpty() || ImaxSCC_srt.isEmpty() || SystemV_srt.isEmpty() || NumPV_srt.isEmpty() || MTTP_Vmax_str.isEmpty()) {
             dataOK = false;
             PopUpText = "Input field cannot be blank";
         }
@@ -149,17 +179,35 @@ public class PV_input_data extends AppCompatActivity {
         double V_design_in = 0, V_design_out;
         String Text;
 
-        // Calculate maximum current from the PV panels, including safety factor
+        // Calculate number of panels in series. Depends on systemV and controller type.
 
-        while (TRUE) {
-            PVSeriesV = PV_Voc * n_series;
-            if (PVSeriesV < SystemV) {
-                n_series++;
+        if (ControllerType.equals("PWM")){
+
+            while (TRUE) {
+                PVSeriesV = PV_Voc * n_series;
+                if (PVSeriesV < SystemV) { //Series voltage has to be higher than SystemV
+                    n_series++;
+                }
+                else {
+                    break;
+                }
             }
-            else {
-                break;
+
+        }
+        else { // it's a MPPT type
+
+            while (TRUE){
+
+                PVSeriesV = PV_Voc * n_series;
+                if (PVSeriesV < MPPT_Vmax * 1.25) { //Safety factor 1.25 or 1.56??
+                    n_series++;
+                }
+                else {
+                    break;
+                }
             }
         }
+
 
         V_design_in = PV_Voc * n_series * 1.25; // 1.25 factor for sunnier conditions than standard test conditions;
 
@@ -173,6 +221,7 @@ public class PV_input_data extends AppCompatActivity {
         n_parallel = NumPV / n_series; // n_parallel and n_series are integer values
         int dummy_check = n_parallel*n_series;
 
+        // Calculate maximum current from the PV panels, including safety factor
         PV_In_Design_Current = SCC_In_C_SF * Isc * n_parallel;
 
         //MaxNumPanels is an integer: Controller max current/current per branch
@@ -227,7 +276,7 @@ public class PV_input_data extends AppCompatActivity {
 
             // Solar Charger to Battery MCB and Cable Sizes:
 
-            if (SelectedType.equals("PWM")){// PWM type. Input and output currents are the same
+            if (ControllerType.equals("PWM")){// PWM type. Input and output currents are the same
                 SCC_Out_MCBSize = SCC_In_MCBSize;
                 SCC_Out_WireSize_Cu = SCC_In_WireSize_Cu;
                 SCC_Out_WireSize_Al = SCC_In_WireSize_Al;

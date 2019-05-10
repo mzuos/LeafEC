@@ -1,338 +1,353 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+
     android:layout_height="match_parent"
-    tools:context=".SizeforLoad_input_data">
 
-    <TextView
-        android:id="@+id/TV_InsertLoad"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/LoadInputScr_Title"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    android:padding="5dp">
 
-    <EditText
-        android:id="@+id/ET_InsertLoad"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
-        android:ems="10"
-        android:gravity="center"
-        android:hint="@string/Load"
-        android:inputType="numberDecimal"
-        android:paddingBottom="10dp"
-        android:textSize="16sp"
-        android:imeOptions="actionDone"
-        app:layout_constraintBaseline_toBaselineOf="@+id/TV_InsertLoad"
-        app:layout_constraintEnd_toEndOf="parent" />
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".SizeforLoad_input_data">
 
+        <TextView
+            android:id="@+id/TV_InsertLoad"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:text="@string/LoadInputScr_Title"
+            app:layout_constraintEnd_toStartOf="@+id/ET_InsertLoad"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/TV_LoadType"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="36dp"
-        android:text="@string/LoadInputScr_LoadType"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TV_InsertLoad" />
-
-    <TextView
-        android:id="@+id/TV_CableType"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="36dp"
-        android:text="@string/CableSelection"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TV_OL" />
-
-    <Spinner
-        android:id="@+id/LoadTypeSpinner"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="16dp"
-        android:background="@drawable/custom_spinner"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/TV_LoadType"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/TV_LoadType"
-        app:layout_constraintTop_toTopOf="@+id/TV_LoadType" />
+        <EditText
+            android:id="@+id/ET_InsertLoad"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="32dp"
+            android:layout_marginRight="32dp"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="@string/Load"
+            android:imeOptions="actionDone"
+            android:inputType="numberDecimal"
+            android:paddingBottom="10dp"
+            android:textSize="16sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/TV_InsertLoad"
+            app:layout_constraintEnd_toEndOf="parent" />
 
 
-    <Spinner
-        android:id="@+id/LoadCableSpinner"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:textSize="16sp"
-        android:spinnerMode="dialog"
-        android:background="@drawable/custom_spinner"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/TV_CableType"
-        app:layout_constraintTop_toBottomOf="@+id/TV_CableType" />
+        <TextView
+            android:id="@+id/TV_LoadType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="36dp"
+            android:text="@string/LoadInputScr_LoadType"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/TV_InsertLoad" />
 
-    <Button
-        android:id="@+id/cableForMCB_PB"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="168dp"
-        android:onClick="LoadInput_DataValidation"
-        android:text="  CALCULATE  "
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/VoltDrop_checkBox" />
+        <TextView
+            android:id="@+id/TV_CableType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="36dp"
+            android:text="@string/CableSelection"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/TV_OL" />
 
-    <TextView
-        android:id="@+id/TV_V1ph"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginLeft="48dp"
-        android:layout_marginTop="32dp"
-        android:text="@string/Nominal_V_1ph_text"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TV_LoadType" />
-
-    <TextView
-        android:id="@+id/TV_V3ph"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/Nominal_V_3ph_text"
-        app:layout_constraintStart_toStartOf="@+id/TV_V1ph"
-        app:layout_constraintTop_toBottomOf="@+id/TV_V1ph" />
-
-    <TextView
-        android:id="@+id/TV_cosphi"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/Nominal_cosphi_text"
-        app:layout_constraintStart_toStartOf="@+id/TV_V1ph"
-        app:layout_constraintTop_toBottomOf="@+id/TV_V3ph" />
-
-    <TextView
-        android:id="@+id/TV_OL"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/Nominal_OL_text"
-        app:layout_constraintStart_toStartOf="@+id/TV_V1ph"
-        app:layout_constraintTop_toBottomOf="@+id/TV_cosphi" />
-
-    <EditText
-        android:id="@+id/ed_V1ph"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:ems="10"
-        android:imeOptions="actionDone"
-        android:gravity="center"
-        android:inputType="number"
-        android:paddingBottom="10dp"
-        android:text="@string/Nominal_V_1ph_value"
-        android:textSize="16sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/TV_V1ph"
-        app:layout_constraintStart_toEndOf="@+id/TV_V1ph" />
-
-    <EditText
-        android:id="@+id/ed_V3ph"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:imeOptions="actionDone"
-        android:gravity="center"
-        android:inputType="number"
-        android:paddingBottom="10dp"
-        android:text="@string/Nominal_V_3ph_value"
-        android:textSize="16sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/TV_V3ph"
-        app:layout_constraintStart_toStartOf="@+id/ed_V1ph" />
-
-    <EditText
-        android:id="@+id/ed_cosphi"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:gravity="center"
-        android:imeOptions="actionDone"
-        android:inputType="numberDecimal"
-        android:paddingBottom="10dp"
-        android:text="@string/Nominal_cosphi_value"
-        android:textSize="16sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/TV_cosphi"
-        app:layout_constraintStart_toStartOf="@+id/ed_V1ph" />
-
-    <EditText
-        android:id="@+id/ed_OL"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:imeOptions="actionDone"
-        android:ems="10"
-        android:gravity="center"
-        android:inputType="numberDecimal"
-        android:paddingBottom="10dp"
-        android:text="@string/Nominal_OL_value"
-        android:textSize="16sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/TV_OL"
-        app:layout_constraintStart_toStartOf="@+id/ed_V1ph" />
-
-    <ImageView
-        android:id="@+id/SpinnerArrow1"
-        android:layout_width="10dp"
-        android:layout_height="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/LoadTypeSpinner"
-        app:layout_constraintEnd_toEndOf="@+id/LoadTypeSpinner"
-        app:layout_constraintTop_toTopOf="@+id/LoadTypeSpinner"
-        app:srcCompat="@mipmap/arrow" />
-
-    <ImageView
-        android:id="@+id/SpinnerArrow2"
-        android:layout_width="10dp"
-        android:layout_height="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/LoadCableSpinner"
-        app:layout_constraintEnd_toEndOf="@+id/LoadCableSpinner"
-        app:layout_constraintTop_toTopOf="@+id/LoadCableSpinner"
-        app:srcCompat="@mipmap/arrow" />
-
-    <EditText
-        android:id="@+id/ed_Vdc"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:gravity="center"
-        android:imeOptions="actionDone"
-        android:hint="@string/DC_Voltage_value"
-        android:inputType="number|numberDecimal"
-        android:paddingBottom="10dp"
-        android:textSize="16sp"
-        android:visibility="invisible"
-        app:layout_constraintBaseline_toBaselineOf="@+id/TV_Vdc"
-        app:layout_constraintStart_toStartOf="@+id/ed_V1ph" />
+        <Spinner
+            android:id="@+id/LoadTypeSpinner"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/custom_spinner"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/TV_LoadType"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/TV_LoadType"
+            app:layout_constraintTop_toTopOf="@+id/TV_LoadType" />
 
 
-    <TextView
-        android:id="@+id/TV_Vdc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="32dp"
-        android:text="@string/DC_Voltage_text"
-        android:visibility="invisible"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TV_LoadType" />
+        <Spinner
+            android:id="@+id/LoadCableSpinner"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:textSize="16sp"
+            android:spinnerMode="dialog"
+            android:background="@drawable/custom_spinner"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/TV_CableType"
+            app:layout_constraintTop_toBottomOf="@+id/TV_CableType" />
 
-    <CheckBox
-        android:id="@+id/VoltDrop_checkBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="32dp"
-        android:text="@string/VoltDrop_checkbox"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/LoadCableSpinner" />
+        <Button
+            android:id="@+id/cableForMCB_PB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="168dp"
+            android:onClick="LoadInput_DataValidation"
+            android:text="  CALCULATE  "
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/VoltDrop_checkBox" />
 
-    <TextView
-        android:id="@+id/TV_distance"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/distance_text"
-        android:visibility="invisible"
-        app:layout_constraintStart_toStartOf="@+id/VoltDrop_checkBox"
-        app:layout_constraintTop_toBottomOf="@+id/VoltDrop_checkBox" />
+        <TextView
+            android:id="@+id/TV_V1ph"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="48dp"
+            android:layout_marginLeft="48dp"
+            android:layout_marginTop="32dp"
+            android:text="@string/Nominal_V_1ph_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/TV_LoadType" />
 
-    <EditText
-        android:id="@+id/ET_km"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:imeOptions="actionDone"
-        android:ems="10"
-        android:hint="@string/generic_0"
-        android:gravity="center"
-        android:textSize="16sp"
-        android:inputType="numberDecimal"
-        android:visibility="invisible"
-        app:layout_constraintBaseline_toBaselineOf="@+id/TV_distance"
-        app:layout_constraintStart_toStartOf="@+id/ed_OL" />
+        <TextView
+            android:id="@+id/TV_V3ph"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/Nominal_V_3ph_text"
+            app:layout_constraintStart_toStartOf="@+id/TV_V1ph"
+            app:layout_constraintTop_toBottomOf="@+id/TV_V1ph" />
 
-    <EditText
-        android:id="@+id/ET_maxVD"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:gravity="center"
-        android:imeOptions="actionDone"
-        android:inputType="numberDecimal"
-        android:textSize="16sp"
-        android:visibility="invisible"
-        app:layout_constraintBaseline_toBaselineOf="@+id/TV_maxVoltDrop"
-        app:layout_constraintStart_toStartOf="@+id/ET_km" />
+        <TextView
+            android:id="@+id/TV_cosphi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/Nominal_cosphi_text"
+            app:layout_constraintStart_toStartOf="@+id/TV_V1ph"
+            app:layout_constraintTop_toBottomOf="@+id/TV_V3ph" />
 
-    <TextView
-        android:id="@+id/TV_OL_DC"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/Nominal_OL_text"
-        app:layout_constraintStart_toStartOf="@+id/TV_Vdc"
-        app:layout_constraintTop_toBottomOf="@+id/TV_Vdc" />
+        <TextView
+            android:id="@+id/TV_OL"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/Nominal_OL_text"
+            app:layout_constraintStart_toStartOf="@+id/TV_V1ph"
+            app:layout_constraintTop_toBottomOf="@+id/TV_cosphi" />
 
-    <EditText
-        android:id="@+id/ED_OL_DC"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:imeOptions="actionDone"
-        android:ems="10"
-        android:gravity="center"
-        android:inputType="numberDecimal"
-        android:paddingBottom="10dp"
-        android:text="@string/Nominal_OL_value"
-        android:textSize="16sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/TV_OL_DC"
-        app:layout_constraintStart_toStartOf="@+id/ed_V1ph" />
+        <EditText
+            android:id="@+id/ed_V1ph"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:ems="10"
+            android:imeOptions="actionDone"
+            android:gravity="center"
+            android:inputType="number"
+            android:paddingBottom="10dp"
+            android:text="@string/Nominal_V_1ph_value"
+            android:textSize="16sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/TV_V1ph"
+            app:layout_constraintStart_toEndOf="@+id/TV_V1ph" />
 
-    <TextView
-        android:id="@+id/TV_maxVoltDrop"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="24dp"
-        android:visibility="invisible"
-        android:text="@string/maxVoltDrop_text"
-        app:layout_constraintStart_toStartOf="@+id/VoltDrop_checkBox"
-        app:layout_constraintTop_toBottomOf="@+id/TV_distance" />
+        <EditText
+            android:id="@+id/ed_V3ph"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:imeOptions="actionDone"
+            android:gravity="center"
+            android:inputType="number"
+            android:paddingBottom="10dp"
+            android:text="@string/Nominal_V_3ph_value"
+            android:textSize="16sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/TV_V3ph"
+            app:layout_constraintStart_toStartOf="@+id/ed_V1ph" />
+
+        <EditText
+            android:id="@+id/ed_cosphi"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:gravity="center"
+            android:imeOptions="actionDone"
+            android:inputType="numberDecimal"
+            android:paddingBottom="10dp"
+            android:text="@string/Nominal_cosphi_value"
+            android:textSize="16sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/TV_cosphi"
+            app:layout_constraintStart_toStartOf="@+id/ed_V1ph" />
+
+        <EditText
+            android:id="@+id/ed_OL"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:imeOptions="actionDone"
+            android:ems="10"
+            android:gravity="center"
+            android:inputType="numberDecimal"
+            android:paddingBottom="10dp"
+            android:text="@string/Nominal_OL_value"
+            android:textSize="16sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/TV_OL"
+            app:layout_constraintStart_toStartOf="@+id/ed_V1ph" />
+
+        <ImageView
+            android:id="@+id/SpinnerArrow1"
+            android:layout_width="10dp"
+            android:layout_height="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/LoadTypeSpinner"
+            app:layout_constraintEnd_toEndOf="@+id/LoadTypeSpinner"
+            app:layout_constraintTop_toTopOf="@+id/LoadTypeSpinner"
+            app:srcCompat="@mipmap/arrow" />
+
+        <ImageView
+            android:id="@+id/SpinnerArrow2"
+            android:layout_width="10dp"
+            android:layout_height="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/LoadCableSpinner"
+            app:layout_constraintEnd_toEndOf="@+id/LoadCableSpinner"
+            app:layout_constraintTop_toTopOf="@+id/LoadCableSpinner"
+            app:srcCompat="@mipmap/arrow" />
+
+        <EditText
+            android:id="@+id/ed_Vdc"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:gravity="center"
+            android:imeOptions="actionDone"
+            android:hint="@string/DC_Voltage_value"
+            android:inputType="number|numberDecimal"
+            android:paddingBottom="10dp"
+            android:textSize="16sp"
+            android:visibility="invisible"
+            app:layout_constraintBaseline_toBaselineOf="@+id/TV_Vdc"
+            app:layout_constraintStart_toStartOf="@+id/ed_V1ph" />
 
 
-</android.support.constraint.ConstraintLayout>
+        <TextView
+            android:id="@+id/TV_Vdc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="32dp"
+            android:text="@string/DC_Voltage_text"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/TV_LoadType" />
 
+        <CheckBox
+            android:id="@+id/VoltDrop_checkBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="32dp"
+            android:text="@string/VoltDrop_checkbox"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/LoadCableSpinner" />
+
+        <TextView
+            android:id="@+id/TV_distance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/distance_text"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="@+id/VoltDrop_checkBox"
+            app:layout_constraintTop_toBottomOf="@+id/VoltDrop_checkBox" />
+
+        <EditText
+            android:id="@+id/ET_km"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:imeOptions="actionDone"
+            android:ems="10"
+            android:hint="@string/generic_0"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:inputType="numberDecimal"
+            android:visibility="invisible"
+            app:layout_constraintBaseline_toBaselineOf="@+id/TV_distance"
+            app:layout_constraintStart_toStartOf="@+id/ed_OL" />
+
+        <EditText
+            android:id="@+id/ET_maxVD"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:gravity="center"
+            android:imeOptions="actionDone"
+            android:inputType="numberDecimal"
+            android:textSize="16sp"
+            android:visibility="invisible"
+            app:layout_constraintBaseline_toBaselineOf="@+id/TV_maxVoltDrop"
+            app:layout_constraintStart_toStartOf="@+id/ET_km" />
+
+        <TextView
+            android:id="@+id/TV_OL_DC"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/Nominal_OL_text"
+            app:layout_constraintStart_toStartOf="@+id/TV_Vdc"
+            app:layout_constraintTop_toBottomOf="@+id/TV_Vdc" />
+
+        <EditText
+            android:id="@+id/ED_OL_DC"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:imeOptions="actionDone"
+            android:ems="10"
+            android:gravity="center"
+            android:inputType="numberDecimal"
+            android:paddingBottom="10dp"
+            android:text="@string/Nominal_OL_value"
+            android:textSize="16sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/TV_OL_DC"
+            app:layout_constraintStart_toStartOf="@+id/ed_V1ph" />
+
+        <TextView
+            android:id="@+id/TV_maxVoltDrop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="24dp"
+            android:visibility="invisible"
+            android:text="@string/maxVoltDrop_text"
+            app:layout_constraintStart_toStartOf="@+id/VoltDrop_checkBox"
+            app:layout_constraintTop_toBottomOf="@+id/TV_distance" />
+
+
+    </android.support.constraint.ConstraintLayout>
+
+
+</ScrollView>

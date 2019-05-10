@@ -10,4 +10,5 @@
     <color name = "color_text_main">#48614D</color>
     <color name = "color_text_user_input">#000000</color>
     <color name= "dummy">#DCE6DD</color>
+    <color name= "black">#000000</color>
 </resources>

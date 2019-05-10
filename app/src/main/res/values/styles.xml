@@ -16,11 +16,20 @@
         <item name="android:textColor">#FFF</item>
     </style>
 
-    <style name ="CustomSpinner" parent="Widget.AppCompat.Spinner.DropDown">
+    <style name="CustomSpinner" parent="Widget.AppCompat.Spinner.DropDown">
         <item name="android:background">@drawable/custom_spinner</item>
         <item name="android:textColor">@color/color_text_main</item>
-        <item name= "android:singleLine">false</item>
-        <item name= "android:spinnerMode">dialog</item>
+        <item name="android:singleLine">false</item>
+        <item name="android:spinnerMode">dialog</item>
     </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 </resources>

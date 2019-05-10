@@ -66,15 +66,20 @@ public class SizeMCB_input_data extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
             {
-                String Size_dummy = parent.getItemAtPosition(position).toString();
+                if (position == 0){
 
-                //SelectedSize = Size_dummy.substring(0,1);
-                String [] dummy  = Size_dummy.split(" ");
-                SelectedSize = dummy [0];
+                    CableSize = 0.5; // position "0" is 23/0.15mm = 0.5mm2
+                }
+                else {
 
-                // Convert the cable size to a real number
+                    String Size_dummy = parent.getItemAtPosition(position).toString();
+                    //SelectedSize = Size_dummy.substring(0,1);
+                    String [] dummy  = Size_dummy.split(" ");
+                    SelectedSize = dummy [0];
+                    // Convert the cable size to a real number
+                    CableSize = Float.parseFloat(SelectedSize);
+                }
 
-                CableSize = Float.parseFloat(SelectedSize);
 
             }
 
@@ -101,7 +106,6 @@ public class SizeMCB_input_data extends AppCompatActivity {
         if (MCB_Selection == GeneralCalculations.AC_MCB_Catalogue[CatalogLength-1]){
             FinalItem = true;
         }
-
 
 
         // Save the MCB size values as String
