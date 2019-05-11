@@ -28,6 +28,7 @@ public class SizeforLoad_results extends AppCompatActivity {
         String CableSize = Bundle_Load.getString("WIRE_SIZE");
         double Chosen_size = Float.parseFloat(CableSize);
         String CableforLoad = Bundle_Load.getString("WIRE_4_LOAD") + " sqmm";
+        String Cable4Load_rating = "Cable rating: " + Bundle_Load.get("RATING_4_LOAD") + " A";
         String LoadType = Bundle_Load.getString("LOAD_TYPE");
         String Voltage = Bundle_Load.getString("VOLTAGE");
         String Watts = Bundle_Load.getString("POWER");
@@ -77,7 +78,7 @@ public class SizeforLoad_results extends AppCompatActivity {
         }
         else{
             MCBSize = MCBSize + " Amps";
-            CableSelect_Str = "Minimum suggested cable size for that MCB is:";
+            CableSelect_Str = "Minimum suggested cable size for that MCB is:\n     (" + Cable4Load_rating +")";
 
         }
 
@@ -145,7 +146,7 @@ public class SizeforLoad_results extends AppCompatActivity {
 
                 //CableSelect_Str = "Min cable size for load and Volt-drop requirements:";
 
-                CableSelect_Str = "Min cable size for load is: "+ CableforLoad + "\nMin cable size for load and Volt-drop requirements:\n";
+                CableSelect_Str = "Min cable size for load is: "+ CableforLoad + ".\n     (" + Cable4Load_rating + ")\nMin cable size for load and Volt-drop requirements:\n";
 
                 if (VD_req.equals("YES")&& VD_satisf.equals ("NO")){
                     VoltDrop = "Unable to satisfy volt drop requirement." + "\nWith biggest cable size available of " + CableSize + ": " + "\n";

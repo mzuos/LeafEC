@@ -53,7 +53,7 @@ import android.widget.TextView;
             {
                 if (mode == true){
 
-                    if (position ==0){
+                    if (position == 0){
 
                         I_know_mm2 = 0.5; // position "0" is 23/0.15mm = 0.5mm2
                     }
@@ -73,7 +73,7 @@ import android.widget.TextView;
                 }
                 else{
 
-                    double mm2 = 0;
+                    double AWG_exact_mm2 = 0;
 
                     if (position > 3){
                        String AWG_selection = parent.getItemAtPosition(position).toString();
@@ -81,22 +81,22 @@ import android.widget.TextView;
                        int n = Integer.parseInt (AWG[1]);
 
                        double exp = (36-n)/19.5;
-                       mm2 = 0.012668 * Math.pow(92,exp);
+                       AWG_exact_mm2 = 0.012668 * Math.pow(92,exp);
                     }
                     else if (position == 3){ //(1/0)
-                        mm2 = 53.4751; // The exact area for the cable
+                        AWG_exact_mm2 = 53.4751; // The exact area for the cable
                     }
                     else if (position == 2){ //(2/0)
-                        mm2 = 67.4309; // The exact area for the cable
+                        AWG_exact_mm2 = 67.4309; // The exact area for the cable
                     }
                     else if (position == 1){ //(3/0)
-                        mm2 = 85.0288; // The exact area for the cable
+                        AWG_exact_mm2 = 85.0288; // The exact area for the cable
                     }
                     else if (position == 0){ //(4/0)
-                        mm2 = 107.2193; // The exact area for the cable
+                        AWG_exact_mm2 = 107.2193; // The exact area for the cable
                     }
 
-                    find_sqmm_equivalent(mm2);
+                    find_sqmm_equivalent(AWG_exact_mm2);
 
                 }
 
@@ -137,35 +137,46 @@ import android.widget.TextView;
 
     }
 
-   public void find_sqmm_equivalent (double sqmm){
+   public void find_sqmm_equivalent (double exact_AWG_sqmm){
 
         int sqmm_sizes = GeneralCalculations.CopperWireArray.length;
 
-        if (sqmm >= GeneralCalculations.CopperWireArray [sqmm_sizes-1]){//largest than larger sqmm
-            mm2_equiv = GeneralCalculations.CopperWireArray [sqmm_sizes-1];
+        if (exact_AWG_sqmm >= GeneralCalculations.CopperWireArray [sqmm_sizes-1]){//largest than larger sqmm
+            mm2_equiv = 120; // next size to 95sqmm is 120sqmm
         }
         else{
-            for (int i = 0; i < sqmm_sizes; i++){
 
-                if (sqmm < GeneralCalculations.CopperWireArray [i]) {
 
-                    if (i == 0){
-                        mm2_equiv = 0.5;
+            double diff_up, diff_down;
+
+            for (int i = 1; i < sqmm_sizes; i++){
+
+                if (exact_AWG_sqmm < GeneralCalculations.CopperWireArray[i]){
+
+                    diff_down = exact_AWG_sqmm - GeneralCalculations.CopperWireArray [i-1];
+                    diff_up = exact_AWG_sqmm - GeneralCalculations.CopperWireArray [i];
+                    diff_up = Math.abs (diff_up);
+
+                    if (diff_down > diff_up ){
+                        mm2_equiv = GeneralCalculations.CopperWireArray [i];
                     }
+
                     else{
+
                         mm2_equiv = GeneralCalculations.CopperWireArray [i-1];
                     }
-                    break;
 
+                    break;
                 }
+
             }
 
         }
 
         TextView TV_sqmm_equiv = (TextView) findViewById(R.id.TV_size_equiv);
-       String Str_sqmm_equiv = String.format (Locale.UK, "%.1f", mm2_equiv);
-       Str_sqmm_equiv = Str_sqmm_equiv + " sqmm";
-       TV_sqmm_equiv.setText(Str_sqmm_equiv);
+        String Str_sqmm_equiv = String.format (Locale.UK, "%.1f", mm2_equiv);
+        Str_sqmm_equiv = Str_sqmm_equiv + " sqmm";
+        TV_sqmm_equiv.setText(Str_sqmm_equiv);
 
 
 
@@ -173,31 +184,109 @@ import android.widget.TextView;
 
     private void find_AWG_equivalent(){
 
-        // mm2 to AWG formula converter:
+        TextView TV_AWG_equiv = (TextView) findViewById(R.id.TV_size_equiv);
+        String Str_AWG_equiv;
+        double diff_up, diff_down, previous;
 
-        // Formula: mm2 = 0.012668 [mm2] x 92^((36-n)/19.5)
+        if (I_know_mm2 > 42.4) { //AWG 1
 
-        int AWG_sizes = AWG_size_list.length;
-        double mm2_dummy =0;
+            if (I_know_mm2 < 53.47){
 
-        for ( int i = 0; i < AWG_sizes; i++){
+                diff_up = 53.47 - I_know_mm2;
+                diff_down = I_know_mm2 - 42.4;
 
-            int n = AWG_size_list [i];
-            mm2_dummy = (36-n)/19.5;
-            mm2_dummy = 0.012668 * Math.pow(92,mm2_dummy);
+                if (diff_up > diff_down){
+                    Str_AWG_equiv = "AWG 1";
+                }
+                else Str_AWG_equiv = "AWG (1/0)";
 
-            if (mm2_dummy <= I_know_mm2){
-                AWG_equiv = AWG_size_list [i];
-                break;
             }
+            else if (I_know_mm2 < 67.43){
+
+                diff_up =  67.43 - I_know_mm2;
+                diff_down = I_know_mm2 - 53.47;
+
+                if (diff_up > diff_down){
+                    Str_AWG_equiv = "AWG (1/0)";
+                }
+                else Str_AWG_equiv = "AWG (2/0)";
+
+            }
+
+            else if (I_know_mm2 < 85.02){
+
+                diff_up = 85.02 - I_know_mm2;
+                diff_down = I_know_mm2 - 67.43;
+
+                if (diff_up > diff_down){
+                    Str_AWG_equiv = "AWG (2/0)";
+                }
+                else Str_AWG_equiv = "AWG (3/0)";
+
+            }
+
+            else if (I_know_mm2 < 107.21){
+
+                diff_up = 107.21 - I_know_mm2;
+                diff_down = I_know_mm2 - 85.02;
+
+                if (diff_up > diff_down){
+                    Str_AWG_equiv = "AWG (3/0)";
+                }
+                else Str_AWG_equiv = "AWG (4/0)";
+
+            }
+
+            else Str_AWG_equiv = "AWG (4/0)";
+
+            TV_AWG_equiv.setText(Str_AWG_equiv);
 
         }
 
-        TextView TV_AWG_equiv = (TextView) findViewById(R.id.TV_size_equiv);
-        String Str_AWG_equiv = Integer.toString(AWG_equiv);
-        Str_AWG_equiv = "AWG " + Str_AWG_equiv;
-        TV_AWG_equiv.setText(Str_AWG_equiv);
+        else{
 
+            // mm2 to AWG formula converter:
+
+            // Formula: mm2 = 0.012668 [mm2] x 92^((36-n)/19.5)
+
+            int AWG_sizes = AWG_size_list.length; // array goes from AWG 1 to AWG 20, does not include (1/0)-(4/0)
+
+            double AWG_exact_mm2_dummy = 0;
+
+            for ( int i = 0; i < AWG_sizes; i++){
+
+                int n = AWG_size_list [i];
+                previous = AWG_exact_mm2_dummy;
+                AWG_exact_mm2_dummy = (36-n)/19.5;
+                AWG_exact_mm2_dummy = 0.012668 * Math.pow(92,AWG_exact_mm2_dummy);
+
+                if (AWG_exact_mm2_dummy < I_know_mm2){
+
+                    diff_up = previous - I_know_mm2;
+                    diff_down = I_know_mm2 - AWG_exact_mm2_dummy;
+
+                    if (diff_up > diff_down) {
+                        AWG_equiv = AWG_size_list [i];
+                    }
+                    else {
+                        AWG_equiv = AWG_size_list [i-1];
+                    }
+
+                    break;
+                }
+
+                else {
+
+                    AWG_equiv = 20; //smallest AWG in the list (area = 0.5176)
+                }
+
+            }
+
+            Str_AWG_equiv = Integer.toString(AWG_equiv);
+            Str_AWG_equiv = "AWG " + Str_AWG_equiv;
+            TV_AWG_equiv.setText(Str_AWG_equiv);
+
+        }
 
     }
 

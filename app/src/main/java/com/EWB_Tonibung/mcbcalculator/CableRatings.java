@@ -13,17 +13,16 @@ import java.util.ArrayList;
 
 public class CableRatings extends AppCompatActivity {
 
-    int CableType=0, LoadType=0;
-    ListView listview;
-
-
+    int CableType = 0, LoadType = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cable_ratings);
 
-        Spinner Spinner_CableType, Spinner_LoadType;
+
+        Spinner  Spinner_CableType, Spinner_LoadType;
 
         //get the spinners from the xml.
         Spinner_CableType = findViewById(R.id.RatingsCableSpinner);
@@ -33,6 +32,7 @@ public class CableRatings extends AppCompatActivity {
         //create an adapter to describe how the items are displayed
         ArrayAdapter adapter1, adapter2;
         adapter1 = ArrayAdapter.createFromResource(this, R.array.CableTypeCatalogue, R.layout.multiline_spinner_dropdown_item);
+
         adapter2 = ArrayAdapter. createFromResource(this,R.array.Load_type,R.layout.multiline_spinner_dropdown_item);
 
         // Specify the layout to use when the list of choices appears
@@ -48,33 +48,34 @@ public class CableRatings extends AppCompatActivity {
         Spinner_CableType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                CableType=position;
-                LoadCableData(CableType, LoadType);
+                CableType = position;
+                LoadCableData();
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {}
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
         });
+
 
         //Setting OnItemClickListener to Load Type Spinner
         Spinner_LoadType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                LoadType=position;
-                LoadCableData(CableType, LoadType);
+                LoadType = position;
+                LoadCableData();
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                LoadCableData(CableType, LoadType);
+                LoadCableData();
                 TextView Dummy = (TextView) findViewById(R.id.TV_CableSTD); // initial value
-                Dummy.setText("Cable standard and data source: BS7671 - 4D1");
+                Dummy.setText("Cable standard and data source: BS7671 - 4D1****");
             }
         });
-
     }
 
-    public void LoadCableData(int Cable_Type, int Load_Type){
+    public void LoadCableData(){
 
         /*CableType 0 = Cu Clipped Direct
         * CableType 1 = Cu in conduit
@@ -83,56 +84,212 @@ public class CableRatings extends AppCompatActivity {
 
         // Load type: 0 = 1phAC, 1 = 3phAC, 2 = DC
 
-        TextView TV_ratingtitle=(TextView)findViewById(R.id.TV_RatingsTittle);
-        TextView TV_cableSTD = (TextView) findViewById(R.id.TV_CableSTD);
-        listview = (ListView) findViewById(R.id.Ratings_listview);
 
-        ArrayAdapter adapter_listview;
+        ArrayList<String> mm2_list = new ArrayList<String>();
+        ArrayList<String> Amp_list = new ArrayList<String>();
+        ArrayList<String> VD_list = new ArrayList<String>();
+
+        int cable_catalogue_length = 0;
+
+        mm2_list.clear();
+        Amp_list.clear();
+        VD_list.clear();
+
+
+        TextView TV_VD_Ohm =(TextView)findViewById(R.id.TV_VD);
+        TextView TV_cableSTD = (TextView) findViewById(R.id.TV_CableSTD);
+
+        ListView Rating_lview = (ListView) findViewById(R.id.Ratings_listview);
+
+        String dummy_mm2 = "", dummy_Amp = "", dummy_VD = "";
+
         if (CableType == 0 || CableType == 1){
             TV_cableSTD.setText("Cable standard and data source: BS7671 - 4D1");
-            TV_ratingtitle.setText("Size  -  Rating  -  VoltDrop");
+            TV_VD_Ohm.setText("VoltDrop");
+
+            mm2_list.add ("23/0.15 mm");
+            dummy_Amp = Double.toString(GeneralCalculations.Rating_Cu_Clipped [0]);
+            dummy_VD = Double.toString(GeneralCalculations.VD_Cu_Clipped_1phAC [0]);
+            Amp_list.add (dummy_Amp + " A"); //rating is same as 0.5mm2
+            VD_list.add (dummy_VD + " mV/A/m"); //rating is same as 0.5mm2
         }
 
 
-        if (Cable_Type == 0 && Load_Type == 0){
-            adapter_listview = ArrayAdapter.createFromResource(getApplicationContext(), R.array.Cu_WireRating_Clipped_1ph,R.layout.listview_simplelayout );
+        if (CableType == 0 && LoadType == 0){ //Cu-clipped, 1ph AC
+
+            cable_catalogue_length = GeneralCalculations.CopperWireArray.length;
+
+            for (int i = 0; i < cable_catalogue_length; i++){
+
+                dummy_mm2 = Double.toString(GeneralCalculations.CopperWireArray [i]);
+                dummy_Amp = Double.toString(GeneralCalculations.Rating_Cu_Clipped [i]);
+                dummy_VD = Double.toString(GeneralCalculations.VD_Cu_Clipped_1phAC [i]);
+
+                mm2_list.add (dummy_mm2 + " sqmm");
+                Amp_list.add (dummy_Amp + " A");
+                VD_list.add (dummy_VD + " mV/A/m");
+            }
+            // Load list view
+            listview_adapter_cable_ratings adapter = new listview_adapter_cable_ratings(this, mm2_list, Amp_list, VD_list);
+
+            // Display listview
+            Rating_lview.setAdapter(adapter);
 
         }
-        else if (Cable_Type == 0 && Load_Type == 1){
-            adapter_listview = ArrayAdapter.createFromResource(getApplicationContext(), R.array.Cu_WireRating_Clipped_3ph, R.layout.listview_simplelayout);
-        }
-        else if (Cable_Type == 0 && Load_Type == 2){
-            adapter_listview = ArrayAdapter.createFromResource(getApplicationContext(), R.array.Cu_WireRating_Clipped_DC, R.layout.listview_simplelayout);
-        }
-        else if (Cable_Type == 1 && Load_Type == 0){
-            adapter_listview = ArrayAdapter.createFromResource(getApplicationContext(), R.array.Cu_WireRating_Conduit_1ph, R.layout.listview_simplelayout);
-        }
-        else if (Cable_Type == 1 && Load_Type == 1){
-            adapter_listview = ArrayAdapter.createFromResource(getApplicationContext(), R.array.Cu_WireRating_Conduit_3ph, R.layout.listview_simplelayout);
+
+        else if (CableType == 0 && LoadType == 1){ //Cu-clipped, 3ph AC
+
+            cable_catalogue_length = GeneralCalculations.CopperWireArray.length;
+
+            for (int i = 0; i < cable_catalogue_length; i++){
+
+                dummy_mm2 = Double.toString(GeneralCalculations.CopperWireArray [i]);
+                dummy_Amp = Double.toString(GeneralCalculations.Rating_Cu_Clipped [i]);
+                dummy_VD = Double.toString(GeneralCalculations.VD_Cu_Clipped_3phAC [i]);
+
+                mm2_list.add (dummy_mm2 + " sqmm");
+                Amp_list.add (dummy_Amp + " A");
+                VD_list.add (dummy_VD + " mV/A/m");
+            }
+            // Load list view
+            listview_adapter_cable_ratings adapter = new listview_adapter_cable_ratings(this, mm2_list, Amp_list, VD_list);
+
+            // Display listview
+            Rating_lview.setAdapter(adapter);
         }
 
-        else if (Cable_Type == 1 && Load_Type == 2){
-            adapter_listview = ArrayAdapter.createFromResource(getApplicationContext(), R.array.Cu_WireRating_Conduit_DC, R.layout.listview_simplelayout);
+        else if (CableType == 0 && LoadType == 2){ //Cu-clipped, DC
+
+            cable_catalogue_length = GeneralCalculations.CopperWireArray.length;
+
+            for (int i = 0; i < cable_catalogue_length; i++){
+
+                dummy_mm2 = Double.toString(GeneralCalculations.CopperWireArray [i]);
+                dummy_Amp = Double.toString(GeneralCalculations.Rating_Cu_Clipped [i]);
+                dummy_VD = Double.toString(GeneralCalculations.VD_Cu_Clipped_DC [i]);
+
+                mm2_list.add (dummy_mm2 + " sqmm");
+                Amp_list.add (dummy_Amp + " A");
+                VD_list.add (dummy_VD + " mV/A/m");
+            }
+            // Load list view
+            listview_adapter_cable_ratings adapter = new listview_adapter_cable_ratings(this, mm2_list, Amp_list, VD_list);
+
+            // Display listview
+            Rating_lview.setAdapter(adapter);
         }
-        else if (Cable_Type == 2){
-            adapter_listview = ArrayAdapter.createFromResource(getApplicationContext(), R.array.Al_WireRating_IEC_PVC, R.layout.listview_simplelayout);
-            TV_ratingtitle.setText("Size   -   Rating   -   Resistivity");
+
+        else if (CableType == 1 && LoadType == 0){// Cu-conduit, 1ph
+
+            cable_catalogue_length = GeneralCalculations.CopperWireArray.length;
+
+            for (int i = 0; i < cable_catalogue_length; i++){
+
+                dummy_mm2 = Double.toString(GeneralCalculations.CopperWireArray [i]);
+                dummy_Amp = Double.toString(GeneralCalculations.Rating_Cu_Conduit [i]);
+                dummy_VD = Double.toString(GeneralCalculations.VD_Cu_Clipped_1phAC [i]);
+
+                mm2_list.add (dummy_mm2 + " sqmm");
+                Amp_list.add (dummy_Amp + " A");
+                VD_list.add (dummy_VD + " mV/A/m");
+            }
+            // Load list view
+            listview_adapter_cable_ratings adapter = new listview_adapter_cable_ratings(this, mm2_list, Amp_list, VD_list);
+
+            // Display listview
+            Rating_lview.setAdapter(adapter);
+        }
+
+        else if (CableType == 1 && LoadType == 1){ //Cu-conduit, 3ph AC
+
+            cable_catalogue_length = GeneralCalculations.CopperWireArray.length;
+
+            for (int i = 0; i < cable_catalogue_length; i++){
+
+                dummy_mm2 = Double.toString(GeneralCalculations.CopperWireArray [i]);
+                dummy_Amp = Double.toString(GeneralCalculations.Rating_Cu_Conduit [i]);
+                dummy_VD = Double.toString(GeneralCalculations.VD_Cu_Clipped_3phAC [i]);
+
+                mm2_list.add (dummy_mm2 + " sqmm");
+                Amp_list.add (dummy_Amp + " A");
+                VD_list.add (dummy_VD + " mV/A/m");
+            }
+            // Load list view
+            listview_adapter_cable_ratings adapter = new listview_adapter_cable_ratings(this, mm2_list, Amp_list, VD_list);
+
+            // Display listview
+            Rating_lview.setAdapter(adapter);
+        }
+
+        else if (CableType == 1 && LoadType == 2){ //Cu-conduit, DC
+
+            cable_catalogue_length = GeneralCalculations.CopperWireArray.length;
+
+            for (int i = 0; i < cable_catalogue_length; i++){
+
+                dummy_mm2 = Double.toString(GeneralCalculations.CopperWireArray [i]);
+                dummy_Amp = Double.toString(GeneralCalculations.Rating_Cu_Conduit [i]);
+                dummy_VD = Double.toString(GeneralCalculations.VD_Cu_Clipped_DC [i]);
+
+                mm2_list.add (dummy_mm2 + " sqmm");
+                Amp_list.add (dummy_Amp + " A");
+                VD_list.add (dummy_VD + " mV/A/m");
+            }
+            // Load list view
+            listview_adapter_cable_ratings adapter = new listview_adapter_cable_ratings(this, mm2_list, Amp_list, VD_list);
+
+            // Display listview
+            Rating_lview.setAdapter(adapter);
+        }
+
+        else if (CableType == 2){
+
+            TV_VD_Ohm.setText("Resistivity");
             TV_cableSTD.setText("Cable Standard: IEC 60227 - Aerial Bundle Aluminium cable (PVC)");
+
+            cable_catalogue_length = GeneralCalculations.AlumWireSize_IEC.length;
+
+            for (int i = 0; i < cable_catalogue_length; i++){
+
+                dummy_mm2 = Double.toString(GeneralCalculations.AlumWireSize_IEC [i]);
+                dummy_Amp = Double.toString(GeneralCalculations.Rating_Al_Air_IEC_PVC [i]);
+                dummy_VD = Double.toString(GeneralCalculations.Ohm_Al_Air_IEC [i]);
+
+                mm2_list.add (dummy_mm2 + " sqmm");
+                Amp_list.add (dummy_Amp + " A");
+                VD_list.add (dummy_VD + " Ohm/m");
+            }
+            // Load list view
+            listview_adapter_cable_ratings adapter = new listview_adapter_cable_ratings(this, mm2_list, Amp_list, VD_list);
+
+            // Display listview
+            Rating_lview.setAdapter(adapter);
         }
 
-        else if (Cable_Type == 3){
-            adapter_listview = ArrayAdapter.createFromResource(getApplicationContext(), R.array.Al_WireRating_IEC_XLPE, R.layout.listview_simplelayout);
-            TV_ratingtitle.setText("Size   -   Rating   -   Resistivity");
+        else if (CableType == 3){
+
+            TV_VD_Ohm.setText("Resistivity");
             TV_cableSTD.setText("Cable Standard: IEC 60502 - Aerial Bundle Aluminium cable (XLPE)");
+
+            cable_catalogue_length = GeneralCalculations.AlumWireSize_IEC.length;
+
+            for (int i = 0; i < cable_catalogue_length; i++){
+
+                dummy_mm2 = Double.toString(GeneralCalculations.AlumWireSize_IEC [i]);
+                dummy_Amp = Double.toString(GeneralCalculations.Rating_Al_Air_IEC_XLPE [i]);
+                dummy_VD = Double.toString(GeneralCalculations.Ohm_Al_Air_IEC [i]);
+
+                mm2_list.add (dummy_mm2 + " sqmm");
+                Amp_list.add (dummy_Amp + " A");
+                VD_list.add (dummy_VD + " Ohm/m");
+            }
+            // Load list view
+            listview_adapter_cable_ratings adapter = new listview_adapter_cable_ratings(this, mm2_list, Amp_list, VD_list);
+
+            // Display listview
+            Rating_lview.setAdapter(adapter);
+
         }
-        else{// Redundant, simply here so that adapter has a default value
-            adapter_listview = ArrayAdapter.createFromResource(getApplicationContext(), R.array.Al_WireRating_IEC_XLPE, R.layout.listview_simplelayout);
-            TV_ratingtitle.setText("Size  -  Rating  -  Resistivity");
-        }
-
-
-
-        listview.setAdapter(adapter_listview);
 
     }
 

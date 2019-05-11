@@ -81,7 +81,6 @@
         <activity
             android:name=".CableRatings"
             android:configChanges="orientation"
-            android:launchMode="singleTop"
             android:parentActivityName=".Resources_screen"
             android:screenOrientation="portrait">
 

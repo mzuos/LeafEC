@@ -30,8 +30,8 @@
     <string name="PVInputScr_text2">From PV panel nameplate insert:</string>
     <string name="PV_Voc_text">Open circuit voltage - Voc [V]:</string>
     <string name="PV_Voc_Value">0</string>
-    <string name="Ipmax_text">Current at Maximum Power - Ipmax [A]:</string>
-    <string name="Ipmax_value">0</string>
+    <string name="Panel_rating_text">PV panel size [Watts]:</string>
+    <string name="Panel_rating_value">0</string>
     <string name="Isc_text">Short Circuit Current - Isc [A]:</string>
     <string name="Isc_value">0</string>
     <string name="PVInputScr_text3">From Solar Charge Controller nameplate insert:</string>
@@ -44,10 +44,11 @@
     <string name="CalculatePB">CALCULATE</string>
 
     <!--PV RESULTS SCREEN STRINGS-->
-    <string name="SCC_Idesign_text">The design current (1.56*Isc) is:</string>
+    <string name="summary">PV array size (kW) and amount of panels:</string>
+    <string name="SCC_Idesign_text">The input design current (1.56*Isc) is:</string>
     <string name="SCC_Idesign_value">0</string>
-    <string name="n_series_text">Number of panels in series per branch:</string>
-    <string name="n_parallel_text">Number of parallel branches:</string>
+    <string name="n_series_text">Number of panels in series per string:</string>
+    <string name="n_parallel_text">Number of parallel strings:</string>
     <string name="PVResultScr_text1">PV Panels to Solar Charge Controller:</string>
     <string name="SCC_In_MCB_text">Suggested DC-MCB or DC-Isolator size:</string>
     <string name="SCC_In_MCB">SCC_In_MCB</string>"
@@ -126,6 +127,7 @@
     <string name="Iknowmm2"> I know mm2 size</string>
     <string name="IwantAWG"> AWG equivalent</string>
     <string name="Iwantmm2"> I want mm2 equivalent</string>
+    <string name = "disclaimer"> (Approximated to closest size up/down)</string>
 
 
     <!--MULTIPLE SCREEN STRINGS-->

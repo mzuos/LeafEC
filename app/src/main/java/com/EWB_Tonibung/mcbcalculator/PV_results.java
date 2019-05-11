@@ -21,9 +21,19 @@ public class PV_results extends AppCompatActivity {
         //Extracting the stored data from the bundle
         //String user_name = extras.getString("USER_NAME");
 
-        String DispSCC_Idesign = PVProtectionSet.getString("I_DESIGN") + " A (< " + PVProtectionSet.getString("SCC_MAX_A") + " A)";
-        String Disp_PV_Series = PVProtectionSet.getString("NUM_SERIES");
-        String Disp_PV_Parallel = PVProtectionSet.getString("NUM_PARALLEL");
+        String SCC_type = PVProtectionSet.getString("SCC_TYPE");
+        String DispSCC_Idesign_IN = PVProtectionSet.getString("I_DESIGN_IN") + " A (< " + PVProtectionSet.getString("SCC_MAX_A") + " A)";
+        Double Panel_Size = PVProtectionSet.getDouble("PANEL_SIZE");
+        int n_series = PVProtectionSet.getInt("NUM_SERIES");
+        int n_parallel = PVProtectionSet.getInt("NUM_PARALLEL");
+        String Disp_PV_Series = Integer.toString(n_series);
+        String Disp_PV_Parallel = Integer.toString(n_parallel);
+        int total_panels = n_series * n_parallel;
+        double Array_size = Panel_Size * n_series * n_parallel;
+
+        String Disp_panel_size = Double.toString(Panel_Size);
+        String Disp_total_panels = Integer.toString (total_panels);
+        String Disp_Array_size = Double.toString(Array_size);
 
         String DispSCC_V_In = PVProtectionSet.getString("V_DC_IN") + " V";
         String DispSCC_V_Out = PVProtectionSet.getString("V_DC_OUT") + " V";
@@ -33,6 +43,28 @@ public class PV_results extends AppCompatActivity {
         String DispSCC_In_MCB = PVProtectionSet.getString("SCC_IN_MCB");
         String DispSCC_In_Cu = PVProtectionSet.getString("SCC_IN_CU");
         String DispSCC_In_Al = PVProtectionSet.getString("SCC_IN_AL");
+
+        String DispSCC_Idesign_OUT = PVProtectionSet.getString("I_DESIGN_OUT") + " A";
+        String DispSCC_Iout_text;
+
+        if (SCC_type.equals ("PWM")){
+
+            DispSCC_Iout_text = "PWM controller type. I design OUT = I design IN:";
+
+        }
+        else if (SCC_type.equals ("MPPT")){
+
+            DispSCC_Iout_text = "MPPT controller type. I design OUT:";
+
+        }
+        else DispSCC_Iout_text = "WTF Zubi? Pay attention!";
+
+        TextView TV_I_out_text = (TextView)findViewById(R.id.TV_I_design_out_txt);
+        TV_I_out_text.setText(DispSCC_Iout_text);
+
+        TextView TV_I_out = (TextView)findViewById(R.id.TV_I_design_out);
+        TV_I_out.setText(DispSCC_Idesign_OUT);
+
 
         String DispSCC_Out_MCB = PVProtectionSet.getString("SCC_OUT_MCB");
         String DispSCC_Out_Cu = PVProtectionSet.getString("SCC_OUT_CU");
@@ -79,14 +111,18 @@ public class PV_results extends AppCompatActivity {
 
         //Capture the layout of the textviews and set the strings as their text
 
-        TextView TV_Idesign = findViewById (R.id.TV_Idesign);
-        TV_Idesign.setText (DispSCC_Idesign);
+        TextView TV_system = findViewById(R.id.TV_summary);
+        String Summary = "PV array size:  " + Disp_total_panels + " panels x " + Disp_panel_size + " W = " + Disp_Array_size + " W per charge controller.";
+        TV_system.setText(Summary);
 
-        TextView n_series = findViewById(R.id.TV_n_series);
-        n_series.setText(Disp_PV_Series);
+        TextView TV_Idesign_IN = findViewById (R.id.TV_Idesign);
+        TV_Idesign_IN.setText (DispSCC_Idesign_IN);
 
-        TextView n_parallel = findViewById(R.id.TV_n_parallel);
-        n_parallel.setText(Disp_PV_Parallel);
+        TextView TV_n_series = findViewById(R.id.TV_n_series);
+        TV_n_series.setText(Disp_PV_Series);
+
+        TextView TV_n_parallel = findViewById(R.id.TV_n_parallel);
+        TV_n_parallel.setText(Disp_PV_Parallel);
 
         TextView TV_SCC_In_MCB = findViewById (R.id.Show_SCC_in_MCC);
         TV_SCC_In_MCB.setText (DispSCC_In_MCB);

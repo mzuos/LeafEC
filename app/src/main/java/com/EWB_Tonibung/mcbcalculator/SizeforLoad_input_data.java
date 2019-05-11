@@ -29,6 +29,7 @@ public class SizeforLoad_input_data extends AppCompatActivity {
     double Amps = 0, Amps_R =0; //Amps_R: real amps, Amps = aparent amps
     int MCBforLoad=0;
     double CableForLoad = 0, CableForVoltDrop = 0, ChosenCable = 0, Ohms = 0;
+    double Cable4Load_rating = 0;
     int voltage_1ph = 1, voltage_3ph = 1;//initialised with silly values !=0
     double cosphi, Overload=0.999; //initialised at weird values to help me identify mistakes
     double VD_goal = 0 ; // The value we need to search for
@@ -357,6 +358,9 @@ public class SizeforLoad_input_data extends AppCompatActivity {
         }
 
         CableForLoad = GeneralCalculations.CableSizeCalculator(MCBforLoad,CableType);
+        Cable4Load_rating = GeneralCalculations.CableCurrentRating(CableType, CableForLoad);
+
+
 
         //FIND POSITION OF "CABLE FOR LOAD" IN THAT SPECIFIC CABLE CATALOGUE
 
@@ -537,6 +541,7 @@ public class SizeforLoad_input_data extends AppCompatActivity {
         String Str_Watts = String.format (Locale.UK, "%.0f", Watts);
         String Str_OvLoad = "tbc";
         String Str_Volts = "tbc";
+        String Cable4Load_rating_str = Double.toString(Cable4Load_rating);
 
         int size = Ohms_array.size();
 
@@ -585,6 +590,7 @@ public class SizeforLoad_input_data extends AppCompatActivity {
 
         Bundle_Load.putString("MCB_SIZE", Str_MCBSize);
         Bundle_Load.putString("WIRE_4_LOAD", Str_WireforLoad);
+        Bundle_Load.putString ("RATING_4_LOAD", Cable4Load_rating_str);
         Bundle_Load.putString("WIRE_SIZE", Str_WireSize);
         Bundle_Load.putString("LOAD_TYPE", Str_LoadType);
         Bundle_Load.putString ("POWER", Str_Watts);
