@@ -104,11 +104,12 @@
 
         <Button
             android:id="@+id/CalculatePB"
-            android:layout_width="120dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="72dp"
             android:onClick="InverterDataValidation"
             android:text="@string/CalculatePB"
+            android:paddingHorizontal="15dp"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"

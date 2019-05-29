@@ -62,9 +62,10 @@
 
     <Button
         android:id="@+id/cableForMCB_PB"
-        android:layout_width="120dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="200dp"
+        android:paddingHorizontal="15dp"
         android:onClick="SelectMCBforCable"
         android:text="@string/CalculatePB"
         android:textSize="16sp"

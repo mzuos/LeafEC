@@ -124,8 +124,9 @@
         android:layout_marginRight="48dp"
         android:text="@string/IwantAWG"
         android:textAlignment="center"
-        app:layout_constraintBaseline_toBaselineOf="@+id/TV_Iknow"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@+id/TV_Iknow"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/TV_Iknow" />
 
     <TextView
         android:id="@+id/TV_size_equiv"

@@ -14,7 +14,6 @@
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout_marginTop = "-150dp"
         tools:context=".Image_gallery">
 
         <TextView
@@ -169,7 +168,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Star (12 wire)"
+            android:text="Star\n(12 wire)"
             android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="@+id/IV_synch_star"
             app:layout_constraintStart_toStartOf="@+id/IV_synch_star"
@@ -302,7 +301,7 @@
             android:id="@+id/TV_zigzag"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Zig-Zag (12 wire)"
+            android:text="Zig-Zag\n(12 wire)"
             android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="@+id/TV_synch_star"
             app:layout_constraintEnd_toEndOf="@+id/IV_zigzag"
@@ -401,7 +400,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="3 Phase \n 'Renerconsys' ELC"
+            android:text="3 Phase \n 'Renerconsys'\nELC"
             android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="@+id/IV_ballast_3ph_ren"
             app:layout_constraintStart_toStartOf="@+id/IV_ballast_3ph_ren"
@@ -422,7 +421,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="3 Phase \n 'Bluebird' ELC"
+            android:text="3 Phase \n'Bluebird'\nELC"
             android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="@+id/IV_ballast_3ph_blue"
             app:layout_constraintStart_toStartOf="@+id/IV_ballast_3ph_blue"
@@ -468,6 +467,26 @@
             app:layout_constraintEnd_toEndOf="@+id/IV_consumer"
             app:layout_constraintStart_toStartOf="@+id/IV_consumer"
             app:layout_constraintTop_toBottomOf="@+id/IV_consumer" />
+
+        <ImageView
+            android:id="@+id/IV_batt_parallel"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            app:layout_constraintEnd_toEndOf="@+id/IV_ser_parall"
+            app:layout_constraintStart_toStartOf="@+id/IV_ser_parall"
+            app:layout_constraintTop_toTopOf="@+id/IV_consumer"
+            app:srcCompat="@drawable/batteries_parallel_thumb" />
+
+        <TextView
+            android:id="@+id/textView87"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textAlignment="center"
+            android:text="Batteries\nparallel\nwiring"
+            app:layout_constraintEnd_toEndOf="@+id/IV_batt_parallel"
+            app:layout_constraintStart_toStartOf="@+id/IV_batt_parallel"
+            app:layout_constraintTop_toBottomOf="@+id/IV_batt_parallel" />
 
 
     </android.support.constraint.ConstraintLayout>

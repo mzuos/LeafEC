@@ -6,6 +6,7 @@ import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.widget.ImageView;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
@@ -47,6 +48,7 @@ public class Image_gallery extends AppCompatActivity {
         ImageView mIcon_sp = (ImageView)findViewById(R.id.IV_ser_parall);
         ImageView mIcon_star_delta = (ImageView)findViewById(R.id.IV_star_delta);
         ImageView mIcon_consumer = (ImageView)findViewById(R.id.IV_consumer);
+        ImageView mIcon_batt_parallel = (ImageView)findViewById(R.id.IV_batt_parallel);
         
         //LOAD AND ROUND THUMBNAIL
         //Induction generators
@@ -143,6 +145,16 @@ public class Image_gallery extends AppCompatActivity {
         RoundedBitmapDrawable mDrawable_consumer = RoundedBitmapDrawableFactory.create(getResources(), bitmap_consumer);
         mDrawable_consumer.setCircular(true);
         mIcon_consumer.setImageDrawable(mDrawable_consumer);
+
+        Bitmap bitmap_batt_parallel = BitmapFactory.decodeResource(getResources(), R.drawable.batteries_parallel_thumb);
+        RoundedBitmapDrawable mDrawable_batt_parallel = RoundedBitmapDrawableFactory.create(getResources(), bitmap_batt_parallel);
+        mDrawable_batt_parallel.setCircular(true);
+        mIcon_batt_parallel.setImageDrawable(mDrawable_batt_parallel);
+
+        /*DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        int height = displayMetrics.heightPixels;
+        int width = displayMetrics.widthPixels;*/
         
 
         //SET LISTENERS TO LOAD FULL SIZE IMAGES
@@ -368,14 +380,12 @@ public class Image_gallery extends AppCompatActivity {
                 AlertDialog.Builder mBuilder = new AlertDialog.Builder(Image_gallery.this);
                 View mView = getLayoutInflater().inflate(R.layout.dialog_custom_layout, null);
                 PhotoView photoView = mView.findViewById(R.id.imageView);
-                photoView.setImageResource(R.drawable.star_delta_white_large);
+                photoView.setImageResource(R.drawable.star_delta_white);
                 mBuilder.setView(mView);
                 AlertDialog mDialog = mBuilder.create();
                 mDialog.show();
             }
         });
-
-
 
         mIcon_consumer.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -390,6 +400,18 @@ public class Image_gallery extends AppCompatActivity {
             }
         });
 
+        mIcon_batt_parallel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder mBuilder = new AlertDialog.Builder(Image_gallery.this);
+                View mView = getLayoutInflater().inflate(R.layout.dialog_custom_layout, null);
+                PhotoView photoView = mView.findViewById(R.id.imageView);
+                photoView.setImageResource(R.drawable.batteries_parallel_wiring);
+                mBuilder.setView(mView);
+                AlertDialog mDialog = mBuilder.create();
+                mDialog.show();
+            }
+        });
 
 
 
