@@ -1,8 +1,12 @@
 package com.EWB_Tonibung.mcbcalculator;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -26,7 +30,6 @@ public class SizeforLoad_results extends AppCompatActivity {
 
         String MCBSize = Bundle_Load.getString("MCB_SIZE");
         String CableSize = Bundle_Load.getString("WIRE_SIZE");
-        double Chosen_size = Float.parseFloat(CableSize);
         String CableforLoad = Bundle_Load.getString("WIRE_4_LOAD") + " sqmm";
         String Cable4Load_rating = "Cable rating: " + Bundle_Load.get("RATING_4_LOAD") + " A";
         String LoadType = Bundle_Load.getString("LOAD_TYPE");
@@ -43,8 +46,9 @@ public class SizeforLoad_results extends AppCompatActivity {
         String VD_req = Bundle_Load.getString ("VD_REQ");
         String VD_satisf = Bundle_Load.getString ("VD_SATISFIED");
 
-        int size = Bundle_Load.getInt ("SIZE");
+        int size_array = Bundle_Load.getInt ("ARRAY_SIZE");
         int wire_position = Bundle_Load.getInt ("CHOSEN_WIRE_POSITION");
+
         String [] mm2_array = Bundle_Load.getStringArray("SQMM_ARRAY");
         String [] Ohm_array = Bundle_Load.getStringArray("OHMS_ARRAY");
         String [] VD_array = Bundle_Load.getStringArray("VD_ARRAY");
@@ -57,7 +61,7 @@ public class SizeforLoad_results extends AppCompatActivity {
 
 
 
-        for (int i = 0; i < size; i++){
+        for (int i = 0; i < size_array; i++){
 
             mm2_list.add (mm2_array[i]);
             Ohm_list.add (Ohm_array[i]);
@@ -82,12 +86,19 @@ public class SizeforLoad_results extends AppCompatActivity {
 
         }
 
+        double Chosen_size = 0;
+
+
         if (CableSize.equals ("n/a")){
             CableSize = "no cable available for load";
+            VDDisplay = "NO";
         }
         else{
+            Chosen_size = Float.parseFloat(CableSize);
             CableSize = CableSize + " sqmm";
         }
+
+
 
         //Capture the layout of the textviews and set the strings as their text
         TextView TView_LoadDescription = (TextView)findViewById(R.id.TV_LoadDescription);
@@ -113,6 +124,27 @@ public class SizeforLoad_results extends AppCompatActivity {
 
         ListView VD_lview = (ListView) findViewById(R.id.VD_ListView);
 
+        // Set listview size based on number or rows (size_array)
+
+        int pixels = size_array * 36; //height of each individual array
+
+        DisplayMetrics displaymetrics;
+
+        displaymetrics = new DisplayMetrics();
+
+        Activity thisactivity;
+
+        thisactivity = SizeforLoad_results.this;
+
+        thisactivity.getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+
+        float density = getResources().getDisplayMetrics().density;
+
+        int size_dp = (int) Math.round (density) * pixels;
+
+        VD_lview.getLayoutParams().height = size_dp;
+
+        /***********************/
 
         if (VDDisplay.equals("YES")){
 
@@ -121,6 +153,7 @@ public class SizeforLoad_results extends AppCompatActivity {
 
             if (VD_req.equals ("YES")){
 
+                //Display voltdrop listview and relevant headings
                 TView_lv_sqmm.setVisibility(View.VISIBLE);
                 TView_lv_VD.setVisibility(View.VISIBLE);
                 TView_lv_VDPC.setVisibility(View.VISIBLE);
@@ -136,12 +169,22 @@ public class SizeforLoad_results extends AppCompatActivity {
                 listview_adapter_array adapter = new listview_adapter_array(this, Chosen_size, mm2_list, VD_list, VDPC_list);
                 VD_lview.setAdapter(adapter);
 
-                // Set list view focus to selected cable
+               /* // Set list view focus to selected cable (not needed anymore)
 
                 if (wire_position > 1){
                     VD_lview.setSelection(wire_position-2);
-                }
+                } */
 
+
+                /*VD_lview.setOnTouchListener(new View.OnTouchListener() {
+
+                    public boolean onTouch(View v, MotionEvent event) {
+                        if (event.getAction() == MotionEvent.ACTION_MOVE) {
+                            return true; // Indicates that this has been handled by you and will not be forwarded further.
+                        }
+                        return false;
+                    }
+                });*/
 
 
                 //CableSelect_Str = "Min cable size for load and Volt-drop requirements:";
@@ -156,24 +199,30 @@ public class SizeforLoad_results extends AppCompatActivity {
 
                 else{
                     TView_CableSize.setText (CableSize);
+                    VoltDrop = "";
                 }
+
+                VoltDrop = VoltDrop + "Volt drop: " + VDrop + "V (= " + VDPercent + "% < " + VD_max_PC +"% ) over " + Voltage + " V and " + distance + " meters.";
+                TView_VDResults.setVisibility(View.VISIBLE);
+                TView_VDResults.setText(VoltDrop);
 
             }
 
             else{
 
                 TView_CableSize.setText (CableSize);
+
+                //Hide listview and titles
                 TView_lv_sqmm.setVisibility(View.INVISIBLE);
                 TView_lv_VD.setVisibility(View.INVISIBLE);
                 TView_lv_VDPC.setVisibility(View.INVISIBLE);
                 VD_lview.setVisibility(View.INVISIBLE);
 
+                VoltDrop = "Volt drop: " + VDrop + "V (= " + VDPercent + "%) over " + Voltage + " V and " + distance + " meters.";
+                TView_VDResults.setVisibility(View.VISIBLE);
+                TView_VDResults.setText(VoltDrop);
 
             }
-
-            VoltDrop = VoltDrop + "Volt drop: " + VDrop + "V (= " + VDPercent + "% < " + VD_max_PC +"% ) over " + Voltage + " V and " + distance + " meters.";
-            TView_VDResults.setVisibility(View.VISIBLE);
-            TView_VDResults.setText(VoltDrop);
 
 
         }
@@ -190,9 +239,7 @@ public class SizeforLoad_results extends AppCompatActivity {
 
         TView_Cabledescrip.setText(CableSelect_Str);
 
-        //GET DATA INTO THE LIST VIEW
-
-
-
     }
+
+
 }

@@ -31,7 +31,7 @@ public class SizeforLoad_input_data extends AppCompatActivity {
     double CableForLoad = 0, CableForVoltDrop = 0, ChosenCable = 0, Ohms = 0;
     double Cable4Load_rating = 0;
     int voltage_1ph = 1, voltage_3ph = 1;//initialised with silly values !=0
-    double cosphi, Overload=0.999; //initialised at weird values to help me identify mistakes
+    double cosphi =0, Overload=0.999; //initialised at weird values to help me identify mistakes
     double VD_goal = 0 ; // The value we need to search for
 
     String Str_LoadType = "TBC", Str_MCBSize, Str_WireSize, Str_WireforLoad;
@@ -47,7 +47,6 @@ public class SizeforLoad_input_data extends AppCompatActivity {
     ArrayList <String> mm2_array = new ArrayList<String>();
 
     // Declared at the start as used by different methods in the code
-
     String V1ph_Srt, V3ph_Srt,CosPhi_Srt, OL_Srt, Vdc_Str, OL_dc_Str;
     CheckBox VD_CheckBox;
 
@@ -349,7 +348,7 @@ public class SizeforLoad_input_data extends AppCompatActivity {
 
             Str_MCBSize ="n/a";
             MCBforLoad = (int)Math.round(Amps); // We are gonna calculate the cable size and volt drop for the load
-
+            // convert the amps into and INT because that's what the cable sizing function needs
         }
 
         else{
@@ -358,30 +357,26 @@ public class SizeforLoad_input_data extends AppCompatActivity {
         }
 
         CableForLoad = GeneralCalculations.CableSizeCalculator(MCBforLoad,CableType);
-        Cable4Load_rating = GeneralCalculations.CableCurrentRating(CableType, CableForLoad);
+
+        if (CableForLoad != -1){ //it means we were able to find a cable
+
+
+            Cable4Load_rating = GeneralCalculations.CableCurrentRating(CableType, CableForLoad);
 
 
 
-        //FIND POSITION OF "CABLE FOR LOAD" IN THAT SPECIFIC CABLE CATALOGUE
+            //FIND POSITION OF "CABLE FOR LOAD" IN THAT SPECIFIC CABLE CATALOGUE
 
-        if (CableType == 0 || CableType == 1){//Copper cables
+            if (CableType == 0 || CableType == 1){//Copper cables
 
-            catalog_length = GeneralCalculations.CopperWireArray.length;
+                catalog_length = GeneralCalculations.CopperWireArray.length;
 
-        }
-        else if (CableType == 2 || CableType ==3){//Aluminium cables
+            }
+            else if (CableType == 2 || CableType ==3){//Aluminium cables
 
-            catalog_length = GeneralCalculations.AlumWireSize_IEC.length;
+                catalog_length = GeneralCalculations.AlumWireSize_IEC.length;
 
-        }
-
-
-        if (CableForLoad == -1){ // unable to find cable for load or MCB
-
-            Str_WireSize = "n/a";
-        }
-
-        else{
+            }
 
             load_cable_position = GeneralCalculations.FindCablePosition (CableType, CableForLoad);
 
@@ -403,16 +398,23 @@ public class SizeforLoad_input_data extends AppCompatActivity {
             Str_WireforLoad = Double.toString(CableForLoad);
             Str_WireSize = Double.toString(ChosenCable);
 
+
+
+            if (VD_requirement.equals("YES") && (max_VoltDrop < VoltDrop)){ //means we were unable ot find a suitable cable
+
+                VD_satisfied = "NO";
+            }
+            else{
+
+                VD_satisfied = "YES";
+            }
         }
 
-        if (VD_requirement.equals("YES") && (max_VoltDrop < VoltDrop)){ //means we were unable ot find a suitable cable
-
-            VD_satisfied = "NO";
-        }
         else{
-
-            VD_satisfied = "YES";
+            Str_WireSize = "n/a";
         }
+
+
         Prepare_return_values(); // CAll the functions that prepares the Bundle
 
 
@@ -496,6 +498,7 @@ public class SizeforLoad_input_data extends AppCompatActivity {
         }
 
         else{
+            VD_requirement = "NO";
             ChosenCable = CableForLoad;
             //Retrieve volt drop information for selected cable, regardless it's been selected for Load or Voltdrop
             Calculate_Ohm_VD_VDPC (ChosenCable);
@@ -543,14 +546,14 @@ public class SizeforLoad_input_data extends AppCompatActivity {
         String Str_Volts = "tbc";
         String Cable4Load_rating_str = Double.toString(Cable4Load_rating);
 
-        int size = Ohms_array.size();
+        int array_size = Ohms_array.size();
 
-        String [] mm2_array_Str = new String [size];
-        String [] Ohms_array_Str = new String [size];
-        String [] VD_array_Str = new String [size];
-        String [] VDPC_array_Str = new String [size];
+        String [] mm2_array_Str = new String [array_size];
+        String [] Ohms_array_Str = new String [array_size];
+        String [] VD_array_Str = new String [array_size];
+        String [] VDPC_array_Str = new String [array_size];
 
-        for (int i=0; i <  size; i++){
+        for (int i=0; i <  array_size; i++){
 
             mm2_array_Str [i] = mm2_array.get(i);
             Ohms_array_Str [i] = Ohms_array.get(i);
@@ -606,7 +609,7 @@ public class SizeforLoad_input_data extends AppCompatActivity {
         Bundle_Load.putString ("VD_REQ", VD_requirement);
         Bundle_Load.putString ("VD_SATISFIED", VD_satisfied);
 
-        Bundle_Load.putInt ("SIZE", size);
+        Bundle_Load.putInt ("ARRAY_SIZE", array_size);
         Bundle_Load.putInt ("CHOSEN_WIRE_POSITION", chosen_cable_position);
         Bundle_Load.putStringArray("SQMM_ARRAY", mm2_array_Str);
         Bundle_Load.putStringArray("OHMS_ARRAY", Ohms_array_Str);

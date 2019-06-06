@@ -29,6 +29,7 @@ public class Image_gallery extends AppCompatActivity {
         ImageView mIcon_caps = (ImageView)findViewById(R.id.IV_ind_caps);
         ImageView mIcon_igc = (ImageView)findViewById(R.id.IV_igc_wiring);
         ImageView mIcon_power1ph = (ImageView)findViewById(R.id.IV_power_1ph);
+        ImageView mIcon_igc_circuit_diag = (ImageView)findViewById(R.id.IV_IGC_circuit_diag);
 
         //Synchronous generators
         ImageView mIcon_synch_star = (ImageView)findViewById(R.id.IV_synch_star);
@@ -49,6 +50,7 @@ public class Image_gallery extends AppCompatActivity {
         ImageView mIcon_star_delta = (ImageView)findViewById(R.id.IV_star_delta);
         ImageView mIcon_consumer = (ImageView)findViewById(R.id.IV_consumer);
         ImageView mIcon_batt_parallel = (ImageView)findViewById(R.id.IV_batt_parallel);
+        ImageView mIcon_mcb = (ImageView)findViewById(R.id.IV_mcb);
         
         //LOAD AND ROUND THUMBNAIL
         //Induction generators
@@ -76,6 +78,11 @@ public class Image_gallery extends AppCompatActivity {
         RoundedBitmapDrawable mDrawable_power1ph = RoundedBitmapDrawableFactory.create(getResources(), bitmap_power1ph);
         mDrawable_power1ph.setCircular(true);
         mIcon_power1ph.setImageDrawable(mDrawable_power1ph);
+
+        Bitmap bitmap_igc_circuit_diag = BitmapFactory.decodeResource(getResources(), R.drawable.igc_circuit_diagram_thumb);
+        RoundedBitmapDrawable mDrawable_igc_circuit_diag = RoundedBitmapDrawableFactory.create(getResources(), bitmap_igc_circuit_diag);
+        mDrawable_igc_circuit_diag.setCircular(true);
+        mIcon_igc_circuit_diag.setImageDrawable(mDrawable_igc_circuit_diag);
 
         //Synchronous generators
         Bitmap bitmap_synch_star = BitmapFactory.decodeResource(getResources(), R.drawable.synch_star_wired_thumb);
@@ -151,6 +158,11 @@ public class Image_gallery extends AppCompatActivity {
         mDrawable_batt_parallel.setCircular(true);
         mIcon_batt_parallel.setImageDrawable(mDrawable_batt_parallel);
 
+        Bitmap bitmap_mcb = BitmapFactory.decodeResource(getResources(), R.drawable.mcb_thumb);
+        RoundedBitmapDrawable mDrawable_mcb = RoundedBitmapDrawableFactory.create(getResources(), bitmap_mcb);
+        mDrawable_mcb.setCircular(true);
+        mIcon_mcb.setImageDrawable(mDrawable_mcb);
+
         /*DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         int height = displayMetrics.heightPixels;
@@ -220,6 +232,20 @@ public class Image_gallery extends AppCompatActivity {
                 View mView = getLayoutInflater().inflate(R.layout.dialog_custom_layout, null);
                 PhotoView photoView = mView.findViewById(R.id.imageView);
                 photoView.setImageResource(R.drawable.power_1ph);
+                mBuilder.setView(mView);
+                AlertDialog mDialog = mBuilder.create();
+                mDialog.show();
+
+            }
+        });
+
+        mIcon_igc_circuit_diag.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder mBuilder = new AlertDialog.Builder(Image_gallery.this);
+                View mView = getLayoutInflater().inflate(R.layout.dialog_custom_layout, null);
+                PhotoView photoView = mView.findViewById(R.id.imageView);
+                photoView.setImageResource(R.drawable.igc_circuit_diagram);
                 mBuilder.setView(mView);
                 AlertDialog mDialog = mBuilder.create();
                 mDialog.show();
@@ -412,6 +438,20 @@ public class Image_gallery extends AppCompatActivity {
                 mDialog.show();
             }
         });
+
+        mIcon_mcb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder mBuilder = new AlertDialog.Builder(Image_gallery.this);
+                View mView = getLayoutInflater().inflate(R.layout.dialog_custom_layout, null);
+                PhotoView photoView = mView.findViewById(R.id.imageView);
+                photoView.setImageResource(R.drawable.mcb);
+                mBuilder.setView(mView);
+                AlertDialog mDialog = mBuilder.create();
+                mDialog.show();
+            }
+        });
+
 
 
 

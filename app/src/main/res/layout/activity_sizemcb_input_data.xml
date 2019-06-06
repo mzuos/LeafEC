@@ -4,18 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:focusableInTouchMode="true"
+    android:focusable="true"
     tools:context=".SizeMCB_input_data">
 
     <Spinner
         android:id="@+id/CableSizeSpinner"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginLeft="48dp"
         android:background="@drawable/custom_spinner"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/textView40"
-        app:layout_constraintStart_toEndOf="@+id/textView40"
+        app:layout_constraintEnd_toEndOf="@+id/cableSpinner"
         app:layout_constraintTop_toTopOf="@+id/textView40" />
 
 
@@ -23,8 +23,8 @@
         android:id="@+id/textView39"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
         android:layout_marginTop="16dp"
         android:text="@string/CableSelection"
         android:textSize="16sp"
@@ -33,13 +33,16 @@
 
     <TextView
         android:id="@+id/textView40"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
         android:layout_marginTop="48dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
         android:text="@string/InsertCableSize"
         android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/CableSizeSpinner"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cableSpinner" />
 
@@ -50,10 +53,10 @@
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:dropDownWidth="match_parent"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
         android:background="@drawable/custom_spinner"
+        android:dropDownWidth="match_parent"
         android:spinnerMode="dialog"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -64,11 +67,13 @@
         android:id="@+id/cableForMCB_PB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
-        android:paddingHorizontal="15dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:onClick="SelectMCBforCable"
+        android:paddingHorizontal="15dp"
         android:text="@string/CalculatePB"
         android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -83,7 +88,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/cableSpinner"
         app:layout_constraintEnd_toEndOf="@+id/cableSpinner"
         app:layout_constraintTop_toTopOf="@+id/cableSpinner"
-        app:srcCompat="@mipmap/arrow" />
+        app:srcCompat="@drawable/arrow" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -94,5 +99,5 @@
         app:layout_constraintBottom_toBottomOf="@+id/CableSizeSpinner"
         app:layout_constraintEnd_toEndOf="@+id/CableSizeSpinner"
         app:layout_constraintTop_toTopOf="@+id/CableSizeSpinner"
-        app:srcCompat="@mipmap/arrow" />
+        app:srcCompat="@drawable/arrow" />
 </android.support.constraint.ConstraintLayout>

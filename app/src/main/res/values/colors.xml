@@ -11,4 +11,5 @@
     <color name = "color_text_user_input">#000000</color>
     <color name= "dummy">#DCE6DD</color>
     <color name= "black">#000000</color>
+    <color name= "grey">#737978</color>
 </resources>

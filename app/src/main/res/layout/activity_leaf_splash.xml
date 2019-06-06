@@ -76,7 +76,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView58"
-        app:srcCompat="@mipmap/ewb_logo" />
+        app:srcCompat="@drawable/ewb_logo" />
 
     <ImageView
         android:id="@+id/imageView8"
@@ -88,5 +88,5 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/imageView7"
         app:layout_constraintTop_toTopOf="@+id/imageView7"
-        app:srcCompat="@mipmap/tonibung_logo" />
+        app:srcCompat="@drawable/tonibung_logo" />
 </android.support.constraint.ConstraintLayout>

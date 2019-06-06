@@ -488,6 +488,48 @@
             app:layout_constraintStart_toStartOf="@+id/IV_batt_parallel"
             app:layout_constraintTop_toBottomOf="@+id/IV_batt_parallel" />
 
+        <ImageView
+            android:id="@+id/IV_IGC_circuit_diag"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            app:layout_constraintBottom_toBottomOf="@+id/IV_power_1ph"
+            app:layout_constraintEnd_toEndOf="@+id/IV_ind_caps"
+            app:layout_constraintStart_toStartOf="@+id/IV_ind_caps"
+            app:layout_constraintTop_toTopOf="@+id/IV_power_1ph"
+            app:srcCompat="@drawable/igc_circuit_diagram_thumb" />
+
+        <TextView
+            android:id="@+id/textView90"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="IGC Circuit \nDiagram"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="@+id/IV_IGC_circuit_diag"
+            app:layout_constraintStart_toStartOf="@+id/IV_IGC_circuit_diag"
+            app:layout_constraintTop_toBottomOf="@+id/IV_IGC_circuit_diag" />
+
+        <ImageView
+            android:id="@+id/IV_mcb"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            app:layout_constraintBottom_toBottomOf="@+id/IV_batt_parallel"
+            app:layout_constraintEnd_toEndOf="@+id/IV_star_delta"
+            app:layout_constraintStart_toStartOf="@+id/IV_star_delta"
+            app:layout_constraintTop_toTopOf="@+id/IV_batt_parallel"
+            app:srcCompat="@drawable/mcb_thumb" />
+
+        <TextView
+            android:id="@+id/textView92"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="MCB Review"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="@+id/IV_mcb"
+            app:layout_constraintStart_toStartOf="@+id/IV_mcb"
+            app:layout_constraintTop_toBottomOf="@+id/IV_mcb" />
+
 
     </android.support.constraint.ConstraintLayout>
 

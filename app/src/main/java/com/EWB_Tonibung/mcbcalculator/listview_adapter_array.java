@@ -54,6 +54,7 @@ public class listview_adapter_array extends BaseAdapter
         TextView txtThird;
     }
 
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // TODO Auto-generated method stub

@@ -4,11 +4,24 @@ import static com.EWB_Tonibung.mcbcalculator.listview_constant.FIRST_COLUMN;
 import static com.EWB_Tonibung.mcbcalculator.listview_constant.SECOND_COLUMN;
 import static com.EWB_Tonibung.mcbcalculator.listview_constant.THIRD_COLUMN;
 
+import android.app.Activity;
+import android.content.Context;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.DisplayMetrics;
+import android.view.Gravity;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,6 +29,7 @@ import java.util.Locale;
 
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 // CODE SOURCE: http://www.technotalkative.com/android-multi-column-listview/
 
@@ -31,8 +45,10 @@ import android.widget.TextView;
     boolean mode = true;
     Spinner spinner_cable_sizes;
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_awg_mm2_converter);
 
@@ -40,6 +56,13 @@ import android.widget.TextView;
         populateList();
         listviewAdapter adapter = new listviewAdapter(this, list);
         lview.setAdapter(adapter);
+
+        final EditText ED_strandnum = (EditText)findViewById(R.id.ED_num_strand);
+        final EditText ED_strandsize = (EditText) findViewById(R.id.ED_strand_diam);
+        final ImageButton Arrow_button = (ImageButton) findViewById(R.id. IB_strandequiv);
+
+        int arrow_width = Arrow_button.getLayoutParams().width;
+        Arrow_button.getLayoutParams().height = arrow_width;
 
         spinner_cable_sizes = (Spinner) findViewById(R.id.spinner_cable_sizes);
         spinner_cable_sizes.setAdapter(new ArrayAdapter <String>(getApplicationContext(),android.R.layout.simple_spinner_dropdown_item,
@@ -107,6 +130,137 @@ import android.widget.TextView;
 
         });
 
+        // Strand to mm2 calculations: initialise and set button color
+
+
+
+
+
+        ED_strandnum.addTextChangedListener(new TextWatcher() {
+
+            public void afterTextChanged(Editable s) {
+
+            }
+
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                Arrow_button.setBackgroundResource(R.drawable.custom_button_red);
+            }
+        });
+
+        ED_strandsize.addTextChangedListener(new TextWatcher() {
+
+            public void afterTextChanged(Editable s) {}
+
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                Arrow_button.setBackgroundResource(R.drawable.custom_button_red);
+            }
+        });
+
+
+    }
+
+    public void strand_to_sqmm (View view){
+
+        double strandsize = 0, numstrand = 0 , sqmm_actual = 0, sqmm_equiv = 0;
+        boolean dataOK = true;
+        String PopUpText = "";
+
+        EditText ED_strandnum = (EditText)findViewById(R.id.ED_num_strand);
+        EditText ED_strandsize = (EditText) findViewById(R.id.ED_strand_diam);
+
+        int sqmm_sizes = GeneralCalculations.CopperWireArray.length;
+
+        // Data validation section before launching calculation
+
+        String Str_Num_strands = ED_strandnum.getText().toString();
+        String Str_strand_size = ED_strandsize.getText().toString();
+
+        if (Str_Num_strands.isEmpty()) {
+            numstrand = -1;//just giving a random value that is not zero for Toasts to work
+            dataOK=false;
+            PopUpText = "Number of strands cannot be blank";
+        } else {
+            numstrand = Float.parseFloat(Str_Num_strands);
+        }
+
+        if (Str_strand_size.isEmpty()) {
+            strandsize = -1;//just giving a random value that is not zero for Toasts to work
+            dataOK=false;
+            PopUpText = "Strand size cannot be blank";
+        } else {
+            strandsize = Float.parseFloat(Str_strand_size);
+        }
+
+        if (!dataOK) {
+
+            Context context = getApplicationContext();
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(context, PopUpText, duration);
+            View viewtext = toast.getView();
+
+            //Gets the actual oval background of the Toast then sets the colour filter
+            viewtext.getBackground().setColorFilter(getResources().getColor(R.color.color_leaf_Toast), PorterDuff.Mode.SRC_IN);
+            toast.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL, 0, -200);
+            TextView toastMessage = (TextView) toast.getView().findViewById(android.R.id.message);
+            toastMessage.setTextColor(Color.WHITE);
+            toast.show();
+
+        }
+
+        else{
+
+            sqmm_actual = numstrand * 3.1416 * strandsize * strandsize /4;  // Sqmm Area calculation
+
+            double diff_up, diff_down;
+
+            for (int i = 1; i < sqmm_sizes; i++){
+
+                if (sqmm_actual < GeneralCalculations.CopperWireArray[i]){
+
+                    diff_down = sqmm_actual - GeneralCalculations.CopperWireArray [i-1];
+                    diff_up = sqmm_actual - GeneralCalculations.CopperWireArray [i];
+                    diff_up = Math.abs (diff_up);
+
+                    if (diff_down > diff_up ){
+                        sqmm_equiv = GeneralCalculations.CopperWireArray [i];
+                    }
+
+                    else{
+
+                        sqmm_equiv = GeneralCalculations.CopperWireArray [i-1];
+                    }
+
+                    break;
+                }
+
+            }
+
+        }
+
+        ImageButton Arrow_button = (ImageButton) findViewById(R.id. IB_strandequiv);
+        Arrow_button.setBackgroundResource(R.drawable.custom_button);
+        TextView TV_strand_sqmm_equiv = (TextView) findViewById(R.id.TV_strandsqmm);
+        String Str_strand_sqmm_equiv = String.format (Locale.UK, "%.1f", sqmm_equiv);
+        Str_strand_sqmm_equiv = Str_strand_sqmm_equiv + " sqmm";
+        TV_strand_sqmm_equiv.setText(Str_strand_sqmm_equiv);
+        ED_strandnum.clearFocus();
+        ED_strandsize.clearFocus();
+        InputMethodManager imm = (InputMethodManager) this.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        View currentview = this.getCurrentFocus();
+        //If no view currently has focus, create a new one, just so we can grab a window token from it
+        if (currentview == null) {
+            currentview = new View(this);
+        }
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+
+
     }
 
     public void swap_converter_mode (View view){
@@ -115,21 +269,21 @@ import android.widget.TextView;
 
         //setContentView(R.layout.activity_awg_mm2_converter);
 
-        TextView TV_Iknow = (TextView) findViewById(R.id.TV_Iknow);
-        TextView TV_Iwant = (TextView) findViewById(R.id.TV_Iwant);
+       // TextView TV_Iknow = (TextView) findViewById(R.id.TV_Iknow);
+       // TextView TV_Iwant = (TextView) findViewById(R.id.TV_Iwant);
 
 
         if (mode == true){ // I know mm2 - I want AWG
 
-            TV_Iknow.setText("I know sqmm size");
-            TV_Iwant.setText ("AWG equivalent");
+            //TV_Iknow.setText("I know sqmm size");
+            //TV_Iwant.setText ("Closest AWG");
             spinner_cable_sizes.setAdapter(new ArrayAdapter <String>(getApplicationContext(),android.R.layout.simple_spinner_dropdown_item,
                     getResources().getStringArray(R.array.Cu_WireSizeList)));
         }
         else{ // I know AWG - I want mm2
 
-            TV_Iknow.setText("I know AWG size");
-            TV_Iwant.setText ("sqmm equivalent");
+            //TV_Iknow.setText("I know AWG size");
+            //TV_Iwant.setText ("Closest sqmm");
 
             spinner_cable_sizes.setAdapter(new ArrayAdapter <String>(getApplicationContext(),android.R.layout.simple_spinner_dropdown_item,
                     getResources().getStringArray(R.array.AWG_sizes)));

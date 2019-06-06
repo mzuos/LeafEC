@@ -1,7 +1,9 @@
 package com.EWB_Tonibung.mcbcalculator;
 
+import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -77,6 +79,29 @@ public class CableRatings extends AppCompatActivity {
 
     public void LoadCableData(){
 
+        int pixels = 0, size_dp =0;
+
+        // Get Screen density to size listview
+
+        DisplayMetrics displaymetrics;
+
+        displaymetrics = new DisplayMetrics();
+
+        Activity thisactivity;
+
+        thisactivity = CableRatings.this;
+
+        thisactivity.getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+
+        float density = getResources().getDisplayMetrics().density;
+
+        //pixels = size_array * 36; //height of each individual array
+
+        //size_dp = (int) Math.round (density) * pixels;
+
+
+        /***********************/
+
         /*CableType 0 = Cu Clipped Direct
         * CableType 1 = Cu in conduit
         * CableType 2 = Al - PVC - free air
@@ -112,6 +137,7 @@ public class CableRatings extends AppCompatActivity {
             dummy_VD = Double.toString(GeneralCalculations.VD_Cu_Clipped_1phAC [0]);
             Amp_list.add (dummy_Amp + " A"); //rating is same as 0.5mm2
             VD_list.add (dummy_VD + " mV/A/m"); //rating is same as 0.5mm2
+
         }
 
 
@@ -129,6 +155,12 @@ public class CableRatings extends AppCompatActivity {
                 Amp_list.add (dummy_Amp + " A");
                 VD_list.add (dummy_VD + " mV/A/m");
             }
+
+            pixels = cable_catalogue_length * 36; //height of each individual array
+            size_dp = (int) Math.round (density) * pixels;
+
+            Rating_lview.getLayoutParams().height = size_dp;
+
             // Load list view
             listview_adapter_cable_ratings adapter = new listview_adapter_cable_ratings(this, mm2_list, Amp_list, VD_list);
 
@@ -151,6 +183,12 @@ public class CableRatings extends AppCompatActivity {
                 Amp_list.add (dummy_Amp + " A");
                 VD_list.add (dummy_VD + " mV/A/m");
             }
+
+            pixels = cable_catalogue_length * 36; //height of each individual array
+            size_dp = (int) Math.round (density) * pixels;
+
+            Rating_lview.getLayoutParams().height = size_dp;
+
             // Load list view
             listview_adapter_cable_ratings adapter = new listview_adapter_cable_ratings(this, mm2_list, Amp_list, VD_list);
 
@@ -172,6 +210,12 @@ public class CableRatings extends AppCompatActivity {
                 Amp_list.add (dummy_Amp + " A");
                 VD_list.add (dummy_VD + " mV/A/m");
             }
+
+            pixels = cable_catalogue_length * 36; //height of each individual array
+            size_dp = (int) Math.round (density) * pixels;
+
+            Rating_lview.getLayoutParams().height = size_dp;
+
             // Load list view
             listview_adapter_cable_ratings adapter = new listview_adapter_cable_ratings(this, mm2_list, Amp_list, VD_list);
 
@@ -193,6 +237,11 @@ public class CableRatings extends AppCompatActivity {
                 Amp_list.add (dummy_Amp + " A");
                 VD_list.add (dummy_VD + " mV/A/m");
             }
+            pixels = cable_catalogue_length * 36; //height of each individual array
+            size_dp = (int) Math.round (density) * pixels;
+
+            Rating_lview.getLayoutParams().height = size_dp;
+
             // Load list view
             listview_adapter_cable_ratings adapter = new listview_adapter_cable_ratings(this, mm2_list, Amp_list, VD_list);
 
@@ -214,6 +263,12 @@ public class CableRatings extends AppCompatActivity {
                 Amp_list.add (dummy_Amp + " A");
                 VD_list.add (dummy_VD + " mV/A/m");
             }
+
+            pixels = cable_catalogue_length * 36; //height of each individual array
+            size_dp = (int) Math.round (density) * pixels;
+
+            Rating_lview.getLayoutParams().height = size_dp;
+
             // Load list view
             listview_adapter_cable_ratings adapter = new listview_adapter_cable_ratings(this, mm2_list, Amp_list, VD_list);
 
@@ -235,6 +290,12 @@ public class CableRatings extends AppCompatActivity {
                 Amp_list.add (dummy_Amp + " A");
                 VD_list.add (dummy_VD + " mV/A/m");
             }
+
+            pixels = cable_catalogue_length * 36; //height of each individual array
+            size_dp = (int) Math.round (density) * pixels;
+
+            Rating_lview.getLayoutParams().height = size_dp;
+
             // Load list view
             listview_adapter_cable_ratings adapter = new listview_adapter_cable_ratings(this, mm2_list, Amp_list, VD_list);
 
@@ -259,6 +320,12 @@ public class CableRatings extends AppCompatActivity {
                 Amp_list.add (dummy_Amp + " A");
                 VD_list.add (dummy_VD + " Ohm/m");
             }
+
+            pixels = cable_catalogue_length * 36; //height of each individual array
+            size_dp = (int) Math.round (density) * pixels;
+
+            Rating_lview.getLayoutParams().height = size_dp;
+
             // Load list view
             listview_adapter_cable_ratings adapter = new listview_adapter_cable_ratings(this, mm2_list, Amp_list, VD_list);
 
@@ -283,6 +350,12 @@ public class CableRatings extends AppCompatActivity {
                 Amp_list.add (dummy_Amp + " A");
                 VD_list.add (dummy_VD + " Ohm/m");
             }
+
+            pixels = cable_catalogue_length * 36; //height of each individual array
+            size_dp = (int) Math.round (density) * pixels;
+
+            Rating_lview.getLayoutParams().height = size_dp;
+
             // Load list view
             listview_adapter_cable_ratings adapter = new listview_adapter_cable_ratings(this, mm2_list, Amp_list, VD_list);
 

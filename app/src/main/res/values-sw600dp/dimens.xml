@@ -1,0 +1,3 @@
+<resources>
+    <dimen name= "main_screen_padding">120dp</dimen>
+</resources>

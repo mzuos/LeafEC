@@ -6,6 +6,8 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -14,6 +16,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.Locale;
 
 public class Inverter_input_data extends AppCompatActivity {
 
@@ -60,7 +64,67 @@ public class Inverter_input_data extends AppCompatActivity {
 
         });
 
+        /*final EditText Ed_V1ph = (EditText) findViewById(R.id.ED_Inv_1ph);
+        final EditText Ed_V3ph = (EditText) findViewById(R.id.ED_Inv_3ph);
+
+        Ed_V1ph.addTextChangedListener(new TextWatcher() {
+
+            public void afterTextChanged(Editable s) {
+
+            }
+
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            Adjust_V_3ph();
+        });
+
+        Ed_V3ph.addTextChangedListener(new TextWatcher() {
+
+            public void afterTextChanged(Editable s) {
+                Adjust_V_1ph();
+            }
+
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+        });*/
+
     }
+
+    /*public void Adjust_V_3ph(){
+        EditText Ed_V1ph = (EditText) findViewById(R.id.ED_Inv_1ph);
+        EditText Ed_V3ph = (EditText) findViewById(R.id.ED_Inv_3ph);
+        String Str_V1ph = Ed_V1ph.getText().toString();
+        if (!Str_V1ph.isEmpty()){
+
+            V1ph = Float.parseFloat(Str_V1ph);
+            V3ph = V1ph*1.73;
+            String Str_V3ph = String.format (Locale.UK, "%.0f", V3ph);
+            Ed_V3ph.setText(Str_V3ph);
+
+        }
+
+    }
+
+    public void Adjust_V_1ph(){
+        EditText Ed_V1ph = (EditText) findViewById(R.id.ED_Inv_1ph);
+        EditText Ed_V3ph = (EditText) findViewById(R.id.ED_Inv_3ph);
+        String Str_V3ph = Ed_V3ph.getText().toString();
+        if (!Str_V3ph.isEmpty()){
+
+            V3ph = Float.parseFloat(Str_V3ph);
+            V1ph = V1ph/1.73;
+            String Str_V1ph = String.format (Locale.UK, "%.0f", V1ph);
+            Ed_V1ph.setText(Str_V3ph);
+
+        }
+    }*/
 
     public void InverterDataValidation(View view) {
 
@@ -154,7 +218,7 @@ public class Inverter_input_data extends AppCompatActivity {
 
 
 
-         // Size DC for full inverter capacity, AC for (optional) reduced load. If reduced overload, trip AC only, to keep inverter running.
+         // Size DC for full inverter capacity
 
         Imax_DC = InvRating / inv_eff / InverterV * de_rating;
 

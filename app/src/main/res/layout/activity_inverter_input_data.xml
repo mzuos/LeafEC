@@ -15,6 +15,8 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:focusableInTouchMode="true"
+        android:focusable="true"
         tools:context=".Inverter_input_data">
 
         <TextView
@@ -26,6 +28,7 @@
             android:layout_marginTop="16dp"
             android:text="@string/InverterScr_text1"
             android:textSize="14sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -33,15 +36,13 @@
             android:id="@+id/textView12"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:text="@string/Inv_NomV_text"
             android:textSize="14sp"
             app:layout_constraintEnd_toStartOf="@+id/Insert_Vinverter"
-            app:layout_constraintStart_toStartOf="@+id/textView11"
+            app:layout_constraintStart_toStartOf="@+id/textView14"
             app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
         <TextView
@@ -62,14 +63,15 @@
 
         <TextView
             android:id="@+id/textView15"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
             android:layout_marginTop="32dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
             android:text="@string/Inverter_type"
             android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="@+id/textView11"
+            app:layout_constraintEnd_toStartOf="@+id/Inv_spinner"
+            app:layout_constraintStart_toStartOf="@+id/textView14"
             app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
         <EditText
@@ -107,10 +109,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="72dp"
+            android:layout_marginBottom="8dp"
             android:onClick="InverterDataValidation"
-            android:text="@string/CalculatePB"
             android:paddingHorizontal="15dp"
+            android:text="@string/CalculatePB"
             android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -122,44 +126,49 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="48dp"
             android:text="@string/Inv_design"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
         <TextView
             android:id="@+id/textView49"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
             android:layout_marginTop="24dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
             android:text="@string/Nominal_V_1ph_text"
-            app:layout_constraintStart_toStartOf="@+id/textView16"
+            app:layout_constraintEnd_toStartOf="@+id/ED_Inv_1ph"
+            app:layout_constraintStart_toStartOf="@+id/textView61"
             app:layout_constraintTop_toBottomOf="@+id/textView61" />
 
         <TextView
             android:id="@+id/textView60"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
             android:layout_marginTop="24dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
             android:text="@string/Nominal_V_3ph_text"
-            app:layout_constraintStart_toStartOf="@+id/textView16"
+            app:layout_constraintEnd_toStartOf="@+id/ED_Inv_3ph"
+            app:layout_constraintStart_toStartOf="@+id/textView49"
             app:layout_constraintTop_toBottomOf="@+id/textView49" />
 
         <EditText
             android:id="@+id/ED_Inv_1ph"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="64dp"
+            android:layout_marginRight="64dp"
             android:ems="10"
             android:gravity="center"
             android:inputType="number|numberDecimal"
             android:text="@string/Nominal_V_1ph_value"
             android:textSize="14sp"
             app:layout_constraintBaseline_toBaselineOf="@+id/textView49"
-            app:layout_constraintStart_toStartOf="@+id/ED_InvEff" />
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <EditText
             android:id="@+id/ED_Inv_3ph"
@@ -175,12 +184,15 @@
 
         <TextView
             android:id="@+id/textView61"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="24dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
             android:text="@string/Inverter_efficiency"
+            app:layout_constraintEnd_toStartOf="@+id/ED_InvEff"
             app:layout_constraintStart_toStartOf="@+id/textView16"
             app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
@@ -194,7 +206,7 @@
             android:text="@string/Inverter_efficiency_value"
             android:textSize="14sp"
             app:layout_constraintBaseline_toBaselineOf="@+id/textView61"
-            app:layout_constraintEnd_toStartOf="@+id/Insert_InvRating" />
+            app:layout_constraintStart_toStartOf="@+id/ED_Inv_1ph" />
 
         <Spinner
             android:id="@+id/Inv_spinner"
@@ -209,12 +221,12 @@
             android:id="@+id/imageView3"
             android:layout_width="9dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
             app:layout_constraintBottom_toBottomOf="@+id/textView15"
             app:layout_constraintEnd_toEndOf="@+id/Inv_spinner"
             app:layout_constraintTop_toTopOf="@+id/textView15"
-            app:srcCompat="@mipmap/arrow" />
+            app:srcCompat="@drawable/arrow" />
 
 
     </android.support.constraint.ConstraintLayout>

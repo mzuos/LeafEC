@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AWG_sizelist">
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    tools:context=".AWG_mm2_converter">
 
     <TextView
         android:id="@+id/textView38"
@@ -12,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:text="@string/AWG_title"
@@ -20,20 +23,20 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/ED_strand_diam" />
 
     <TextView
         android:id="@+id/textView51"
         android:layout_width="wrap_content"
         android:layout_height="22dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="24dp"
         android:text="@string/AWG"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/textView52"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_cable_sizes" />
+        app:layout_constraintTop_toBottomOf="@+id/imageButton" />
 
     <TextView
         android:id="@+id/textView52"
@@ -45,7 +48,8 @@
         app:layout_constraintBottom_toBottomOf="@+id/textView51"
         app:layout_constraintEnd_toStartOf="@+id/textView65"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textView51" />
+        app:layout_constraintStart_toEndOf="@+id/textView51"
+        app:layout_constraintTop_toTopOf="@+id/textView51" />
 
     <TextView
         android:id="@+id/textView65"
@@ -86,89 +90,67 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
-        android:layout_marginBottom="150dp"
+        android:layout_marginBottom="16dp"
+        android:cacheColorHint="@android:color/transparent"
+        android:clickable="false"
+        android:listSelector="@android:color/transparent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView66" />
 
-    <TextView
-        android:id="@+id/TV_Iknow"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginLeft="48dp"
-        android:layout_marginTop="32dp"
-        android:text="@string/Iknowmm2"
-        android:textAlignment="center"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView38" />
-
     <Spinner
         android:id="@+id/spinner_cable_sizes"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:background="@drawable/custom_spinner"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/TV_Iknow"
-        app:layout_constraintStart_toStartOf="@+id/TV_Iknow"
-        app:layout_constraintTop_toBottomOf="@+id/TV_Iknow" />
+        app:layout_constraintEnd_toEndOf="@+id/ED_strand_diam"
+        app:layout_constraintStart_toStartOf="@+id/ED_num_strand"
+        app:layout_constraintTop_toBottomOf="@+id/textView86" />
 
-
-    <TextView
-        android:id="@+id/TV_Iwant"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="48dp"
-        android:layout_marginRight="48dp"
-        android:text="@string/IwantAWG"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="@+id/TV_Iknow"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/TV_Iknow" />
 
     <TextView
         android:id="@+id/TV_size_equiv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
+        android:textAlignment="center"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/spinner_cable_sizes"
-        app:layout_constraintEnd_toEndOf="@+id/TV_Iwant"
-        app:layout_constraintStart_toStartOf="@+id/TV_Iwant"
+        app:layout_constraintEnd_toEndOf="@+id/TV_strandsqmm"
+        app:layout_constraintStart_toStartOf="@+id/TV_strandsqmm"
         app:layout_constraintTop_toTopOf="@+id/spinner_cable_sizes" />
 
     <ImageView
         android:id="@+id/imageView9"
-        android:layout_width="wrap_content"
-        android:layout_height="5dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
+        android:layout_width="10dp"
+        android:layout_height="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         app:layout_constraintBottom_toBottomOf="@+id/spinner_cable_sizes"
         app:layout_constraintEnd_toEndOf="@+id/spinner_cable_sizes"
         app:layout_constraintTop_toTopOf="@+id/spinner_cable_sizes"
-        app:srcCompat="@mipmap/arrow" />
+        app:srcCompat="@drawable/arrow" />
 
     <ImageButton
         android:id="@+id/imageButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:adjustViewBounds="false"
         android:background="@drawable/custom_button"
         android:onClick="swap_converter_mode"
-        android:src="@mipmap/swap_arrows"
+        android:scaleType="fitXY"
+        android:src="@drawable/swap_arrows"
         android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/spinner_cable_sizes"
-        app:layout_constraintEnd_toStartOf="@+id/TV_Iwant"
-        app:layout_constraintStart_toEndOf="@+id/TV_Iknow"
-        app:layout_constraintTop_toTopOf="@+id/TV_Iknow" />
+        app:layout_constraintBottom_toBottomOf="@+id/TV_size_equiv"
+        app:layout_constraintEnd_toEndOf="@+id/IB_strandequiv"
+        app:layout_constraintStart_toStartOf="@+id/IB_strandequiv"
+        app:layout_constraintTop_toTopOf="@+id/TV_size_equiv" />
 
     <TextView
         android:id="@+id/textView69"
@@ -176,40 +158,138 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:text="Other conversions:"
+        android:text="Wire strand to sqmm converter:"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/AWG_listview" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView70"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Num. strands"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="@+id/ED_num_strand"
+        app:layout_constraintStart_toStartOf="@+id/ED_num_strand"
+        app:layout_constraintTop_toBottomOf="@+id/textView69" />
+
+    <TextView
+        android:id="@+id/textView88"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:text="Strand diam. (mm)"
+        android:textAlignment="center"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textView70"
+        app:layout_constraintEnd_toEndOf="@+id/ED_strand_diam"
+        app:layout_constraintStart_toStartOf="@+id/ED_strand_diam" />
+
+    <TextView
+        android:id="@+id/textView89"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Closest sqmm"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/textView88"
+        app:layout_constraintEnd_toEndOf="@+id/TV_strandsqmm"
+        app:layout_constraintStart_toStartOf="@+id/TV_strandsqmm"
+        app:layout_constraintTop_toTopOf="@+id/textView88" />
+
+    <TextView
+        android:id="@+id/TV_strandsqmm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:text="23/0.15 mm    =    0.5 sqmm"
-        app:layout_constraintStart_toStartOf="@+id/textView69"
-        app:layout_constraintTop_toBottomOf="@+id/textView69" />
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:text="0.5 sqmm"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@+id/ED_strand_diam"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/IB_strandequiv" />
+
+    <EditText
+        android:id="@+id/ED_num_strand"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:ems="10"
+        android:gravity="center"
+        android:inputType="number"
+        android:paddingBottom="10dp"
+        android:text="23"
+        app:layout_constraintEnd_toStartOf="@+id/textView91"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView70" />
+
+    <EditText
+        android:id="@+id/ED_strand_diam"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:ems="10"
+        android:gravity="center"
+        android:inputType="numberDecimal"
+        android:paddingBottom="10dp"
+        android:text="0.15"
+        app:backgroundTint="@color/grey"
+        app:layout_constraintBaseline_toBaselineOf="@+id/ED_num_strand"
+        app:layout_constraintEnd_toStartOf="@+id/IB_strandequiv"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textView91" />
+
+    <TextView
+        android:id="@+id/textView91"
+        android:layout_width="10dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:text="/"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/ED_strand_diam"
+        app:layout_constraintEnd_toStartOf="@+id/ED_strand_diam"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/ED_num_strand" />
+
+    <ImageButton
+        android:id="@+id/IB_strandequiv"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:adjustViewBounds="false"
+        android:background="@drawable/custom_button"
+        android:onClick="strand_to_sqmm"
+        android:scaleType="centerInside"
+        android:src="@drawable/calculate_arrow"
+        app:layout_constraintBottom_toBottomOf="@+id/TV_strandsqmm"
+        app:layout_constraintEnd_toStartOf="@+id/TV_strandsqmm"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/ED_strand_diam"
+        app:layout_constraintTop_toTopOf="@+id/TV_strandsqmm" />
 
     <TextView
         android:id="@+id/textView86"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
         android:text="@string/disclaimer"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/textView52"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/textView38"
+        app:layout_constraintTop_toBottomOf="@+id/textView38" />
 
 </android.support.constraint.ConstraintLayout>
