@@ -150,6 +150,11 @@ public class PV_input_data extends AppCompatActivity {
             PopUpText = "Input field cannot be zero";
         }
 
+        if (PV_Voc > 1000 || Panel_Watts > 2000 || ImaxSCC > 1000 || Isc > 1000 || SystemV > 1000 || NumPV >1000 || MPPT_Vmax > 1000) {
+            dataOK = false;
+            PopUpText = "At least one of the input values is too large";
+        }
+
         if (Vpmax_srt.isEmpty() || Panel_Watts_srt.isEmpty() || Isc_srt.isEmpty() || ImaxSCC_srt.isEmpty() || SystemV_srt.isEmpty() || NumPV_srt.isEmpty() || MTTP_Vmax_str.isEmpty()) {
             dataOK = false;
             PopUpText = "Input field cannot be blank";
@@ -209,16 +214,23 @@ public class PV_input_data extends AppCompatActivity {
         }
         else { // it's a MPPT type
 
-            while (TRUE){
+            /*while (TRUE){
 
                 PVSeriesV = PV_Voc * n_series;
-                if (PVSeriesV < MPPT_Vmax * 1.25) { //Safety factor 1.25 or 1.56??
+                if (PVSeriesV <= MPPT_Vmax / 1.25) { //Safety factor 1.25 or 1.56??
                     n_series++;
                 }
                 else {
                     break;
                 }
-            }
+            }*/
+
+            double dummy = MPPT_Vmax/PV_Voc/1.25;
+            n_series = (int)dummy;
+
+            PVSeriesV = n_series * PV_Voc;
+
+
             n_parallel = NumPV / n_series;  // n_parallel and n_series are integer values
 
             PV_In_Design_Current = SCC_In_C_SF * Isc * n_parallel;

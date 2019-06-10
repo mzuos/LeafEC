@@ -103,9 +103,9 @@ public class CableRatings extends AppCompatActivity {
         /***********************/
 
         /*CableType 0 = Cu Clipped Direct
-        * CableType 1 = Cu in conduit
-        * CableType 2 = Al - PVC - free air
-        * CableType 3 = Al - XLPE - free air*/
+         * CableType 1 = Cu in conduit
+         * CableType 2 = Al - PVC - free air
+         * CableType 3 = Al - XLPE - free air*/
 
         // Load type: 0 = 1phAC, 1 = 3phAC, 2 = DC
 
@@ -318,7 +318,7 @@ public class CableRatings extends AppCompatActivity {
 
                 mm2_list.add (dummy_mm2 + " sqmm");
                 Amp_list.add (dummy_Amp + " A");
-                VD_list.add (dummy_VD + " Ohm/m");
+                VD_list.add (dummy_VD + " Ohm/km");
             }
 
             pixels = cable_catalogue_length * 36; //height of each individual array
@@ -348,7 +348,7 @@ public class CableRatings extends AppCompatActivity {
 
                 mm2_list.add (dummy_mm2 + " sqmm");
                 Amp_list.add (dummy_Amp + " A");
-                VD_list.add (dummy_VD + " Ohm/m");
+                VD_list.add (dummy_VD + " Ohm/km");
             }
 
             pixels = cable_catalogue_length * 36; //height of each individual array

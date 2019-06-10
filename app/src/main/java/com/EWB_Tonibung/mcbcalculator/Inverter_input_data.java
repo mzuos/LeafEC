@@ -186,6 +186,11 @@ public class Inverter_input_data extends AppCompatActivity {
             PopUpText = "Input field cannot be zero";
         }
 
+        if (InverterV > 5000 || InvRating > 10000000 || V1ph > 40000 || V3ph >100000) {
+            dataOK = false;
+            PopUpText = "At least one of the input numbers is too large";
+        }
+
         if (InvVsrt.isEmpty() || InvkWsrt.isEmpty() || V1ph_Str.isEmpty() || V3ph_Str.isEmpty()) {
             dataOK = false;
             PopUpText = "Input field cannot be blank";

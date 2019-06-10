@@ -10,7 +10,8 @@ import android.widget.Toast;
 
 import static java.lang.Boolean.TRUE;
 
-public class GeneralCalculations {
+public class
+GeneralCalculations {
 
  // MCB and Cable catalogue
 

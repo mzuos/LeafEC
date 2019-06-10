@@ -1,9 +1,17 @@
 package com.EWB_Tonibung.mcbcalculator;
 
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
+import android.widget.ImageView;
+import android.support.v7.app.AlertDialog;
+import android.view.View;
+import com.github.chrisbanes.photoview.PhotoView;
+
+import com.github.chrisbanes.photoview.PhotoView;
 
 public class PV_results extends AppCompatActivity {
 
@@ -148,5 +156,16 @@ public class PV_results extends AppCompatActivity {
         TextView TV_SCC_Out_Al = findViewById (R.id.Show_SCC_Out_Al);
         TV_SCC_Out_Al.setText (DispSCC_Out_Al);
 
+
+    }
+
+    void Launch_image_pv_to_scc (View view){
+        AlertDialog.Builder mBuilder = new AlertDialog.Builder(PV_results.this);
+        View mView = getLayoutInflater().inflate(R.layout.dialog_custom_layout, null);
+        PhotoView photoView = mView.findViewById(R.id.imageView);
+        photoView.setImageResource(R.drawable.solar_pv_to_scc);
+        mBuilder.setView(mView);
+        AlertDialog mDialog = mBuilder.create();
+        mDialog.show();
     }
 }

@@ -25,11 +25,12 @@ public class SizeCable_results extends AppCompatActivity {
         MCBRating = "Minimum suggested cable size for " + MCBRating + "A MCB:";
 
         String CableSize = BundleCableForMCB.getString("WIRE_SIZE");
+        CableSize = CableSize + " sqmm";
         String CableRating = BundleCableForMCB.getString("WIRE_RATING") + " A";
         CableRating = "Current Rating of the cable for continous use: " + CableRating;
 
 
-        if (CableSize.equals ("-1.0")){
+        if (CableSize.equals ("-1.0 sqmm")){
 
             CableSize = "n/a";
             CableRating  = "No cable of this type available for MCB rating";

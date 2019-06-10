@@ -204,7 +204,7 @@ public class Image_gallery extends AppCompatActivity {
                 AlertDialog.Builder mBuilder = new AlertDialog.Builder(Image_gallery.this);
                 View mView = getLayoutInflater().inflate(R.layout.dialog_custom_layout, null);
                 PhotoView photoView = mView.findViewById(R.id.imageView);
-                photoView.setImageResource(R.drawable.ind_gen_caps_cw_comp);
+                photoView.setImageResource(R.drawable.ind_gen_caps_cw);
                 mBuilder.setView(mView);
                 AlertDialog mDialog = mBuilder.create();
                 mDialog.show();

@@ -52,10 +52,32 @@ import android.widget.Toast;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_awg_mm2_converter);
 
+        int pixels = 0, size_dp =0;
+
+        // Get Screen density to size listview
+
+        DisplayMetrics displaymetrics;
+
+        displaymetrics = new DisplayMetrics();
+
+        Activity thisactivity;
+
+        thisactivity = AWG_mm2_converter.this;
+
+        thisactivity.getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+
+        float density = getResources().getDisplayMetrics().density;
+
+        pixels = 25 * 36; //height of each individual array
+        size_dp = (int) Math.round (density) * pixels;
+
         ListView lview = (ListView) findViewById(R.id.AWG_listview);
         populateList();
         listviewAdapter adapter = new listviewAdapter(this, list);
         lview.setAdapter(adapter);
+        lview.getLayoutParams().height = size_dp;
+
+
 
         final EditText ED_strandnum = (EditText)findViewById(R.id.ED_num_strand);
         final EditText ED_strandsize = (EditText) findViewById(R.id.ED_strand_diam);
@@ -247,8 +269,21 @@ import android.widget.Toast;
         ImageButton Arrow_button = (ImageButton) findViewById(R.id. IB_strandequiv);
         Arrow_button.setBackgroundResource(R.drawable.custom_button);
         TextView TV_strand_sqmm_equiv = (TextView) findViewById(R.id.TV_strandsqmm);
-        String Str_strand_sqmm_equiv = String.format (Locale.UK, "%.1f", sqmm_equiv);
-        Str_strand_sqmm_equiv = Str_strand_sqmm_equiv + " sqmm";
+
+        String Str_strand_sqmm_equiv;
+
+        if (sqmm_equiv != 0){
+
+            Str_strand_sqmm_equiv = String.format (Locale.UK, "%.1f", sqmm_equiv);
+            Str_strand_sqmm_equiv = Str_strand_sqmm_equiv + " sqmm";
+
+        }
+
+        else {
+            Str_strand_sqmm_equiv = "n/a";
+        }
+
+
         TV_strand_sqmm_equiv.setText(Str_strand_sqmm_equiv);
         ED_strandnum.clearFocus();
         ED_strandsize.clearFocus();

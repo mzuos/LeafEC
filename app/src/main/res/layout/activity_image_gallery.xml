@@ -442,7 +442,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Power - 1 phase"
+            android:text="Power \n1 phase"
+            android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="@+id/IV_power_1ph"
             app:layout_constraintStart_toStartOf="@+id/IV_power_1ph"
             app:layout_constraintTop_toBottomOf="@+id/IV_power_1ph" />

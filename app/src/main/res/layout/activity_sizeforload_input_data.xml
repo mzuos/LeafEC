@@ -121,11 +121,13 @@
 
         <TextView
             android:id="@+id/TV_V1ph"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginLeft="32dp"
             android:layout_marginTop="32dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
             android:text="@string/Nominal_V_1ph_text"
             app:layout_constraintEnd_toStartOf="@+id/ed_V1ph"
             app:layout_constraintHorizontal_bias="0.5"
@@ -135,28 +137,37 @@
 
         <TextView
             android:id="@+id/TV_V3ph"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
             android:text="@string/Nominal_V_3ph_text"
+            app:layout_constraintEnd_toStartOf="@+id/ED_OL_DC"
             app:layout_constraintStart_toStartOf="@+id/TV_V1ph"
             app:layout_constraintTop_toBottomOf="@+id/TV_V1ph" />
 
         <TextView
             android:id="@+id/TV_cosphi"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
             android:text="@string/Nominal_cosphi_text"
+            app:layout_constraintEnd_toStartOf="@+id/ed_cosphi"
             app:layout_constraintStart_toStartOf="@+id/TV_V1ph"
             app:layout_constraintTop_toBottomOf="@+id/TV_V3ph" />
 
         <TextView
             android:id="@+id/TV_OL"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
             android:text="@string/Nominal_OL_text"
+            app:layout_constraintEnd_toStartOf="@+id/ed_OL"
             app:layout_constraintStart_toStartOf="@+id/TV_V1ph"
             app:layout_constraintTop_toBottomOf="@+id/TV_cosphi" />
 
@@ -285,13 +296,17 @@
 
         <TextView
             android:id="@+id/TV_distance"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
             android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
             android:text="@string/distance_text"
             android:visibility="invisible"
-            app:layout_constraintEnd_toEndOf="@+id/TV_V1ph"
-            app:layout_constraintStart_toStartOf="@+id/TV_Vdc"
+            app:layout_constraintEnd_toStartOf="@+id/ET_km"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/VoltDrop_checkBox" />
 
         <EditText
@@ -323,10 +338,13 @@
 
         <TextView
             android:id="@+id/TV_OL_DC"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
             android:text="@string/Nominal_OL_text"
+            app:layout_constraintEnd_toStartOf="@+id/ED_OL_DC"
             app:layout_constraintStart_toStartOf="@+id/TV_Vdc"
             app:layout_constraintTop_toBottomOf="@+id/TV_Vdc" />
 
@@ -346,11 +364,14 @@
 
         <TextView
             android:id="@+id/TV_maxVoltDrop"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
             android:text="@string/maxVoltDrop_text"
             android:visibility="invisible"
+            app:layout_constraintEnd_toStartOf="@+id/ET_maxVD"
             app:layout_constraintStart_toStartOf="@+id/TV_distance"
             app:layout_constraintTop_toBottomOf="@+id/TV_distance" />
 

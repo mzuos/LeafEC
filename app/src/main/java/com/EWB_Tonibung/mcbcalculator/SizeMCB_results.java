@@ -21,6 +21,7 @@ public class SizeMCB_results extends AppCompatActivity {
         //Extracting the stored data from the bundle
 
         String MCBSize = BundleMCBforCable.getString("MCB_SIZE");
+        MCBSize = MCBSize + " Amps";
         String CableRating = BundleMCBforCable.getString("WIRE_RATING");
         CableRating = "Current rating of the cable: " + CableRating + " A";
 

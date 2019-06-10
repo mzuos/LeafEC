@@ -323,6 +323,21 @@
             app:layout_constraintBaseline_toBaselineOf="@+id/TV_I_design_out_txt"
             app:layout_constraintEnd_toEndOf="parent" />
 
+        <ImageButton
+            android:id="@+id/icon_pv_to_scc"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:background="@drawable/custom_button"
+            android:onClick="Launch_image_pv_to_scc"
+            android:scaleType="centerInside"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/textView13"
+            app:layout_constraintStart_toEndOf="@+id/textView13"
+            app:layout_constraintTop_toTopOf="@+id/textView13"
+            app:srcCompat="@drawable/confused" />
+
     </android.support.constraint.ConstraintLayout>
 
     </ScrollView>

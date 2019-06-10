@@ -30,7 +30,7 @@ public class SizeforLoad_input_data extends AppCompatActivity {
     int MCBforLoad=0;
     double CableForLoad = 0, CableForVoltDrop = 0, ChosenCable = 0, Ohms = 0;
     double Cable4Load_rating = 0;
-    int voltage_1ph = 1, voltage_3ph = 1;//initialised with silly values !=0
+    double voltage_1ph = 1, voltage_3ph = 1;//initialised with silly values !=0
     double cosphi =0, Overload=0.999; //initialised at weird values to help me identify mistakes
     double VD_goal = 0 ; // The value we need to search for
 
@@ -216,14 +216,21 @@ public class SizeforLoad_input_data extends AppCompatActivity {
 
         if (LoadSrt.isEmpty()) {
             Watts = -1;//just giving a random value that is not zero for Toasts to work
-            dataOK=false;
+            dataOK = false;
             PopUpText = "Load cannot be blank";
-        } else {
+        }
+
+        else {
             Watts = Float.parseFloat(LoadSrt);
         }
+
         if (Watts == 0 ) {
             dataOK = false;
             PopUpText = "Load cannot be zero";
+        }
+        else if (Watts > 10000000){
+            dataOK = false;
+            PopUpText = "Watts value is too large";
         }
 
         if (2 == LoadType){
@@ -240,6 +247,10 @@ public class SizeforLoad_input_data extends AppCompatActivity {
                 dataOK = false;
                 PopUpText = "DC voltage cannot be zero";
             }
+            else if (voltage_DC > 1000){
+                dataOK = false;
+                PopUpText = "DC voltage value is too large";
+            }
 
             if (OL_dc_Str.isEmpty()){
                 OL_DC = -1; //just giving a random value that is not zero for Toasts to work
@@ -254,6 +265,83 @@ public class SizeforLoad_input_data extends AppCompatActivity {
                 dataOK = false;
                 PopUpText = "Overload cannot be zero";
             }
+            else if (OL_DC > 1000){
+                dataOK = false;
+                PopUpText = "Overload value is too large";
+            }
+        }
+        
+        else{
+            
+            if (V1ph_Srt.isEmpty()){
+                voltage_1ph = 1; //just giving a random value that is not zero for Toasts to work
+                dataOK = false;
+                PopUpText = "1ph-AC voltage cannot be blank";
+            }
+            else{
+                voltage_1ph = Float.parseFloat(V1ph_Srt);
+            }
+
+            if (voltage_1ph == 0 ) {
+                dataOK = false;
+                PopUpText = "1ph-AC voltage cannot be zero";
+            }
+            else if (voltage_1ph > 1000000){
+                dataOK = false;
+                PopUpText = "1ph-AC voltage value is too large";
+            }
+
+
+            if (V3ph_Srt.isEmpty()){
+                voltage_3ph = 1; //just giving a random value that is not zero for Toasts to work
+                dataOK = false;
+                PopUpText = "3ph-AC voltage cannot be blank";
+            }
+            else{
+                voltage_3ph = Float.parseFloat (V3ph_Srt);
+            }
+
+            if (voltage_3ph == 0 ) {
+                dataOK = false;
+                PopUpText = "3ph-AC voltage cannot be zero";
+            }
+            else if (voltage_3ph > 6000000){
+                dataOK = false;
+                PopUpText = "3ph-AC voltage value is too large";
+            }
+
+            if (CosPhi_Srt.isEmpty()){
+                cosphi = 1; //just giving a random value that is not zero for Toasts to work
+                dataOK = false;
+                PopUpText = "Power factor cannot be blank";
+            }
+            else{
+                cosphi = Float.parseFloat(CosPhi_Srt);
+            }
+
+            if (cosphi >1 || cosphi<-1 ) {
+                dataOK = false;
+                PopUpText = "Power factor must be between 0 and 1";
+            }
+
+
+            if (OL_Srt.isEmpty()){
+                Overload = 1; //just giving a random value that is not zero for Toasts to work
+                dataOK = false;
+                PopUpText = "Overload cannot be blank";
+            }
+            else{
+                Overload = Float.parseFloat(OL_Srt);
+            }
+
+            if (Overload == 0 ) {
+                dataOK = false;
+                PopUpText = "Overload cannot be zero";
+            }
+            else if (Overload > 100){
+                dataOK = false;
+                PopUpText = "Overload value is too large";
+            }
         }
 
         if (VD_CheckBox.isChecked()){
@@ -264,8 +352,9 @@ public class SizeforLoad_input_data extends AppCompatActivity {
             Str_maxVD_PC = ED_maxVdrop.getText().toString();
 
             if (Str_distance.isEmpty()){
+                distance = -1;
                 dataOK = false;
-                PopUpText = "Enter distance for VoltDrop";
+                PopUpText = "Enter distance for distance";
             }
             else{
                 distance = Float.parseFloat(Str_distance);
@@ -275,12 +364,16 @@ public class SizeforLoad_input_data extends AppCompatActivity {
                 dataOK=false;
                 PopUpText = "Distance cannot be zero";
             }
+            else if (distance > 10000000){
+                dataOK=false;
+                PopUpText = "Distance value is too large";
+            }
 
             if (!Str_maxVD_PC.isEmpty()){
                 maxVD_percent = Float.parseFloat(Str_maxVD_PC);
                 if (maxVD_percent >= 100 || maxVD_percent <= 0){
                     dataOK=false;
-                    PopUpText = "Maximum volt drop must be >0 and <100";
+                    PopUpText = "Maximum volt drop must be between 0 and 100";
                 }
             }
             else{
@@ -323,12 +416,7 @@ public class SizeforLoad_input_data extends AppCompatActivity {
         }
 
         else{ //it's an AC Load
-
-            voltage_1ph =Integer.parseInt(V1ph_Srt);
-            voltage_3ph =Integer.parseInt(V3ph_Srt);
-            cosphi =Float.parseFloat(CosPhi_Srt);
-            Overload =Float.parseFloat(OL_Srt);
-
+            
             if (LoadType == 0){ //AC - Single Phase
                 Str_LoadType = "Single Phase";
                 Amps_R = Watts / voltage_1ph ; //for volt drop we consider the actual current, no overload
