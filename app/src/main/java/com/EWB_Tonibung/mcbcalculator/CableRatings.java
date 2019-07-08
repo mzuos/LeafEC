@@ -123,14 +123,29 @@ public class CableRatings extends AppCompatActivity {
 
         TextView TV_VD_Ohm =(TextView)findViewById(R.id.TV_VD);
         TextView TV_cableSTD = (TextView) findViewById(R.id.TV_CableSTD);
+        TextView TV_Calc_note = (TextView) findViewById (R.id.TV_note);
 
         ListView Rating_lview = (ListView) findViewById(R.id.Ratings_listview);
 
-        String dummy_mm2 = "", dummy_Amp = "", dummy_VD = "";
+        String dummy_mm2 = "", dummy_Amp = "", dummy_VD = "", note_Cu= "", note_Al = "";
+
+        note_Cu = "Note: To calculate the actual voltage drop (in mV) the " +
+                "tabulated value must be multiplied by the length of the run " +
+                "(one way) in meters and the design current of the cable in Amps. " +
+                "For 3-phase systems the Volt-Drop values are Line to Line. To obtain the Line to Neutral volt-drop" +
+                "(4 wire, balanced system), divide the value by 1.73 (=sqrt(3)).";
+
+        note_Al = "Note: To calculate the actual voltage drop (in mV) the " +
+                "resistance value of the table must be multiplied by the following values: " +
+                "\n DC or 1ph AC: VD = resistance (Ohm/km) x 2 x cable length in km (one way) x current (Amps) . " +
+                "\n AC-3phase, line to line: VD_3ph_LL = 1.72 x resistance (Ohm/km) x cable length in km (one way) x current (Amps)"+
+                "\n AC-3phase, line to neutral: VD_3ph_LN = Resistance (Ohm/km) x cable length in km (one way) x current (Amps)";
+
 
         if (CableType == 0 || CableType == 1){
             TV_cableSTD.setText("Cable standard and data source: BS7671 - 4D1");
             TV_VD_Ohm.setText("VoltDrop");
+            TV_Calc_note.setText (note_Cu);
 
             mm2_list.add ("23/0.15 mm");
             dummy_Amp = Double.toString(GeneralCalculations.Rating_Cu_Clipped [0]);
@@ -307,6 +322,7 @@ public class CableRatings extends AppCompatActivity {
 
             TV_VD_Ohm.setText("Resistivity");
             TV_cableSTD.setText("Cable Standard: IEC 60227 - Aerial Bundle Aluminium cable (PVC)");
+            TV_Calc_note.setText (note_Al);
 
             cable_catalogue_length = GeneralCalculations.AlumWireSize_IEC.length;
 

@@ -515,6 +515,7 @@ public class SizeforLoad_input_data extends AppCompatActivity {
         if (maxVD_percent != -1) {//userspecified max. volt drop
             VD_requirement = "YES";
 
+            // Translate the % voltrop to actual Volts --> depends on load type only.
             if (LoadType == 0){ //AC - 1ph
                 max_VoltDrop = voltage_1ph * maxVD_percent / 100;
             }
@@ -525,12 +526,24 @@ public class SizeforLoad_input_data extends AppCompatActivity {
                 max_VoltDrop = voltage_DC * maxVD_percent / 100;
             }
 
-            if (CableType == 0 || CableType == 1){ //VD tables in (mV/Amp*m), distance one way
-                VD_goal = max_VoltDrop * 1000 / Amps_R / distance;
+            // Calculate what is the tabulated or resistance value required to have that maximum volt drop (in volts)
+
+            // For Copper cables, we use BS7871 tabulated valuesin (mV/Amp*m), distance one way.
+            if (CableType == 0 || CableType == 1){ // tabulated values are already corrected for load type
+                VD_goal = max_VoltDrop * 1000 / Amps_R / distance; // VD_goal in mV/Amp*m
             }
 
-            else if (CableType == 2 || CableType == 3){ //VD tables in (Ohm/km), distance 2 ways
-                VD_goal = max_VoltDrop / Amps_R / (distance / 1000 * 2);
+            // For Aluminium cables, we have DC resistance values in (Ohm/km).
+            // The calculation is different depending on the load type
+            else if (CableType == 2 || CableType == 3){ //Aluminium cables
+                if (LoadType == 0 || LoadType == 2){//AC-1ph or DC
+                    VD_goal = max_VoltDrop / Amps_R / (distance / 1000 * 2);
+                    // 2 way run, Line & neutral conductors have the same current
+                }
+                else{// AC-3ph, assumes a line-to-line Voltdrop in a 3phase balanced system
+                    VD_goal = max_VoltDrop / 1.73/ Amps_R / (distance / 1000);
+                }
+
             }
 
             CableForVoltDrop = GeneralCalculations.CableForVoltDrop (CableType, LoadType, VD_goal);
@@ -601,13 +614,18 @@ public class SizeforLoad_input_data extends AppCompatActivity {
 
         Ohms = GeneralCalculations.VoltDropInfo (CableType, LoadType, cable);
 
-        if (CableType == 2 || CableType == 3){ //Aluminium cables
+        if (CableType == 2 || CableType == 3){ //Aluminium cables, calculation depends on load type
             // Ohms comes in(Ohm/A*km)
-            VoltDrop = Ohms * (distance / 1000 * 2) * Amps_R; //We consider 2 times the distance
+            if (LoadType == 0 || LoadType == 2) {//AC-1ph or DC
+                VoltDrop = Ohms * (distance / 1000 * 2) * Amps_R; //We consider 2 times the distance, Line & neutral
+            }
+            else{//AC-3ph, assumes a balanced system
+                VoltDrop = 1.73 * Ohms * (distance / 1000) * Amps_R; //We consider 1 times the distance, no current in neutral
+            }
         }
-        else if (CableType == 0 || CableType ==1){ //Copper cables
+        else if (CableType == 0 || CableType ==1){ //Copper cables, the tabulated values are corrected for load type
             // Ohms comes in(mV/A*m)
-            VoltDrop = (Ohms / 1000) * distance * Amps_R; //We consider 1 time the distance
+            VoltDrop = (Ohms / 1000) * distance * Amps_R; //We consider 1 time the distance,
         }
 
         if (LoadType == 0){ //AC - 1ph

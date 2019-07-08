@@ -59,22 +59,23 @@ GeneralCalculations {
 
     // ************** ALUMINIUM CABLES *******************************************************
 
-    // ** NOT USED ** Data from 17th Edition of BS7671 for Multicore non-armoured aluminium cables, PVC
+    /* ** NOT USED ** Data from 17th Edition of BS7671 for Multicore non-armoured aluminium cables, PVC
     // no data available for single core aluminium smaller than 50mm2 ** NOT USED **
     public static double [] AlumWireArray = new double [] {16, 25, 35, 50, 70, 95};
     //Current Rating for cables in free Air
-    public static double [] Rating_Al_Air= new double [] {73, 89, 111, 135, 173, 210};
+    public static double [] Rating_Al_Air= new double [] {73, 89, 111, 135, 173, 210};*/
 
 
     //Data from Aerial Bundle Aluminium cables, compliant with IEC 60227 (PVC) and IEC 60502 (XLPE)
-    public static double [] AlumWireSize_IEC = new double [] {10, 16, 25, 35, 50};
+    public static double [] AlumWireSize_IEC = new double [] {10, 16, 25, 35, 50, 70, 95, 120, 150, 240};
 
     //Current Rating for cables in free Air
-    public static double [] Rating_Al_Air_IEC_PVC= new double [] {35, 56, 70, 90, 110};
-    public static double [] Rating_Al_Air_IEC_XLPE= new double [] {47, 74, 102, 124, 157};
+    //ONE OF THE LARGE SIZES (>50mm) XLPE AMPACITIES IS INCORRECT, AWAITING SUPPLIER
+    public static double [] Rating_Al_Air_IEC_PVC= new double [] {35, 56, 70, 90, 110, 135, 170, 200, 230, 325};
+    public static double [] Rating_Al_Air_IEC_XLPE= new double [] {47, 74, 102, 124, 157, 157.1, 157.2, 157.3, 157.4, 157.5};
 
     //Resistance [Ohm/km] for volt drop
-    public static double [] Ohm_Al_Air_IEC= new double [] {3.08, 1.91, 1.2, 0.868, 0.641};
+    public static double [] Ohm_Al_Air_IEC= new double [] {3.08, 1.91, 1.2, 0.868, 0.641, 0.443, 0.32, 0.253, 0.19, 0.1193 };
 
 
 

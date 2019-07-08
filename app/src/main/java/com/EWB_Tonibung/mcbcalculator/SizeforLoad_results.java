@@ -121,6 +121,7 @@ public class SizeforLoad_results extends AppCompatActivity {
         TextView TView_lv_sqmm = (TextView) findViewById (R.id.TV_lv_sqmm);
         TextView TView_lv_VD = (TextView) findViewById (R.id.TV_lv_VD);
         TextView TView_lv_VDPC = (TextView) findViewById (R.id.TV_lv_VDPC);
+        TextView TV_lv_explain = (TextView) findViewById(R.id.TV_VD_explain);
 
         ListView VD_lview = (ListView) findViewById(R.id.VD_ListView);
 
@@ -158,6 +159,7 @@ public class SizeforLoad_results extends AppCompatActivity {
                 TView_lv_VD.setVisibility(View.VISIBLE);
                 TView_lv_VDPC.setVisibility(View.VISIBLE);
                 VD_lview.setVisibility(View.VISIBLE);
+                TV_lv_explain.setVisibility(View.VISIBLE);
 
                 //CALL TO THE LIST VIEW ADAPTER:
 
@@ -208,32 +210,42 @@ public class SizeforLoad_results extends AppCompatActivity {
 
             }
 
-            else{
+            else{ // else for: VD_req.equals ("YES")
 
                 TView_CableSize.setText (CableSize);
 
-                //Hide listview and titles
+                //Hide voltage drop listview and titles
                 TView_lv_sqmm.setVisibility(View.INVISIBLE);
                 TView_lv_VD.setVisibility(View.INVISIBLE);
                 TView_lv_VDPC.setVisibility(View.INVISIBLE);
                 VD_lview.setVisibility(View.INVISIBLE);
 
+                //Show volt drop value as info for the cable selected to satisfy the load requirement only
                 VoltDrop = "Volt drop: " + VDrop + "V (= " + VDPercent + "%) over " + Voltage + " V and " + distance + " meters.";
                 TView_VDResults.setVisibility(View.VISIBLE);
                 TView_VDResults.setText(VoltDrop);
 
             }
 
+            // For 3phase systems, explain that the VD calculation is Line to Line
 
+            if (LoadType.equals("Three Phase")){
+                TV_lv_explain.setText("Note: Calculated voltage drop values are Line to Line. In 3ph-4wire systems, to obtain Line to Neutral voltage drop, divide value by 1.73 (=sqrt3).");
+            }
+            else{
+                TV_lv_explain.setText("");
+            }
         }
-        else{
+        else{ // else for VDDisplay.equals("YES"
 
+            // Hide all info related to voltage drop as it's not required
             TView_CableSize.setText (CableSize);
             TView_VDResults.setVisibility(View.INVISIBLE);
             TView_lv_sqmm.setVisibility(View.INVISIBLE);
             TView_lv_VD.setVisibility(View.INVISIBLE);
             TView_lv_VDPC.setVisibility(View.INVISIBLE);
             VD_lview.setVisibility(View.INVISIBLE);
+            TV_lv_explain.setVisibility(View.INVISIBLE);
 
         }
 
