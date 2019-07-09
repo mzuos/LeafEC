@@ -125,8 +125,8 @@ public class SizeCable_input_data extends AppCompatActivity {
 
         // Call the Cable Size method in General Calculations
 
-        WireSizeForMCB = GeneralCalculations.CableSizeCalculator (MCBSize, CableType);
-        WireRating = GeneralCalculations.CableCurrentRating(CableType,WireSizeForMCB);
+        WireSizeForMCB = GeneralCalculations.CableSizeCalculator (MCBSize, CableType,0 );
+        WireRating = GeneralCalculations.CableCurrentRating(CableType,0, WireSizeForMCB);
 
 
         // Save the MCB and cable size values as Strings

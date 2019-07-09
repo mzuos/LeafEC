@@ -28,33 +28,42 @@ GeneralCalculations {
     //**** Clipped direct *****
 
     // Same values used for copper twin flat cable
-    public static double [] CopperWireArray = new double[] {0.5, 1, 1.5, 2.5, 4, 6, 10, 16, 25, 35, 50, 70, 95};
+    public static double [] CopperWireArray = new double[] {0.5, 1, 1.5, 2.5, 4, 6, 10, 16, 25, 35, 50, 70, 95, 120, 150, 185, 240};
 
-    //Current Rating for Clipped Direct:
-    public static double [] Rating_Cu_Clipped = new double [] {3, 15.5, 20, 27, 37, 47, 65, 87, 114, 141, 181, 234, 284};
+    //Current Rating for Clipped Direct, DC or 1phAC:
+    public static double [] Rating_Cu_Clipped_1phAC_DC = new double [] {3, 15.5, 20, 27, 37, 47, 65, 87, 114, 141, 182, 234, 284, 330, 381, 436, 515};
+
+    //Current Rating for Clipped Direct, 3phAC:
+    public static double [] Rating_Cu_Clipped_3phAC = new double [] {3, 14, 18, 25, 33, 43, 59, 79, 104, 129, 167, 214, 261, 303, 349, 400, 472};
+
 
     //Clipped direct - volt drop DC in(mV/A*m)
-    public static double [] VD_Cu_Clipped_DC = new double [] { 93, 44, 29, 18, 11, 7.3, 4.4, 2.8, 1.75, 1.25, 0.93, 0.63, 0.46};
+    public static double [] VD_Cu_Clipped_DC = new double [] { 93, 44, 29, 18, 11, 7.3, 4.4, 2.8, 1.75, 1.25, 0.93, 0.63, 0.46, 0.36, 0.29, 0.23, 0.18};
 
     //Clipped direct - volt drop AC-1ph in(mV/A*m)
-    public static double [] VD_Cu_Clipped_1phAC = new double [] { 93, 44, 29, 18, 11, 7.3, 4.4, 2.8, 1.80, 1.30, 0.97, 0.69, 0.54};
+    public static double [] VD_Cu_Clipped_1phAC = new double [] { 93, 44, 29, 18, 11, 7.3, 4.4, 2.8, 1.80, 1.30, 0.97, 0.69, 0.54, 0.45, 0.39, 0.35, 0.31};
 
     //Clipped direct - volt drop AC-3ph in(mV/A*m)
-    public static double [] VD_Cu_Clipped_3phAC = new double [] { 80, 38, 25, 15, 9.5, 6.4, 3.8, 2.4, 1.55, 1.15, 0.86, 0.63, 0.51};
+    public static double [] VD_Cu_Clipped_3phAC = new double [] { 80, 38, 25, 15, 9.5, 6.4, 3.8, 2.4, 1.55, 1.15, 0.86, 0.63, 0.51, 0.44, 0.4, 0.36, 0.34};
+
 
     //**** In Conduit *****
 
-    //Current Rating in conduit
-    public static double [] Rating_Cu_Conduit = new double [] {3, 12, 15.5, 21, 28, 36, 50, 68, 89, 110, 134, 171, 207};
+    //Current Rating in conduit, DC or 1phAC
+    public static double [] Rating_Cu_Conduit__1phAC_DC = new double [] {3, 13.5, 17.5, 24, 32, 41, 57, 76, 101, 125, 151, 192, 232, 269, 300, 341, 400};
+
+    //Current Rating in conduit, 3phAC
+    public static double [] Rating_Cu_Conduit__3phAC = new double [] {3, 12, 15.5, 21, 28, 36, 50, 68, 89, 110, 134, 171, 207, 239, 262, 296, 346};
+
 
     //In conduit - volt drop DC in(mV/A*m) (DC volt drop is the same in conduit or clipped)
-    public static double [] VD_Cu_Conduit_DC = new double [] { 93, 44, 29, 18, 11, 7.3, 4.4, 2.8, 1.75, 1.25, 0.93, 0.63, 0.46};
+    public static double [] VD_Cu_Conduit_DC = new double [] { 93, 44, 29, 18, 11, 7.3, 4.4, 2.8, 1.75, 1.25, 0.93, 0.63, 0.46, 0.36, 0.29, 0.23, 0.18};
 
     //In conduit - volt drop AC-1ph in(mV/A*m)
-    public static double [] VD_Cu_Conduit_1phAC = new double [] { 93, 44, 29, 18, 11, 7.3, 4.4, 2.8, 1.80, 1.30, 1.00, 0.72, 0.56};
+    public static double [] VD_Cu_Conduit_1phAC = new double [] { 93, 44, 29, 18, 11, 7.3, 4.4, 2.8, 1.80, 1.30, 1.00, 0.72, 0.56, 0.47, 0.41, 0.37, 0.33};
 
     //In conduit - volt drop AC-3ph in(mV/A*m)
-    public static double [] VD_Cu_Conduit_3phAC = new double [] { 80, 38, 25, 15, 9.5, 6.4, 3.8, 2.4, 1.55, 1.10, 0.85, 0.61, 0.48};
+    public static double [] VD_Cu_Conduit_3phAC = new double [] { 80, 38, 25, 15, 9.5, 6.4, 3.8, 2.4, 1.55, 1.10, 0.85, 0.61, 0.48, 0.41, 0.36, 0.32, 0.29};
 
 
     // ************** ALUMINIUM CABLES *******************************************************
@@ -70,12 +79,14 @@ GeneralCalculations {
     public static double [] AlumWireSize_IEC = new double [] {10, 16, 25, 35, 50, 70, 95, 120, 150, 240};
 
     //Current Rating for cables in free Air
-    //ONE OF THE LARGE SIZES (>50mm) XLPE AMPACITIES IS INCORRECT, AWAITING SUPPLIER
-    public static double [] Rating_Al_Air_IEC_PVC= new double [] {35, 56, 70, 90, 110, 135, 170, 200, 230, 325};
-    public static double [] Rating_Al_Air_IEC_XLPE= new double [] {47, 74, 102, 124, 157, 157.1, 157.2, 157.3, 157.4, 157.5};
+    //Latest values from supplier, received 8 July 2019, Amp capacity at 30degC
+    public static double [] Rating_Al_Air_IEC_PVC= new double [] {63, 88, 120, 146, 181, 232, 293, 342, 392, 547};
+    public static double [] Rating_Al_Air_IEC_XLPE= new double [] {68, 93, 125, 150, 185, 235, 295, 345, 395, 550};
+
+
 
     //Resistance [Ohm/km] for volt drop
-    public static double [] Ohm_Al_Air_IEC= new double [] {3.08, 1.91, 1.2, 0.868, 0.641, 0.443, 0.32, 0.253, 0.19, 0.1193 };
+    public static double [] Ohm_Al_Air_IEC= new double [] {3.08, 1.91, 1.2, 0.868, 0.641, 0.443, 0.32, 0.253, 0.19, 0.119};
 
 
 
@@ -150,17 +161,31 @@ GeneralCalculations {
 
     // ************** LOAD SPEC FOR CABLE TYPE ************
 
-    public static void LoadCableSpec (int CableType){
+    public static void LoadCableSpec (int CableType, int LoadType){
+
+        //CableType: 0 == Copper Clipped, 1 == Copper conduit, 2 == Al PVC, 3 == Al XLPE
+        // LoadType: 0 == 1phAC, 1 == 3phAC, 2 == DC
 
         if (CableType==0 ||CableType==1){
             CableList = CopperWireArray.length;
             WireSizeArray = CopperWireArray;
 
             if (CableType == 0){
-                AmpacityArray = Rating_Cu_Clipped;
+                if (LoadType == 1){
+                    AmpacityArray = Rating_Cu_Clipped_3phAC;
+                }
+                else{
+                    AmpacityArray = Rating_Cu_Clipped_1phAC_DC;
+                }
+
             }
             else if (CableType == 1){
-                AmpacityArray=Rating_Cu_Conduit;
+                if (LoadType == 1){
+                    AmpacityArray = Rating_Cu_Conduit__3phAC;
+                }
+                else{
+                    AmpacityArray = Rating_Cu_Conduit__1phAC_DC;
+                }
             }
         }
         else if (CableType == 2 || CableType == 3) {
@@ -179,12 +204,12 @@ GeneralCalculations {
 
     //************************* CABLE RATING**********************************
 
-    public static double CableCurrentRating (int CableType,double CableSize){
+    public static double CableCurrentRating (int CableType,int LoadType,double CableSize){
 
         double Rating = 0;
 
         // Load the ampacity and cable size arrays for the selected cable type
-        LoadCableSpec (CableType);
+        LoadCableSpec (CableType, LoadType);
 
         // Find Cable Rating
 
@@ -201,10 +226,10 @@ GeneralCalculations {
 
     //************************* CABLE SIZE FOR MCB CALCULATOR **********************************
 
-    public static double CableSizeCalculator (int MCB_size,int CableType){
+    public static double CableSizeCalculator (int MCB_size,int CableType, int LoadType){
 
         // Load the ampacity and cable size arrays for the selected cable type
-        LoadCableSpec (CableType);
+        LoadCableSpec (CableType, LoadType);
 
         // Calculate the required wire size
 
@@ -221,10 +246,10 @@ GeneralCalculations {
 
     //************************* MCB FOR CABLE CALCULATOR **********************************
 
-    public static int Calculator_MCBforCable(double CableSize,int CableType){
+    public static int Calculator_MCBforCable(double CableSize,int CableType, int LoadType){
 
         // Load the ampacity and cable size arrays for the selected cable type
-        LoadCableSpec (CableType);
+        LoadCableSpec (CableType, LoadType);
 
         double WireAmpacity = 0;
         int MCBRating = 0;
@@ -290,7 +315,7 @@ GeneralCalculations {
     public static double VoltDropInfo (int CableType, int LoadType, double CableForLoad){
 
         // Load the ampacity and cable size arrays for the selected cable type
-        LoadCableSpec (CableType);
+        LoadCableSpec (CableType, LoadType);
 
         // Load the correspondent volt drop array
         LoadVoltDrop(CableType, LoadType);
@@ -313,7 +338,7 @@ GeneralCalculations {
     public static double CableForVoltDrop (int CableType, int LoadType, double VD_goal){
 
         // Load the ampacity and cable size arrays for the selected cable type
-        LoadCableSpec (CableType);
+        LoadCableSpec (CableType, LoadType);
 
         // Load the correspondent volt drop array
         LoadVoltDrop(CableType, LoadType);
@@ -340,9 +365,9 @@ GeneralCalculations {
     }
 
 
-    public static int FindCablePosition (int CableType, double CableForLoad){
+    public static int FindCablePosition (int CableType, int LoadType, double CableForLoad){
 
-        LoadCableSpec (CableType);
+        LoadCableSpec (CableType,LoadType);
 
         int position = 0;
 

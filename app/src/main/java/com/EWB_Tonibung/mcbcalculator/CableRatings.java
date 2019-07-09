@@ -132,23 +132,27 @@ public class CableRatings extends AppCompatActivity {
         note_Cu = "Note: To calculate the actual voltage drop (in mV) the " +
                 "tabulated value must be multiplied by the length of the run " +
                 "(one way) in meters and the design current of the cable in Amps. " +
-                "For 3-phase systems the Volt-Drop values are Line to Line. To obtain the Line to Neutral volt-drop" +
+                "\n"+
+                "\nFor 3-phase systems the Volt-Drop values are Line to Line. To obtain the Line to Neutral volt-drop" +
                 "(4 wire, balanced system), divide the value by 1.73 (=sqrt(3)).";
 
         note_Al = "Note: To calculate the actual voltage drop (in mV) the " +
                 "resistance value of the table must be multiplied by the following values: " +
-                "\n DC or 1ph AC: VD = resistance (Ohm/km) x 2 x cable length in km (one way) x current (Amps) . " +
-                "\n AC-3phase, line to line: VD_3ph_LL = 1.72 x resistance (Ohm/km) x cable length in km (one way) x current (Amps)"+
-                "\n AC-3phase, line to neutral: VD_3ph_LN = Resistance (Ohm/km) x cable length in km (one way) x current (Amps)";
+                "\n"+"\n DC or 1ph AC:" +
+                "\n    VD = resistance (Ohm/km) x 2 x cable length in km (one way) x current (Amps) . " +
+                "\n"+"\n AC-3phase, line to line: " +
+                "\n    VD_3ph_LL = 1.72 x resistance (Ohm/km) x cable length in km (one way) x current (Amps)"+
+                "\n"+"\n AC-3phase, line to neutral: " +
+                "\n    VD_3ph_LN = Resistance (Ohm/km) x cable length in km (one way) x current (Amps)";
 
 
         if (CableType == 0 || CableType == 1){
-            TV_cableSTD.setText("Cable standard and data source: BS7671 - 4D1");
+            TV_cableSTD.setText("Cable standard and data source: BS7671 - 4D1."+"\nTabulated Voltdrop values at maximum permitted conductor temperature");
             TV_VD_Ohm.setText("VoltDrop");
             TV_Calc_note.setText (note_Cu);
 
             mm2_list.add ("23/0.15 mm");
-            dummy_Amp = Double.toString(GeneralCalculations.Rating_Cu_Clipped [0]);
+            dummy_Amp = Double.toString(GeneralCalculations.Rating_Cu_Clipped_1phAC_DC [0]);
             dummy_VD = Double.toString(GeneralCalculations.VD_Cu_Clipped_1phAC [0]);
             Amp_list.add (dummy_Amp + " A"); //rating is same as 0.5mm2
             VD_list.add (dummy_VD + " mV/A/m"); //rating is same as 0.5mm2
@@ -163,7 +167,7 @@ public class CableRatings extends AppCompatActivity {
             for (int i = 0; i < cable_catalogue_length; i++){
 
                 dummy_mm2 = Double.toString(GeneralCalculations.CopperWireArray [i]);
-                dummy_Amp = Double.toString(GeneralCalculations.Rating_Cu_Clipped [i]);
+                dummy_Amp = Double.toString(GeneralCalculations.Rating_Cu_Clipped_1phAC_DC [i]);
                 dummy_VD = Double.toString(GeneralCalculations.VD_Cu_Clipped_1phAC [i]);
 
                 mm2_list.add (dummy_mm2 + " sqmm");
@@ -191,7 +195,7 @@ public class CableRatings extends AppCompatActivity {
             for (int i = 0; i < cable_catalogue_length; i++){
 
                 dummy_mm2 = Double.toString(GeneralCalculations.CopperWireArray [i]);
-                dummy_Amp = Double.toString(GeneralCalculations.Rating_Cu_Clipped [i]);
+                dummy_Amp = Double.toString(GeneralCalculations.Rating_Cu_Clipped_3phAC [i]);
                 dummy_VD = Double.toString(GeneralCalculations.VD_Cu_Clipped_3phAC [i]);
 
                 mm2_list.add (dummy_mm2 + " sqmm");
@@ -218,7 +222,7 @@ public class CableRatings extends AppCompatActivity {
             for (int i = 0; i < cable_catalogue_length; i++){
 
                 dummy_mm2 = Double.toString(GeneralCalculations.CopperWireArray [i]);
-                dummy_Amp = Double.toString(GeneralCalculations.Rating_Cu_Clipped [i]);
+                dummy_Amp = Double.toString(GeneralCalculations.Rating_Cu_Clipped_1phAC_DC [i]);
                 dummy_VD = Double.toString(GeneralCalculations.VD_Cu_Clipped_DC [i]);
 
                 mm2_list.add (dummy_mm2 + " sqmm");
@@ -245,7 +249,7 @@ public class CableRatings extends AppCompatActivity {
             for (int i = 0; i < cable_catalogue_length; i++){
 
                 dummy_mm2 = Double.toString(GeneralCalculations.CopperWireArray [i]);
-                dummy_Amp = Double.toString(GeneralCalculations.Rating_Cu_Conduit [i]);
+                dummy_Amp = Double.toString(GeneralCalculations.Rating_Cu_Conduit__1phAC_DC [i]);
                 dummy_VD = Double.toString(GeneralCalculations.VD_Cu_Clipped_1phAC [i]);
 
                 mm2_list.add (dummy_mm2 + " sqmm");
@@ -271,7 +275,7 @@ public class CableRatings extends AppCompatActivity {
             for (int i = 0; i < cable_catalogue_length; i++){
 
                 dummy_mm2 = Double.toString(GeneralCalculations.CopperWireArray [i]);
-                dummy_Amp = Double.toString(GeneralCalculations.Rating_Cu_Conduit [i]);
+                dummy_Amp = Double.toString(GeneralCalculations.Rating_Cu_Conduit__3phAC [i]);
                 dummy_VD = Double.toString(GeneralCalculations.VD_Cu_Clipped_3phAC [i]);
 
                 mm2_list.add (dummy_mm2 + " sqmm");
@@ -298,7 +302,7 @@ public class CableRatings extends AppCompatActivity {
             for (int i = 0; i < cable_catalogue_length; i++){
 
                 dummy_mm2 = Double.toString(GeneralCalculations.CopperWireArray [i]);
-                dummy_Amp = Double.toString(GeneralCalculations.Rating_Cu_Conduit [i]);
+                dummy_Amp = Double.toString(GeneralCalculations.Rating_Cu_Conduit__1phAC_DC [i]);
                 dummy_VD = Double.toString(GeneralCalculations.VD_Cu_Clipped_DC [i]);
 
                 mm2_list.add (dummy_mm2 + " sqmm");
@@ -320,8 +324,8 @@ public class CableRatings extends AppCompatActivity {
 
         else if (CableType == 2){
 
-            TV_VD_Ohm.setText("Resistivity");
-            TV_cableSTD.setText("Cable Standard: IEC 60227 - Aerial Bundle Aluminium cable (PVC)");
+            TV_VD_Ohm.setText("Resistance");
+            TV_cableSTD.setText("Cable Standard: IEC 60227 - Aerial Bundle Aluminium cable (PVC)." + "\nResistance values of conductor at 20degC");
             TV_Calc_note.setText (note_Al);
 
             cable_catalogue_length = GeneralCalculations.AlumWireSize_IEC.length;
@@ -351,8 +355,9 @@ public class CableRatings extends AppCompatActivity {
 
         else if (CableType == 3){
 
-            TV_VD_Ohm.setText("Resistivity");
-            TV_cableSTD.setText("Cable Standard: IEC 60502 - Aerial Bundle Aluminium cable (XLPE)");
+            TV_VD_Ohm.setText("Resistance");
+            TV_cableSTD.setText("Cable Standard: IEC 60502 - Aerial Bundle Aluminium cable (XLPE)." + "\nResistance values of conductor at 20degC");
+            TV_Calc_note.setText (note_Al);
 
             cable_catalogue_length = GeneralCalculations.AlumWireSize_IEC.length;
 

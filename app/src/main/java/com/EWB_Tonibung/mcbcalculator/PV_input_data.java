@@ -300,8 +300,8 @@ public class PV_input_data extends AppCompatActivity {
 
            else { // means we have a suitable MCB
 
-               SCC_In_WireSize_Cu = GeneralCalculations.CableSizeCalculator (SCC_In_MCBSize, 0);
-               SCC_In_WireSize_Al = GeneralCalculations.CableSizeCalculator (SCC_In_MCBSize,2);
+               SCC_In_WireSize_Cu = GeneralCalculations.CableSizeCalculator (SCC_In_MCBSize, 0, 2);
+               SCC_In_WireSize_Al = GeneralCalculations.CableSizeCalculator (SCC_In_MCBSize,2,2);
 
            }
 
@@ -326,8 +326,8 @@ public class PV_input_data extends AppCompatActivity {
                 }
                 else { // means we have a suitable MCB
 
-                    SCC_Out_WireSize_Cu = GeneralCalculations.CableSizeCalculator (SCC_Out_MCBSize, 0);
-                    SCC_Out_WireSize_Al = GeneralCalculations.CableSizeCalculator (SCC_Out_MCBSize,2);
+                    SCC_Out_WireSize_Cu = GeneralCalculations.CableSizeCalculator (SCC_Out_MCBSize, 0, 2);
+                    SCC_Out_WireSize_Al = GeneralCalculations.CableSizeCalculator (SCC_Out_MCBSize,2,2);
                 }
 
             }

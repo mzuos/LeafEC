@@ -260,8 +260,8 @@ public class Inverter_input_data extends AppCompatActivity {
         }
         else{
 
-            Inv_DC_Wire_Size_Cu = GeneralCalculations.CableSizeCalculator(Inv_DC_MCB_Size, 0);
-            Inv_DC_Wire_Size_Al = GeneralCalculations.CableSizeCalculator(Inv_DC_MCB_Size, 2);
+            Inv_DC_Wire_Size_Cu = GeneralCalculations.CableSizeCalculator(Inv_DC_MCB_Size, 0, 2);
+            Inv_DC_Wire_Size_Al = GeneralCalculations.CableSizeCalculator(Inv_DC_MCB_Size, 2, 2);
 
         }
 
@@ -274,8 +274,8 @@ public class Inverter_input_data extends AppCompatActivity {
 
         else{
 
-            Inv_AC_Wire_Size_Cu = GeneralCalculations.CableSizeCalculator(Inv_AC_MCB_Size, 0);
-            Inv_AC_Wire_Size_Al = GeneralCalculations.CableSizeCalculator(Inv_AC_MCB_Size, 2);
+            Inv_AC_Wire_Size_Cu = GeneralCalculations.CableSizeCalculator(Inv_AC_MCB_Size, 0, 0);
+            Inv_AC_Wire_Size_Al = GeneralCalculations.CableSizeCalculator(Inv_AC_MCB_Size, 2, 0);
         }
 
         DC_MCB_V_rating = GeneralCalculations.DC_V_Rating_Calculator(V_DC_design);

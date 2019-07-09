@@ -444,12 +444,12 @@ public class SizeforLoad_input_data extends AppCompatActivity {
             Str_MCBSize =Integer.toString(MCBforLoad);
         }
 
-        CableForLoad = GeneralCalculations.CableSizeCalculator(MCBforLoad,CableType);
+        CableForLoad = GeneralCalculations.CableSizeCalculator(MCBforLoad,CableType, LoadType);
 
         if (CableForLoad != -1){ //it means we were able to find a cable
 
 
-            Cable4Load_rating = GeneralCalculations.CableCurrentRating(CableType, CableForLoad);
+            Cable4Load_rating = GeneralCalculations.CableCurrentRating(CableType, LoadType,CableForLoad);
 
 
 
@@ -466,7 +466,7 @@ public class SizeforLoad_input_data extends AppCompatActivity {
 
             }
 
-            load_cable_position = GeneralCalculations.FindCablePosition (CableType, CableForLoad);
+            load_cable_position = GeneralCalculations.FindCablePosition (CableType,LoadType,CableForLoad);
 
             if (VD_CheckBox.isChecked()){ //
                 VDShow = "YES";
@@ -689,7 +689,7 @@ public class SizeforLoad_input_data extends AppCompatActivity {
 
         //Find position of chosen cable in the cable catalog (used for ListView focus)
 
-        int chosen_cable_position = GeneralCalculations.FindCablePosition(CableType,ChosenCable);
+        int chosen_cable_position = GeneralCalculations.FindCablePosition(CableType, LoadType, ChosenCable);
 
         chosen_cable_position = chosen_cable_position - load_cable_position;
 

@@ -24,6 +24,10 @@
         <item> "50 sqmm" </item>
         <item> "70 sqmm" </item>
         <item> "95 sqmm" </item>
+        <item> "120 sqmm" </item>
+        <item> "150 sqmm" </item>
+        <item> "185 sqmm" </item>
+        <item> "240 sqmm" </item>
     </array>
 
     <array
@@ -43,6 +47,11 @@
         <item> "25 sqmm" </item>
         <item> "35 sqmm" </item>
         <item> "50 sqmm" </item>
+        <item> "70 sqmm" </item>
+        <item> "95 sqmm" </item>
+        <item> "120 sqmm" </item>
+        <item> "150 sqmm" </item>
+        <item> "240 sqmm" </item>
 
     </array>
 
